@@ -1,0 +1,30 @@
+{
+  "id": "com.thirdreality.app",
+  "version": "1.0.0",
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
+  "platforms": [
+    "local"
+  ],
+  "brandColor":"#12B2FA",
+  "name": {
+    "en": "Third Reality"
+  },
+  "description": {
+    "en": "Control your Zigbeee devices made by ThirdReality"
+  },
+  "category": [
+    "tools"
+  ],
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "author": {
+    "name": "Yi Zhang",
+    "email": "zhangyi@3reality.com"
+  },
+  "support": "https://github.com/hwzolin/com.thirdreality.app/issues"
+}

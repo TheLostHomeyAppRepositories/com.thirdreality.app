@@ -1,0 +1,519 @@
+{
+  "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
+  "id": "com.thirdreality.app",
+  "version": "1.0.0",
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
+  "platforms": [
+    "local"
+  ],
+  "brandColor": "#12B2FA",
+  "name": {
+    "en": "Third Reality"
+  },
+  "description": {
+    "en": "Control your Zigbeee devices made by ThirdReality"
+  },
+  "category": [
+    "tools"
+  ],
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "author": {
+    "name": "Yi Zhang",
+    "email": "zhangyi@3reality.com"
+  },
+  "support": "https://github.com/hwzolin/com.thirdreality.app/issues",
+  "drivers": [
+    {
+      "name": {
+        "en": "Smart Blind"
+      },
+      "class": "blinds",
+      "capabilities": [
+        "windowcoverings_state",
+        "windowcoverings_set",
+        "measure_battery"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "zigbee"
+      ],
+      "images": {
+        "small": "/drivers/curtain/assets/images/small.png",
+        "large": "/drivers/curtain/assets/images/large.png"
+      },
+      "energy": {
+        "batteries": [
+          "AAA",
+          "AAA"
+        ]
+      },
+      "zigbee": {
+        "manufacturerName": [
+          "Third Reality, Inc"
+        ],
+        "productId": [
+          "3RSB015BZ"
+        ],
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              1,
+              4,
+              5,
+              258
+            ],
+            "bindings": [
+              258
+            ]
+          }
+        },
+        "learnmode": {
+          "image": "/drivers/curtain/assets/images/large.png",
+          "instruction": {
+            "en": "Press and hold the reset button until the red light is blinking."
+          }
+        }
+      },
+      "id": "curtain"
+    },
+    {
+      "name": {
+        "en": "Contact Sensor"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "measure_battery",
+        "alarm_contact"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "zigbee"
+      ],
+      "images": {
+        "small": "/drivers/door/assets/images/small.png",
+        "large": "/drivers/door/assets/images/large.png"
+      },
+      "energy": {
+        "batteries": [
+          "AAA",
+          "AAA"
+        ]
+      },
+      "zigbee": {
+        "manufacturerName": [
+          "Third Reality, Inc"
+        ],
+        "productId": [
+          "3RDS17BZ"
+        ],
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              1,
+              1280
+            ],
+            "bindings": [
+              1,
+              1280
+            ]
+          }
+        },
+        "learnmode": {
+          "image": "/drivers/door/assets/images/large.png",
+          "instruction": {
+            "en": "Press and hold the reset button until the red light is blinking."
+          }
+        }
+      },
+      "id": "door"
+    },
+    {
+      "name": {
+        "en": "Motion Sensor"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "measure_battery",
+        "alarm_motion"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "zigbee"
+      ],
+      "energy": {
+        "batteries": [
+          "AAA",
+          "AAA"
+        ]
+      },
+      "images": {
+        "small": "/drivers/motion/assets/images/small.png",
+        "large": "/drivers/motion/assets/images/large.png"
+      },
+      "zigbee": {
+        "manufacturerName": [
+          "Third Reality, Inc"
+        ],
+        "productId": [
+          "3RMS16BZ"
+        ],
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              1,
+              1280
+            ],
+            "bindings": [
+              1,
+              1280
+            ]
+          }
+        },
+        "learnmode": {
+          "image": "/drivers/motion/assets/images/large.png",
+          "instruction": {
+            "en": "Press and hold the reset button until the red light is on, and then release button."
+          }
+        }
+      },
+      "id": "motion"
+    },
+    {
+      "name": {
+        "en": "Smart Plug E2"
+      },
+      "class": "socket",
+      "capabilities": [
+        "onoff",
+        "measure_power",
+        "measure_current",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "zigbee"
+      ],
+      "images": {
+        "small": "/drivers/plug_e2/assets/images/small.png",
+        "large": "/drivers/plug_e2/assets/images/large.png"
+      },
+      "zigbee": {
+        "manufacturerName": [
+          "Third Reality, Inc"
+        ],
+        "productId": [
+          "3RSPE01044BZ"
+        ],
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              4,
+              5,
+              6,
+              1794,
+              2820
+            ]
+          }
+        },
+        "learnmode": {
+          "image": "/drivers/plug_e2/assets/images/large.png",
+          "instruction": {
+            "en": "Press and hold the reset button until the red light is blinking."
+          }
+        }
+      },
+      "id": "plug_e2"
+    },
+    {
+      "name": {
+        "en": "Smart Plug"
+      },
+      "class": "socket",
+      "capabilities": [
+        "onoff"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "zigbee"
+      ],
+      "images": {
+        "small": "/drivers/plug_v1/assets/images/small.png",
+        "large": "/drivers/plug_v1/assets/images/large.png"
+      },
+      "zigbee": {
+        "manufacturerName": [
+          "Third Reality, Inc"
+        ],
+        "productId": [
+          "3RSP019BZ"
+        ],
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              1,
+              3,
+              4,
+              6
+            ]
+          }
+        },
+        "learnmode": {
+          "image": "/drivers/plug_v1/assets/images/large.png",
+          "instruction": {
+            "en": "Press and hold the reset button until the red light is blinking."
+          }
+        }
+      },
+      "id": "plug_v1"
+    },
+    {
+      "name": {
+        "en": "Smart Plug Gen2"
+      },
+      "class": "socket",
+      "capabilities": [
+        "onoff",
+        "measure_power",
+        "measure_current",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "zigbee"
+      ],
+      "images": {
+        "small": "/drivers/plug_v2/assets/images/small.png",
+        "large": "/drivers/plug_v2/assets/images/large.png"
+      },
+      "zigbee": {
+        "manufacturerName": [
+          "Third Reality, Inc"
+        ],
+        "productId": [
+          "3RSP02028BZ"
+        ],
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              4,
+              5,
+              6,
+              1794,
+              2820
+            ]
+          }
+        },
+        "learnmode": {
+          "image": "/drivers/plug_v2/assets/images/large.png",
+          "instruction": {
+            "en": "Press and hold the reset button until the red light is blinking."
+          }
+        }
+      },
+      "id": "plug_v2"
+    },
+    {
+      "name": {
+        "en": "Switch"
+      },
+      "class": "other",
+      "capabilities": [
+        "onoff",
+        "measure_battery"
+      ],
+      "energy": {
+        "batteries": [
+          "AAA",
+          "AAA"
+        ]
+      },
+      "connectivity": [
+        "zigbee"
+      ],
+      "images": {
+        "small": "/drivers/switch/assets/images/small.png",
+        "large": "/drivers/switch/assets/images/large.png"
+      },
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "platforms": [
+        "local"
+      ],
+      "zigbee": {
+        "manufacturerName": [
+          "Third Reality, Inc"
+        ],
+        "productId": [
+          "3RSS007Z",
+          "3RSS008Z",
+          "3RSS009Z"
+        ],
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              1,
+              3,
+              4,
+              6
+            ]
+          }
+        },
+        "learnmode": {
+          "image": "/drivers/switch/assets/images/large.png",
+          "instruction": {
+            "en": "push the button until the LED turns blue, keep on pushing until it turns in blue blinking."
+          }
+        }
+      },
+      "id": "switch"
+    },
+    {
+      "name": {
+        "en": "Temperature and Humidity Sensor"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "measure_battery",
+        "measure_humidity",
+        "measure_temperature"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "energy": {
+        "batteries": [
+          "AAA",
+          "AAA"
+        ]
+      },
+      "connectivity": [
+        "zigbee"
+      ],
+      "images": {
+        "small": "/drivers/thermal/assets/images/small.png",
+        "large": "/drivers/thermal/assets/images/large.png",
+        "xlarge": "/drivers/thermal/assets/images/xlarge.png"
+      },
+      "zigbee": {
+        "manufacturerName": [
+          "Third Reality, Inc"
+        ],
+        "productId": [
+          "3RTHS24BZ"
+        ],
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              1,
+              1026,
+              1029
+            ],
+            "bindings": [
+              1,
+              1026,
+              1029
+            ]
+          }
+        },
+        "learnmode": {
+          "image": "/drivers/thermal/assets/images/large.png",
+          "instruction": {
+            "en": "Press and hold the reset button until cloud pattern flickers on the screen."
+          }
+        }
+      },
+      "id": "thermal"
+    },
+    {
+      "name": {
+        "en": "Water Leak Sensor"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "measure_battery",
+        "alarm_water"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "zigbee"
+      ],
+      "images": {
+        "small": "/drivers/water_leak/assets/images/small.png",
+        "large": "/drivers/water_leak/assets/images/large.png"
+      },
+      "energy": {
+        "batteries": [
+          "AAA",
+          "AAA"
+        ]
+      },
+      "zigbee": {
+        "manufacturerName": [
+          "Third Reality, Inc"
+        ],
+        "productId": [
+          "3RWS18BZ"
+        ],
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              1,
+              1280
+            ],
+            "bindings": [
+              1,
+              1280
+            ]
+          }
+        },
+        "learnmode": {
+          "image": "/drivers/water_leak/assets/images/large.png",
+          "instruction": {
+            "en": "Press and hold the reset button until the red light is blinking."
+          }
+        }
+      },
+      "id": "water_leak"
+    }
+  ]
+}

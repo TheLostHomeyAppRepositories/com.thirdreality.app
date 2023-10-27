@@ -1,0 +1,55 @@
+{
+  "name": {
+    "en": "Smart Blind"
+  },
+  "class": "blinds",
+  "capabilities": [
+    "windowcoverings_state",
+    "windowcoverings_set",
+    "measure_battery"
+  ],
+  "platforms": [
+    "local"
+  ],
+  "connectivity": [
+    "zigbee"
+  ],
+  "images": {
+    "small": "{{driverAssetsPath}}/images/small.png",
+    "large": "{{driverAssetsPath}}/images/large.png"
+  },
+  "energy": {
+    "batteries": [
+      "AAA",
+      "AAA"
+    ]
+  },
+  "zigbee": {
+    "manufacturerName": [
+      "Third Reality, Inc"
+    ],
+    "productId": [
+      "3RSB015BZ"
+    ],
+    "endpoints": {
+      "1": {
+        "clusters": [
+          0,
+          1,
+          4,
+          5,
+          258
+        ],
+        "bindings": [
+          258
+        ]
+      }
+    },
+    "learnmode": {
+      "image": "{{driverAssetsPath}}/images/large.png",
+      "instruction": {
+        "en": "Press and hold the reset button until the red light is blinking."
+      }
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "name": {
+    "en": "Temperature and Humidity Sensor"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "measure_battery",
+    "measure_humidity",
+    "measure_temperature"
+  ],
+  "platforms": [
+    "local"
+  ],
+  "energy": {
+    "batteries": [
+      "AAA",
+      "AAA"
+    ]
+  },
+  "connectivity": [
+    "zigbee"
+  ],
+  "images": {
+    "small": "{{driverAssetsPath}}/images/small.png",
+    "large": "{{driverAssetsPath}}/images/large.png",
+    "xlarge": "{{driverAssetsPath}}/images/xlarge.png"
+  },
+  "zigbee": {
+    "manufacturerName": [
+      "Third Reality, Inc"
+    ],
+    "productId": [
+      "3RTHS24BZ"
+    ],
+    "endpoints": {
+      "1": {
+        "clusters": [
+          0,
+          1,
+          1026,
+          1029
+        ],
+        "bindings": [
+          1,
+          1026,
+          1029
+        ]
+      }
+    },
+    "learnmode": {
+      "image": "{{driverAssetsPath}}/images/large.png",
+      "instruction": {
+        "en": "Press and hold the reset button until cloud pattern flickers on the screen."
+      }
+    }
+  }
+}

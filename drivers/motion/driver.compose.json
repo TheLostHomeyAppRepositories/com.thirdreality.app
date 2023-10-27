@@ -1,0 +1,53 @@
+{
+  "name": {
+    "en": "Motion Sensor"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "measure_battery",
+    "alarm_motion"
+  ],
+  "platforms": [
+    "local"
+  ],
+  "connectivity": [
+    "zigbee"
+  ],
+  "energy": {
+    "batteries": [
+      "AAA",
+      "AAA"
+    ]
+  },
+  "images": {
+    "small": "{{driverAssetsPath}}/images/small.png",
+    "large": "{{driverAssetsPath}}/images/large.png"
+  },
+  "zigbee": {
+    "manufacturerName": [
+      "Third Reality, Inc"
+    ],
+    "productId": [
+      "3RMS16BZ"
+    ],
+    "endpoints": {
+      "1": {
+        "clusters": [
+          0,
+          1,
+          1280
+        ],
+        "bindings": [
+          1,
+          1280
+        ]
+      }
+    },
+    "learnmode": {
+      "image": "{{driverAssetsPath}}/images/large.png",
+      "instruction": {
+        "en": "Press and hold the reset button until the red light is on, and then release button."
+      }
+    }
+  }
+}

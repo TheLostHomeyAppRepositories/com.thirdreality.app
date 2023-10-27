@@ -1,0 +1,48 @@
+{
+  "name": {
+    "en": "Smart Plug E2"
+  },
+  "class": "socket",
+  "capabilities": [
+    "onoff",
+    "measure_power",
+    "measure_current",
+    "measure_voltage"
+  ],
+  "platforms": [
+    "local"
+  ],
+  "connectivity": [
+    "zigbee"
+  ],
+  "images": {
+    "small": "{{driverAssetsPath}}/images/small.png",
+    "large": "{{driverAssetsPath}}/images/large.png"
+  },
+  "zigbee": {
+    "manufacturerName": [
+      "Third Reality, Inc"
+    ],
+    "productId": [
+      "3RSPE01044BZ"
+    ],
+    "endpoints": {
+      "1": {
+        "clusters": [
+          0,
+          4,
+          5,
+          6,
+          1794,
+          2820
+        ]
+      }
+    },
+    "learnmode": {
+      "image": "{{driverAssetsPath}}/images/large.png",
+      "instruction":{
+        "en":"Press and hold the reset button until the red light is blinking."
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "name": {
+    "en": "Contact Sensor"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "measure_battery",
+    "alarm_contact"
+  ],
+  "platforms": [
+    "local"
+  ],
+  "connectivity": [
+    "zigbee"
+  ],
+  "images": {
+    "small": "{{driverAssetsPath}}/images/small.png",
+    "large": "{{driverAssetsPath}}/images/large.png"
+  },
+  "energy": {
+    "batteries": [
+      "AAA",
+      "AAA"
+    ]
+  },
+  "zigbee": {
+    "manufacturerName": [
+      "Third Reality, Inc"
+    ],
+    "productId": [
+      "3RDS17BZ"
+    ],
+    "endpoints": {
+      "1": {
+        "clusters": [
+          0,
+          1,
+          1280
+        ],
+        "bindings": [
+          1,
+          1280
+        ]
+      }
+    },
+    "learnmode": {
+      "image": "{{driverAssetsPath}}/images/large.png",
+      "instruction": {
+        "en": "Press and hold the reset button until the red light is blinking."
+      }
+    }
+  }
+}
