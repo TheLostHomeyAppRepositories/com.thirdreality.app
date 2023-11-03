@@ -1,5 +1,8 @@
 {
   "1.0.0": {
     "en": "Create apps supported by ThirdReality devices."
+  },
+  "1.0.2": {
+    "en": "add support for Multi Function Night Light and change some config files."
   }
 }
