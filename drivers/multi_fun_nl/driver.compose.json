@@ -1,22 +1,18 @@
 {
   "name": {
-    "en": "Temperature and Humidity Sensor"
+    "en": "Multi-Function Night Light"
   },
-  "class": "sensor",
+  "class": "light",
   "capabilities": [
-    "measure_battery",
-    "measure_humidity",
-    "measure_temperature"
+    "light_saturation",
+    "light_hue",
+    "dim",
+    "onoff",
+    "measure_luminance"
   ],
   "platforms": [
     "local"
   ],
-  "energy": {
-    "batteries": [
-      "AAA",
-      "AAA"
-    ]
-  },
   "connectivity": [
     "zigbee"
   ],
@@ -30,26 +26,26 @@
       "Third Reality, Inc"
     ],
     "productId": [
-      "3RTHS24BZ"
+      "3RSNL02043Z"
     ],
     "endpoints": {
       "1": {
         "clusters": [
           0,
           1,
-          1026,
-          1029
-        ],
-        "bindings": [
-          1,
-          1026,
-          1029
+          6,
+          8,
+          768,
+          1024,
+          1280,
+          4096,
+          64512
         ]
       }
     },
     "learnmode": {
       "instruction": {
-        "en": "Press and hold the reset button until cloud pattern flickers on the screen."
+        "en": "Press and hold the reset button until the red light is on."
       }
     }
   }

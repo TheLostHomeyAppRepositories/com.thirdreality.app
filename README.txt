@@ -1,1 +1,3 @@
-ThirdReality App
+THIRDREALITY brings the convenience of smart home technology to modern families, allowing anyone to easily create a comfortable environment and automate their home. Our switches, sensors, and outlets are easy to install and can be used within minutes, with no need to rewire your home's electrical circuits.
+Explore our wide range of smart products, including light switches, motion sensors, and door sensors, that help you light your home more intelligently. There's no need to replace existing fixtures; simply integrate our smart switches into your life, or explore our various styles of smart outlets and buttons. THIRDREALITY offers solutions for every room in your house.
+Fully experience THIRDREALITY—our products are not just smart choices, but they also enhance the quality of life.

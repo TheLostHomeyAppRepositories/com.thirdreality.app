@@ -6,7 +6,6 @@ const { CLUSTER } = require("zigbee-clusters");
 class Switch extends ZigBeeDevice {
     async onNodeInit({ zclNode }) {
         await this.registerCapability("onoff", CLUSTER.ON_OFF);
-        // await this.registerCapability("measure_battery", CLUSTER.POWER_CONFIGURATION);
 
         const device_ieee = this.getSettings()["zb_ieee_address"]
         const modeNum = this.getSettings()["zb_product_id"]
@@ -16,14 +15,12 @@ class Switch extends ZigBeeDevice {
                 const currentBatteryVoltageValue = await zclNode.endpoints[1].clusters.powerConfiguration.readAttributes(["batteryVoltage"])
                 this.onBatteryVoltageAttributeReport(currentBatteryVoltageValue["batteryVoltage"])
             } catch (err) {
-                this.log("Switch ", device_ieee, " can not get BatteryVoltage, ",err)
+                this.log("Switch ", device_ieee, " can not get BatteryVoltage, ", err)
             }
-        // if the switch modeNum is 3RSS009Z, the switch is v3, it is report batteryPercentageRemaining
+            // if the switch modeNum is 3RSS009Z, the switch is v3, it is report batteryPercentageRemaining
         } else {
-            // zclNode.endpoints[1].clusters["powerConfiguration"]
-            //     .on('attr.batteryPercentageRemaining', this.onBatteryPercentageRemainingAttributeReport.bind(this));
             zclNode.endpoints[1].clusters["powerConfiguration"]
-                .on('attr.batteryPercentageRemaining', (batteryPercentageRemaining) =>{this.onBatteryPercentageRemainingAttributeReport(batteryPercentageRemaining)});
+                .on('attr.batteryPercentageRemaining', (batteryPercentageRemaining) => { this.onBatteryPercentageRemainingAttributeReport(batteryPercentageRemaining) });
         }
     }
 
@@ -51,22 +48,5 @@ class Switch extends ZigBeeDevice {
         this.setCapabilityValue('measure_battery', PercentageRemaining).catch(this.error);
     }
 }
-
-
-
-// async onRenamed(){
-//   const node = await this.homey.zigbee.getNode(this);
-//   await node.sendFrame(
-//     1, // endpoint id
-//     1, // cluster id
-//     Buffer.from([
-//       0, // frame control
-//       0, // transaction sequence number
-//       10, // command id ('on')
-//     ])
-//   );
-// }
-
-
 
 module.exports = Switch;

@@ -39,7 +39,6 @@
       }
     },
     "learnmode": {
-      "image": "{{driverAssetsPath}}/images/large.png",
       "instruction":{
         "en":"Press and hold the reset button until the red light is blinking."
       }

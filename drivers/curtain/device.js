@@ -46,7 +46,7 @@ class Curtain extends ZigBeeDevice {
    * onAdded is called when the user adds the device, called just after pairing.
    */
   async onAdded() {
-    this.log('MyDevice has been added');
+    this.log('Curtain has been added');
   }
 
 
@@ -56,14 +56,14 @@ class Curtain extends ZigBeeDevice {
    * @param {string} name The new name
    */
   async onRenamed(name) {
-    this.log('MyDevice was renamed');
+    this.log('Curtain was renamed');
   }
 
   /**
    * onDeleted is called when the user deleted the device.
    */
   async onDeleted() {
-    this.log('MyDevice has been deleted');
+    this.log('Curtain has been deleted');
   }
 
 }

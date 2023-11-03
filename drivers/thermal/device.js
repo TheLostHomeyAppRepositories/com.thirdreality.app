@@ -3,7 +3,7 @@
 const { ZigBeeDevice } = require("homey-zigbeedriver");
 const { CLUSTER } = require("zigbee-clusters");
 
-class Thermal extends ZigBeeDevice {
+class thermalSensor extends ZigBeeDevice {
 
   /**
    * onInit is called when the device is initialized.
@@ -54,7 +54,7 @@ class Thermal extends ZigBeeDevice {
    * onAdded is called when the user adds the device, called just after pairing.
    */
   async onAdded() {
-    this.log('Thermal has been added');
+    this.log('Thermal Sensor has been added');
   }
 
   /**
@@ -66,7 +66,7 @@ class Thermal extends ZigBeeDevice {
    * @returns {Promise<string|void>} return a custom message that will be displayed
    */
   async onSettings({ oldSettings, newSettings, changedKeys }) {
-    this.log('Thermal settings where changed');
+    this.log('Thermal Sensor settings where changed');
   }
 
   /**
@@ -75,16 +75,16 @@ class Thermal extends ZigBeeDevice {
    * @param {string} name The new name
    */
   async onRenamed(name) {
-    this.log('Thermal was renamed');
+    this.log('Thermal Sensor was renamed');
   }
 
   /**
    * onDeleted is called when the user deleted the device.
    */
   async onDeleted() {
-    this.log('Thermal has been deleted');
+    this.log('Thermal Sensor has been deleted');
   }
 
 }
 
-module.exports = Thermal;
+module.exports = thermalSensor;

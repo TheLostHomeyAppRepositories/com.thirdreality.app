@@ -1,6 +1,6 @@
 {
   "id": "com.thirdreality.app",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "platforms": [
@@ -11,7 +11,7 @@
     "en": "Third Reality"
   },
   "description": {
-    "en": "Control your Zigbeee devices made by ThirdReality"
+    "en": "Make Your Smart Home a Reality"
   },
   "category": [
     "tools"

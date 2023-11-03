@@ -57,7 +57,6 @@
       }
     },
     "learnmode": {
-      "image": "{{driverAssetsPath}}/images/large.png",
       "instruction": {
         "en": "push the button until the LED turns blue, keep on pushing until it turns in blue blinking."
       }

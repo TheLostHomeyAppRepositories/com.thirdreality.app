@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.thirdreality.app",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "platforms": [
@@ -12,7 +12,7 @@
     "en": "Third Reality"
   },
   "description": {
-    "en": "Control your Zigbeee devices made by ThirdReality"
+    "en": "Make Your Smart Home a Reality"
   },
   "category": [
     "tools"
@@ -29,6 +29,59 @@
   },
   "support": "https://github.com/hwzolin/com.thirdreality.app/issues",
   "drivers": [
+    {
+      "name": {
+        "en": "Contact Sensor"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "measure_battery",
+        "alarm_contact"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "zigbee"
+      ],
+      "images": {
+        "small": "/drivers/contact/assets/images/small.png",
+        "large": "/drivers/contact/assets/images/large.png"
+      },
+      "energy": {
+        "batteries": [
+          "AAA",
+          "AAA"
+        ]
+      },
+      "zigbee": {
+        "manufacturerName": [
+          "Third Reality, Inc"
+        ],
+        "productId": [
+          "3RDS17BZ"
+        ],
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              1,
+              1280
+            ],
+            "bindings": [
+              1,
+              1280
+            ]
+          }
+        },
+        "learnmode": {
+          "instruction": {
+            "en": "Press and hold the reset button until the red light is blinking."
+          }
+        }
+      },
+      "id": "contact"
+    },
     {
       "name": {
         "en": "Smart Blind"
@@ -77,67 +130,12 @@
           }
         },
         "learnmode": {
-          "image": "/drivers/curtain/assets/images/large.png",
           "instruction": {
             "en": "Press and hold the reset button until the red light is blinking."
           }
         }
       },
       "id": "curtain"
-    },
-    {
-      "name": {
-        "en": "Contact Sensor"
-      },
-      "class": "sensor",
-      "capabilities": [
-        "measure_battery",
-        "alarm_contact"
-      ],
-      "platforms": [
-        "local"
-      ],
-      "connectivity": [
-        "zigbee"
-      ],
-      "images": {
-        "small": "/drivers/door/assets/images/small.png",
-        "large": "/drivers/door/assets/images/large.png"
-      },
-      "energy": {
-        "batteries": [
-          "AAA",
-          "AAA"
-        ]
-      },
-      "zigbee": {
-        "manufacturerName": [
-          "Third Reality, Inc"
-        ],
-        "productId": [
-          "3RDS17BZ"
-        ],
-        "endpoints": {
-          "1": {
-            "clusters": [
-              0,
-              1,
-              1280
-            ],
-            "bindings": [
-              1,
-              1280
-            ]
-          }
-        },
-        "learnmode": {
-          "image": "/drivers/door/assets/images/large.png",
-          "instruction": {
-            "en": "Press and hold the reset button until the red light is blinking."
-          }
-        }
-      },
-      "id": "door"
     },
     {
       "name": {
@@ -185,13 +183,65 @@
           }
         },
         "learnmode": {
-          "image": "/drivers/motion/assets/images/large.png",
           "instruction": {
             "en": "Press and hold the reset button until the red light is on, and then release button."
           }
         }
       },
       "id": "motion"
+    },
+    {
+      "name": {
+        "en": "Multi-Function Night Light"
+      },
+      "class": "light",
+      "capabilities": [
+        "light_saturation",
+        "light_hue",
+        "dim",
+        "onoff",
+        "measure_luminance"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "zigbee"
+      ],
+      "images": {
+        "small": "/drivers/multi_fun_nl/assets/images/small.png",
+        "large": "/drivers/multi_fun_nl/assets/images/large.png",
+        "xlarge": "/drivers/multi_fun_nl/assets/images/xlarge.png"
+      },
+      "zigbee": {
+        "manufacturerName": [
+          "Third Reality, Inc"
+        ],
+        "productId": [
+          "3RSNL02043Z"
+        ],
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              1,
+              6,
+              8,
+              768,
+              1024,
+              1280,
+              4096,
+              64512
+            ]
+          }
+        },
+        "learnmode": {
+          "instruction": {
+            "en": "Press and hold the reset button until the red light is on."
+          }
+        }
+      },
+      "id": "multi_fun_nl"
     },
     {
       "name": {
@@ -234,7 +284,6 @@
           }
         },
         "learnmode": {
-          "image": "/drivers/plug_e2/assets/images/large.png",
           "instruction": {
             "en": "Press and hold the reset button until the red light is blinking."
           }
@@ -279,7 +328,6 @@
           }
         },
         "learnmode": {
-          "image": "/drivers/plug_v1/assets/images/large.png",
           "instruction": {
             "en": "Press and hold the reset button until the red light is blinking."
           }
@@ -328,7 +376,6 @@
           }
         },
         "learnmode": {
-          "image": "/drivers/plug_v2/assets/images/large.png",
           "instruction": {
             "en": "Press and hold the reset button until the red light is blinking."
           }
@@ -395,7 +442,6 @@
           }
         },
         "learnmode": {
-          "image": "/drivers/switch/assets/images/large.png",
           "instruction": {
             "en": "push the button until the LED turns blue, keep on pushing until it turns in blue blinking."
           }
@@ -453,7 +499,6 @@
           }
         },
         "learnmode": {
-          "image": "/drivers/thermal/assets/images/large.png",
           "instruction": {
             "en": "Press and hold the reset button until cloud pattern flickers on the screen."
           }
@@ -507,7 +552,6 @@
           }
         },
         "learnmode": {
-          "image": "/drivers/water_leak/assets/images/large.png",
           "instruction": {
             "en": "Press and hold the reset button until the red light is blinking."
           }

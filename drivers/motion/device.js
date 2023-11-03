@@ -49,7 +49,7 @@ class Motion extends ZigBeeDevice {
    * onAdded is called when the user adds the device, called just after pairing.
    */
   async onAdded() {
-    this.log('MyDevice has been added');
+    this.log('Motion Sensor has been added');
   }
 
   /**
@@ -61,7 +61,7 @@ class Motion extends ZigBeeDevice {
    * @returns {Promise<string|void>} return a custom message that will be displayed
    */
   async onSettings({ oldSettings, newSettings, changedKeys }) {
-    this.log('MyDevice settings where changed');
+    this.log('Motion Sensor settings where changed');
   }
 
   /**
@@ -70,7 +70,7 @@ class Motion extends ZigBeeDevice {
    * @param {string} name The new name
    */
   async onRenamed(name) {
-    this.log('MyDevice was renamed');
+    this.log('Motion Sensor was renamed');
   }
 
 
@@ -89,7 +89,7 @@ class Motion extends ZigBeeDevice {
    * onDeleted is called when the user deleted the device.
    */
   async onDeleted() {
-    this.log('MyDevice has been deleted');
+    this.log('Motion Sensor has been deleted');
   }
 
 }
