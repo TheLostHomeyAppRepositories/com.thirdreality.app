@@ -20,8 +20,10 @@
   },
   "energy": {
     "batteries": [
-      "AAA",
-      "AAA"
+      "AA",
+      "AA",
+      "AA",
+      "AA"
     ]
   },
   "zigbee": {
