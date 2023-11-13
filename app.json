@@ -5,7 +5,8 @@
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "platforms": [
-    "local"
+    "local",
+    "cloud"
   ],
   "brandColor": "#12B2FA",
   "name": {
@@ -39,7 +40,8 @@
         "alarm_contact"
       ],
       "platforms": [
-        "local"
+        "local",
+        "cloud"
       ],
       "connectivity": [
         "zigbee"
@@ -93,7 +95,8 @@
         "measure_battery"
       ],
       "platforms": [
-        "local"
+        "local",
+        "cloud"
       ],
       "connectivity": [
         "zigbee"
@@ -104,8 +107,10 @@
       },
       "energy": {
         "batteries": [
-          "AAA",
-          "AAA"
+          "AA",
+          "AA",
+          "AA",
+          "AA"
         ]
       },
       "zigbee": {
@@ -147,7 +152,8 @@
         "alarm_motion"
       ],
       "platforms": [
-        "local"
+        "local",
+        "cloud"
       ],
       "connectivity": [
         "zigbee"
@@ -203,7 +209,8 @@
         "measure_luminance"
       ],
       "platforms": [
-        "local"
+        "local",
+        "cloud"
       ],
       "connectivity": [
         "zigbee"
@@ -255,7 +262,8 @@
         "measure_voltage"
       ],
       "platforms": [
-        "local"
+        "local",
+        "cloud"
       ],
       "connectivity": [
         "zigbee"
@@ -300,7 +308,8 @@
         "onoff"
       ],
       "platforms": [
-        "local"
+        "local",
+        "cloud"
       ],
       "connectivity": [
         "zigbee"
@@ -347,7 +356,8 @@
         "measure_voltage"
       ],
       "platforms": [
-        "local"
+        "local",
+        "cloud"
       ],
       "connectivity": [
         "zigbee"
@@ -419,7 +429,8 @@
         }
       ],
       "platforms": [
-        "local"
+        "local",
+        "cloud"
       ],
       "zigbee": {
         "manufacturerName": [
@@ -460,7 +471,8 @@
         "measure_temperature"
       ],
       "platforms": [
-        "local"
+        "local",
+        "cloud"
       ],
       "energy": {
         "batteries": [
@@ -490,11 +502,6 @@
               1,
               1026,
               1029
-            ],
-            "bindings": [
-              1,
-              1026,
-              1029
             ]
           }
         },
@@ -516,7 +523,8 @@
         "alarm_water"
       ],
       "platforms": [
-        "local"
+        "local",
+        "cloud"
       ],
       "connectivity": [
         "zigbee"

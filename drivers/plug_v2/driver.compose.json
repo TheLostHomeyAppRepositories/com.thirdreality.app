@@ -10,7 +10,8 @@
     "measure_voltage"
   ],
   "platforms": [
-    "local"
+    "local",
+    "cloud"
   ],
   "connectivity": [
     "zigbee"

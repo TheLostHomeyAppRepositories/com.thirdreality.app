@@ -11,7 +11,8 @@
     "measure_luminance"
   ],
   "platforms": [
-    "local"
+    "local",
+    "cloud"
   ],
   "connectivity": [
     "zigbee"

@@ -34,7 +34,8 @@
     }
   ],
   "platforms": [
-    "local"
+    "local",
+    "cloud"
   ],
   "zigbee": {
     "manufacturerName": [

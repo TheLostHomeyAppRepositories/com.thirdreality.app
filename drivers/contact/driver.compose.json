@@ -8,7 +8,8 @@
     "alarm_contact"
   ],
   "platforms": [
-    "local"
+    "local",
+    "cloud"
   ],
   "connectivity": [
     "zigbee"

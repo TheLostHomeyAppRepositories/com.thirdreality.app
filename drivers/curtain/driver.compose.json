@@ -9,7 +9,8 @@
     "measure_battery"
   ],
   "platforms": [
-    "local"
+    "local",
+    "cloud"
   ],
   "connectivity": [
     "zigbee"

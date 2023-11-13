@@ -8,7 +8,8 @@
     "alarm_motion"
   ],
   "platforms": [
-    "local"
+    "local",
+    "cloud"
   ],
   "connectivity": [
     "zigbee"
