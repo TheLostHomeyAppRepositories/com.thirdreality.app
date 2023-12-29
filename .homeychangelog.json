@@ -4,5 +4,8 @@
   },
   "1.0.2": {
     "en": "add support for Multi Function Night Light and change some config files."
+  },
+  "1.0.3": {
+    "en": "Add support for Homey Bridge"
   }
 }

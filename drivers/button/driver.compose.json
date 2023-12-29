@@ -1,14 +1,11 @@
 {
   "name": {
-    "en": "Multi-Function Night Light"
+    "en": "Smart Button"
   },
-  "class": "light",
+  "class": "button",
   "capabilities": [
-    "light_saturation",
-    "light_hue",
-    "dim",
-    "onoff",
-    "measure_luminance"
+    "measure_battery",
+    "third_reality_button_capability"
   ],
   "platforms": [
     "local",
@@ -17,6 +14,12 @@
   "connectivity": [
     "zigbee"
   ],
+  "energy": {
+    "batteries": [
+      "AAA",
+      "AAA"
+    ]
+  },
   "images": {
     "small": "{{driverAssetsPath}}/images/small.png",
     "large": "{{driverAssetsPath}}/images/large.png"
@@ -26,7 +29,7 @@
       "Third Reality, Inc"
     ],
     "productId": [
-      "3RSNL02043Z"
+      "3RSB22BZ"
     ],
     "endpoints": {
       "1": {
@@ -35,17 +38,13 @@
           1,
           6,
           8,
-          768,
-          1024,
-          1280,
-          4096,
-          64512
+          18
         ]
       }
     },
     "learnmode": {
       "instruction": {
-        "en": "Press and hold the reset button until the red light is on."
+        "en": "Press and hold the reset button until the red light is on, and then release button."
       }
     }
   }

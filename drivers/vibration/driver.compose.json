@@ -1,14 +1,11 @@
 {
   "name": {
-    "en": "Multi-Function Night Light"
+    "en": "Vibration Sensor"
   },
-  "class": "light",
+  "class": "sensor",
   "capabilities": [
-    "light_saturation",
-    "light_hue",
-    "dim",
-    "onoff",
-    "measure_luminance"
+    "measure_battery",
+    "alarm_generic"
   ],
   "platforms": [
     "local",
@@ -17,6 +14,12 @@
   "connectivity": [
     "zigbee"
   ],
+  "energy": {
+    "batteries": [
+      "AAA",
+      "AAA"
+    ]
+  },
   "images": {
     "small": "{{driverAssetsPath}}/images/small.png",
     "large": "{{driverAssetsPath}}/images/large.png"
@@ -26,26 +29,25 @@
       "Third Reality, Inc"
     ],
     "productId": [
-      "3RSNL02043Z"
+      "3RVS01031Z"
     ],
     "endpoints": {
       "1": {
         "clusters": [
           0,
           1,
-          6,
-          8,
-          768,
-          1024,
           1280,
-          4096,
-          64512
+          65521
+        ],
+        "bindings": [
+          1,
+          1280
         ]
       }
     },
     "learnmode": {
       "instruction": {
-        "en": "Press and hold the reset button until the red light is on."
+        "en": "Press and hold the reset button until the red light is on, and then release button."
       }
     }
   }

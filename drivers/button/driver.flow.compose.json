@@ -1,0 +1,88 @@
+{
+  "triggers": [
+    {
+      "id": "press",
+      "title": {
+        "en": "Press"
+      },
+      "hint": {
+        "en": "It will start when button pressed"
+      },
+      "tokens": [
+        {
+          "type": "string",
+          "name": "press",
+          "title": {
+            "en": "Press"
+          },
+          "example": {
+            "en": "Press"
+          }
+        }
+      ]
+    },
+    {
+      "id": "double-press",
+      "title": {
+        "en": "Double press"
+      },
+      "hint": {
+        "en": "It will start when button double pressed"
+      },
+      "tokens": [
+        {
+          "type": "string",
+          "name": "double-press",
+          "title": {
+            "en": "Double press"
+          },
+          "example": {
+            "en": "Double press"
+          }
+        }
+      ]
+    },
+    {
+      "id": "long-press",
+      "title": {
+        "en": "Long press"
+      },
+      "hint": {
+        "en": "It will start when button long pressed"
+      },
+      "tokens": [
+        {
+          "type": "string",
+          "name": "long-press",
+          "title": {
+            "en": "Long press"
+          },
+          "example": {
+            "en": "Long press"
+          }
+        }
+      ]
+    },
+    {
+      "id": "release",
+      "title": {
+        "en": "Release"
+      },
+      "hint": {
+        "en": "It will start when button released"
+      },
+      "tokens": [
+        {
+          "type": "string",
+          "name": "release",
+          "title": {
+            "en": "Release"
+          },
+          "example": {
+            "en": "Release"
+          }
+        }
+      ]
+    }
+  ]
+}

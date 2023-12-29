@@ -1,0 +1,48 @@
+{
+    "type": "enum",
+    "title": {
+        "en": "Third Reality button capability"
+    },
+    "values": [
+        {
+            "id": "Long press",
+            "name": "long-press",
+            "title": {
+                "en": "Long Press"
+            }
+        },
+        {
+            "id": "Press",
+            "name": "press",
+            "title": {
+                "en": "Press"
+            }
+        },
+        {
+            "id": "Double press",
+            "name": "double-press",
+            "title": {
+                "en": "Double press"
+            }
+        },
+        {
+            "id": "Release",
+            "name": "release",
+            "title": {
+                "en": "Release"
+            }
+        },
+        {
+            "id":"",
+            "name": "clear",
+            "title":{
+                "en":"Clear"
+            }
+        }
+    ],
+    "getable": true,
+    "setable": false,
+    "uiComponent": "button",
+    "uiQuickAction": true,
+    "insights": true
+}
