@@ -3,6 +3,12 @@ ThirdReality Devices support without Bridge for Homey
 
 ## Release notes:
 
+### v1.0.4
+-Add support for Vibration Sensor and Button
+
+### v1.0.3
+- Add support for Homey Bridge
+
 ### v1.0.1
 - Added support for Multi-function Night Light
 
