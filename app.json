@@ -32,25 +32,10 @@
   "flow": {
     "triggers": [
       {
-        "id": "press",
+        "id": "button_press_single",
         "title": {
           "en": "Press"
         },
-        "hint": {
-          "en": "It will start when button pressed"
-        },
-        "tokens": [
-          {
-            "type": "string",
-            "name": "press",
-            "title": {
-              "en": "Press"
-            },
-            "example": {
-              "en": "Press"
-            }
-          }
-        ],
         "args": [
           {
             "type": "device",
@@ -60,25 +45,10 @@
         ]
       },
       {
-        "id": "double-press",
+        "id": "button_press_double",
         "title": {
-          "en": "Double press"
+          "en": "Double Press"
         },
-        "hint": {
-          "en": "It will start when button double pressed"
-        },
-        "tokens": [
-          {
-            "type": "string",
-            "name": "double-press",
-            "title": {
-              "en": "Double press"
-            },
-            "example": {
-              "en": "Double press"
-            }
-          }
-        ],
         "args": [
           {
             "type": "device",
@@ -88,25 +58,10 @@
         ]
       },
       {
-        "id": "long-press",
+        "id": "button_press_Long",
         "title": {
-          "en": "Long press"
+          "en": "Long Press"
         },
-        "hint": {
-          "en": "It will start when button long pressed"
-        },
-        "tokens": [
-          {
-            "type": "string",
-            "name": "long-press",
-            "title": {
-              "en": "Long press"
-            },
-            "example": {
-              "en": "Long press"
-            }
-          }
-        ],
         "args": [
           {
             "type": "device",
@@ -116,25 +71,10 @@
         ]
       },
       {
-        "id": "release",
+        "id": "button_release",
         "title": {
-          "en": "Release"
+          "en": "Release Button"
         },
-        "hint": {
-          "en": "It will start when button released"
-        },
-        "tokens": [
-          {
-            "type": "string",
-            "name": "release",
-            "title": {
-              "en": "Release"
-            },
-            "example": {
-              "en": "Release"
-            }
-          }
-        ],
         "args": [
           {
             "type": "device",
@@ -798,36 +738,31 @@
       },
       "values": [
         {
-          "id": "Long press",
-          "name": "long-press",
+          "id": "Long Press",
           "title": {
             "en": "Long Press"
           }
         },
         {
           "id": "Press",
-          "name": "press",
           "title": {
             "en": "Press"
           }
         },
         {
-          "id": "Double press",
-          "name": "double-press",
+          "id": "Double Press",
           "title": {
             "en": "Double press"
           }
         },
         {
           "id": "Release",
-          "name": "release",
           "title": {
             "en": "Release"
           }
         },
         {
           "id": "",
-          "name": "clear",
           "title": {
             "en": "Clear"
           }

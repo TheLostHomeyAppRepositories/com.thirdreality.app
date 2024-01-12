@@ -5,36 +5,31 @@
     },
     "values": [
         {
-            "id": "Long press",
-            "name": "long-press",
+            "id": "Long Press",
             "title": {
                 "en": "Long Press"
             }
         },
         {
             "id": "Press",
-            "name": "press",
             "title": {
                 "en": "Press"
             }
         },
         {
-            "id": "Double press",
-            "name": "double-press",
+            "id": "Double Press",
             "title": {
                 "en": "Double press"
             }
         },
         {
             "id": "Release",
-            "name": "release",
             "title": {
                 "en": "Release"
             }
         },
         {
             "id":"",
-            "name": "clear",
             "title":{
                 "en":"Clear"
             }

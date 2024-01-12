@@ -22,16 +22,13 @@ function cancelSleep() {
 
 class Button extends ZigBeeDevice {
 
-
-
-
   /**
    * onInit is called when the device is initialized.
    */
   async onNodeInit({ zclNode }) {
     this.log('Button has been initialized');
-    // this.log(CLUSTER)
 
+   
     if (this.getClusterEndpoint(CLUSTER.MULTI_STATE_INPUT)) {
       zclNode.endpoints[this.getClusterEndpoint(CLUSTER.MULTI_STATE_INPUT)].clusters[CLUSTER.MULTI_STATE_INPUT.NAME]
         .on('attr.presentValue', this.onGetMultiStateInputPresentValueAttributeReport.bind(this));
@@ -48,17 +45,21 @@ class Button extends ZigBeeDevice {
 
   async displayButtonStatus(getPresentValue) {
     // this.log("flag   ", flag)
-    if (getPresentValue == 0) {
-      this.setCapabilityValue("third_reality_button_capability", "Long press")
+    if (getPresentValue === 0) {
+      this.setCapabilityValue("third_reality_button_capability", "Long Press")
+      this.driver.triggerButtonLongPress(this)
     }
-    else if (getPresentValue == 1) {
+    else if (getPresentValue === 1) {
       this.setCapabilityValue("third_reality_button_capability", "Press")
+      this.driver.triggerButtonSinglePress(this)
     }
-    else if (getPresentValue == 2) {
-      this.setCapabilityValue("third_reality_button_capability", "Double press")
+    else if (getPresentValue === 2) {
+      this.setCapabilityValue("third_reality_button_capability", "Double Press")
+      this.driver.triggerButtonDoublePress(this)
     }
-    else if (getPresentValue == 255) {
+    else if (getPresentValue === 255) {
       this.setCapabilityValue("third_reality_button_capability", "Release")
+      this.driver.triggerButtonRelease(this)
     }
 
     await startSleep(3000)
@@ -73,7 +74,7 @@ class Button extends ZigBeeDevice {
 
   async onGetMultiStateInputPresentValueAttributeReport(presentValue) {
     var getPresentValue = presentValue
-    this.log("Button present Value is: ", String(presentValue))
+    this.log("Button present value is: ", String(presentValue))
 
     if (flag) {
       cancelSleep()
