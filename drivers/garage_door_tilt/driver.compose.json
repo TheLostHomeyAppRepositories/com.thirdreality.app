@@ -1,23 +1,16 @@
 {
   "name": {
-    "en": "Temperature and Humidity Sensor"
+    "en": "Garage Door Tilt Sensor"
   },
   "class": "sensor",
   "capabilities": [
     "measure_battery",
-    "measure_humidity",
-    "measure_temperature"
+    "garagedoor_closed"
   ],
   "platforms": [
     "local",
     "cloud"
   ],
-  "energy": {
-    "batteries": [
-      "AAA",
-      "AAA"
-    ]
-  },
   "connectivity": [
     "zigbee"
   ],
@@ -25,26 +18,34 @@
     "small": "{{driverAssetsPath}}/images/small.png",
     "large": "{{driverAssetsPath}}/images/large.png"
   },
+  "energy": {
+    "batteries": [
+      "AAA",
+      "AAA"
+    ]
+  },
   "zigbee": {
     "manufacturerName": [
       "Third Reality, Inc"
     ],
     "productId": [
-      "3RTHS24BZ"
+      "3RDTS01056Z"
     ],
     "endpoints": {
       "1": {
         "clusters": [
           0,
           1,
-          1026,
-          1029
+          4,
+          5,
+          1280,
+          65520
         ]
       }
     },
     "learnmode": {
-      "instruction": {
-        "en": "Press and hold the reset button until cloud pattern flickers on the screen."
+      "instruction":{
+        "en":"Press and hold the reset button until the red light is blinking."
       }
     }
   }

@@ -1,0 +1,11 @@
+{
+    "type": "boolean",
+    "title": {
+        "en": "Garage door"
+    },
+    "getable": true,
+    "setable": false,
+    "uiComponent": "toggle",
+    "uiQuickAction": true,
+    "insights": true
+}

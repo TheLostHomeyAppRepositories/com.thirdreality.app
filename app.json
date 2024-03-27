@@ -252,6 +252,59 @@
     },
     {
       "name": {
+        "en": "Garage Door Tilt Sensor"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "measure_battery",
+        "garagedoor_closed"
+      ],
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "zigbee"
+      ],
+      "images": {
+        "small": "/drivers/garage_door_tilt/assets/images/small.png",
+        "large": "/drivers/garage_door_tilt/assets/images/large.png"
+      },
+      "energy": {
+        "batteries": [
+          "AAA",
+          "AAA"
+        ]
+      },
+      "zigbee": {
+        "manufacturerName": [
+          "Third Reality, Inc"
+        ],
+        "productId": [
+          "3RDTS01056Z"
+        ],
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              1,
+              4,
+              5,
+              1280,
+              65520
+            ]
+          }
+        },
+        "learnmode": {
+          "instruction": {
+            "en": "Press and hold the reset button until the red light is blinking."
+          }
+        }
+      },
+      "id": "garage_door_tilt"
+    },
+    {
+      "name": {
         "en": "Motion Sensor"
       },
       "class": "sensor",
@@ -592,8 +645,7 @@
       ],
       "images": {
         "small": "/drivers/thermal/assets/images/small.png",
-        "large": "/drivers/thermal/assets/images/large.png",
-        "xlarge": "/drivers/thermal/assets/images/xlarge.png"
+        "large": "/drivers/thermal/assets/images/large.png"
       },
       "zigbee": {
         "manufacturerName": [
@@ -619,6 +671,60 @@
         }
       },
       "id": "thermal"
+    },
+    {
+      "name": {
+        "en": "Temperature and Humidity Sensor Lite"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "measure_battery",
+        "measure_humidity",
+        "measure_temperature"
+      ],
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "energy": {
+        "batteries": [
+          "AAA",
+          "AAA"
+        ]
+      },
+      "connectivity": [
+        "zigbee"
+      ],
+      "images": {
+        "small": "/drivers/thermal_v2/assets/images/small.png",
+        "large": "/drivers/thermal_v2/assets/images/large.png"
+      },
+      "zigbee": {
+        "manufacturerName": [
+          "Third Reality"
+        ],
+        "productId": [
+          "3RTHS0224Z"
+        ],
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              1,
+              19,
+              32,
+              1026,
+              1029
+            ]
+          }
+        },
+        "learnmode": {
+          "instruction": {
+            "en": "Press and hold the reset button until cloud pattern flickers on the screen."
+          }
+        }
+      },
+      "id": "thermal_v2"
     },
     {
       "name": {
@@ -771,6 +877,17 @@
       "getable": true,
       "setable": false,
       "uiComponent": "button",
+      "uiQuickAction": true,
+      "insights": true
+    },
+    "third_reality_garage_sensor_capability": {
+      "type": "boolean",
+      "title": {
+        "en": "Garage door"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "toggle",
       "uiQuickAction": true,
       "insights": true
     }

@@ -1,6 +1,6 @@
 {
   "name": {
-    "en": "Temperature and Humidity Sensor"
+    "en": "Temperature and Humidity Sensor Lite"
   },
   "class": "sensor",
   "capabilities": [
@@ -27,16 +27,18 @@
   },
   "zigbee": {
     "manufacturerName": [
-      "Third Reality, Inc"
+      "Third Reality"
     ],
     "productId": [
-      "3RTHS24BZ"
+      "3RTHS0224Z"
     ],
     "endpoints": {
       "1": {
         "clusters": [
           0,
           1,
+          19,
+          32,
           1026,
           1029
         ]
