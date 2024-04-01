@@ -10,5 +10,8 @@
   },
   "1.0.4": {
     "en": "Add support for vibration sensor and button flow."
+  },
+  "1.0.5": {
+    "en": "Add support for Garage Door Tilt Sensor and Temperature and Humidity Sensor Lite"
   }
 }
