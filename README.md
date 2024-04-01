@@ -3,6 +3,9 @@ ThirdReality Devices support without Bridge for Homey
 
 ## Release notes:
 
+### v1.0.5
+- Add support for Garage Door Tilt Sensor and Temperature and Humidity Sensor Lite
+
 ### v1.0.4
 -Add support for Vibration Sensor and Button
 
