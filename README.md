@@ -3,6 +3,9 @@ ThirdReality Devices support without Bridge for Homey
 
 ## Release notes:
 
+### v1.0.6
+- Added support for startup ON/OFF for Smart Plug (V1, v2, E2) and Multi-Function Night Light.
+
 ### v1.0.5
 - Add support for Garage Door Tilt Sensor and Temperature and Humidity Sensor Lite
 
