@@ -408,7 +408,43 @@
           }
         }
       },
-      "id": "multi_fun_nl"
+      "id": "multi_fun_nl",
+      "settings": [
+        {
+          "id": "start_up_on_off",
+          "type": "dropdown",
+          "value": "heating",
+          "label": {
+            "en": "Start Up ON/OFF"
+          },
+          "values": [
+            {
+              "id": "0",
+              "label": {
+                "en": "OFF"
+              }
+            },
+            {
+              "id": "1",
+              "label": {
+                "en": "ON"
+              }
+            },
+            {
+              "id": "2",
+              "label": {
+                "en": "TOGGLE"
+              }
+            },
+            {
+              "id": "255",
+              "label": {
+                "en": "PREVIOUS"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "name": {
@@ -457,7 +493,43 @@
           }
         }
       },
-      "id": "plug_e2"
+      "id": "plug_e2",
+      "settings": [
+        {
+          "id": "start_up_on_off",
+          "type": "dropdown",
+          "value": "heating",
+          "label": {
+            "en": "Start Up ON/OFF"
+          },
+          "values": [
+            {
+              "id": "0",
+              "label": {
+                "en": "OFF"
+              }
+            },
+            {
+              "id": "1",
+              "label": {
+                "en": "ON"
+              }
+            },
+            {
+              "id": "2",
+              "label": {
+                "en": "TOGGLE"
+              }
+            },
+            {
+              "id": "255",
+              "label": {
+                "en": "PREVIOUS"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "name": {
@@ -502,7 +574,43 @@
           }
         }
       },
-      "id": "plug_v1"
+      "id": "plug_v1",
+      "settings": [
+        {
+          "id": "start_up_on_off",
+          "type": "dropdown",
+          "value": "heating",
+          "label": {
+            "en": "Start Up ON/OFF"
+          },
+          "values": [
+            {
+              "id": "0",
+              "label": {
+                "en": "OFF"
+              }
+            },
+            {
+              "id": "1",
+              "label": {
+                "en": "ON"
+              }
+            },
+            {
+              "id": "2",
+              "label": {
+                "en": "TOGGLE"
+              }
+            },
+            {
+              "id": "255",
+              "label": {
+                "en": "PREVIOUS"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "name": {
@@ -551,7 +659,43 @@
           }
         }
       },
-      "id": "plug_v2"
+      "id": "plug_v2",
+      "settings": [
+        {
+          "id": "start_up_on_off",
+          "type": "dropdown",
+          "value": "heating",
+          "label": {
+            "en": "Start Up ON/OFF"
+          },
+          "values": [
+            {
+              "id": "0",
+              "label": {
+                "en": "OFF"
+              }
+            },
+            {
+              "id": "1",
+              "label": {
+                "en": "ON"
+              }
+            },
+            {
+              "id": "2",
+              "label": {
+                "en": "TOGGLE"
+              }
+            },
+            {
+              "id": "255",
+              "label": {
+                "en": "PREVIOUS"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "name": {
