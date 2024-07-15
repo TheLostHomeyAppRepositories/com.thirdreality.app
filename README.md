@@ -3,6 +3,9 @@ ThirdReality Devices support without Bridge for Homey
 
 ## Release notes:
 
+### v1.0.7
+- Fix system abnormalities that may be caused by the operation of the device when it is offline.
+
 ### v1.0.6
 - Added support for startup ON/OFF for Smart Plug (V1, v2, E2) and Multi-Function Night Light.
 
