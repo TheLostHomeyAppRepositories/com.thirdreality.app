@@ -124,7 +124,7 @@ class multiFunNightLight extends ZigBeeDevice {
       groupedCapabilities.push(lightModeCapabilityDefinition);
     }
     if (this.hasCapability("light_temperature")) {
-      groupedCapabilities.push(lightTemperatureCapabilityDefinition)
+      groupedCapabilities.push(lightTemperatureCapabilityDefinition);
     }
 
     // Register multiple capabilities, they will be debounced when one of them is called

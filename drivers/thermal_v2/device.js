@@ -14,11 +14,11 @@ class thermalSensorV2 extends ZigBeeDevice {
 
 
     zclNode.endpoints[1].clusters[CLUSTER.TEMPERATURE_MEASUREMENT.NAME]
-		.on('attr.measuredValue', this.onTemperatureMeasuredAttributeReport.bind(this));
-  
-		// measure_humidity
-		zclNode.endpoints[1].clusters[CLUSTER.RELATIVE_HUMIDITY_MEASUREMENT.NAME]
-		.on('attr.measuredValue', this.onRelativeHumidityMeasuredAttributeReport.bind(this));
+      .on('attr.measuredValue', this.onTemperatureMeasuredAttributeReport.bind(this));
+
+    // measure_humidity
+    zclNode.endpoints[1].clusters[CLUSTER.RELATIVE_HUMIDITY_MEASUREMENT.NAME]
+      .on('attr.measuredValue', this.onRelativeHumidityMeasuredAttributeReport.bind(this));
 
     // measure_battery // alarm_battery
     zclNode.endpoints[1].clusters[CLUSTER.POWER_CONFIGURATION.NAME]
@@ -28,17 +28,22 @@ class thermalSensorV2 extends ZigBeeDevice {
   }
 
   onTemperatureMeasuredAttributeReport(measuredValue) {
-		const temperatureOffset = this.getSetting('temperature_offset') || 0;
-		const parsedValue = this.getSetting('temperature_decimals') === '2' ? Math.round((measuredValue / 100) * 100) / 100 : Math.round((measuredValue / 100) * 10) / 10;
-		this.log('measure_temperature | temperatureMeasurement - measuredValue (temperature):', parsedValue, '+ temperature offset', temperatureOffset);
-		this.setCapabilityValue('measure_temperature', parsedValue + temperatureOffset).catch(this.error);
-	}
+    const temperatureOffset = this.getSetting('temperature_offset') || 0;
+    const parsedValue = this.getSetting('temperature_decimals') === '2' ? Math.round((measuredValue / 100) * 100) / 100 : Math.round((measuredValue / 100) * 10) / 10;
+    this.log('measure_temperature | temperatureMeasurement - measuredValue (temperature):', parsedValue, '+ temperature offset', temperatureOffset);
+    this.setCapabilityValue('measure_temperature', parsedValue + temperatureOffset).catch(this.error);
 
-	onRelativeHumidityMeasuredAttributeReport(measuredValue) {
-		const humidityOffset = this.getSetting('humidity_offset') || 0;
-		const parsedValue = this.getSetting('humidity_decimals') === '2' ? Math.round((measuredValue / 100) * 100) / 100 : Math.round((measuredValue / 100) * 10) / 10;
-		this.log('measure_humidity | relativeHumidity - measuredValue (humidity):', parsedValue, '+ humidity offset', humidityOffset);
-		this.setCapabilityValue('measure_humidity', parsedValue + humidityOffset).catch(this.error);
+    // const fahrenheit_degree = (parsedValue + temperatureOffset) * 9 / 5 + 32;
+    const fahrenheit_degree = this.getSetting('temperature_decimals') === '2' ? Math.round(((parsedValue + temperatureOffset) * 9 / 5 + 32) * 100) / 100 : Math.round(((parsedValue + temperatureOffset) * 9 / 5 + 32) * 10) / 10;
+    this.log('third_reality_Fahrenheit: ', fahrenheit_degree);
+    this.setCapabilityValue("third_reality_Fahrenheit", fahrenheit_degree + temperatureOffset + " °F").catch(this.error);
+  }
+
+  onRelativeHumidityMeasuredAttributeReport(measuredValue) {
+    const humidityOffset = this.getSetting('humidity_offset') || 0;
+    const parsedValue = this.getSetting('humidity_decimals') === '2' ? Math.round((measuredValue / 100) * 100) / 100 : Math.round((measuredValue / 100) * 10) / 10;
+    this.log('measure_humidity | relativeHumidity - measuredValue (humidity):', parsedValue, '+ humidity offset', humidityOffset);
+    this.setCapabilityValue('measure_humidity', parsedValue + humidityOffset).catch(this.error);
   }
 
   onBatteryPercentageRemainingAttributeReport(batteryPercentageRemaining) {

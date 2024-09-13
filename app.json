@@ -909,7 +909,8 @@
       "capabilities": [
         "measure_battery",
         "measure_humidity",
-        "measure_temperature"
+        "measure_temperature",
+        "third_reality_Fahrenheit"
       ],
       "platforms": [
         "local",
@@ -961,7 +962,8 @@
       "capabilities": [
         "measure_battery",
         "measure_humidity",
-        "measure_temperature"
+        "measure_temperature",
+        "third_reality_Fahrenheit"
       ],
       "platforms": [
         "local",
