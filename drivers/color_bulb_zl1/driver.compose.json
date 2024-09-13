@@ -1,0 +1,48 @@
+{
+  "name": {
+    "en": "Smart Color Bulb ZL1"
+  },
+  "class": "light",
+  "capabilities": [
+    "light_saturation",
+    "light_temperature",
+    "dim",
+    "light_hue",
+    "onoff"
+  ],
+  "platforms": [
+    "local",
+    "cloud"
+  ],
+  "connectivity": [
+    "zigbee"
+  ],
+  "images": {
+    "small": "{{driverAssetsPath}}/images/small.png",
+    "large": "{{driverAssetsPath}}/images/large.png"
+  },
+  "zigbee": {
+    "manufacturerName": [
+      "Thirdreality"
+    ],
+    "productId": [
+      "3RCB01057Z"
+    ],
+    "endpoints": {
+      "1": {
+        "clusters": [
+          0,
+          1,
+          6,
+          8,
+          768
+        ]
+      }
+    },
+    "learnmode": {
+      "instruction": {
+        "en": "Reset device by continuously power off and on 5 times. After resetting, confirm the warm white, cold white, red, green, and blue lights change in sequence for a total of 3 seconds and then the warm white light remains on."
+      }
+    }
+  }
+}

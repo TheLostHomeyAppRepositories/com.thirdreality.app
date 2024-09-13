@@ -16,5 +16,8 @@
   },
   "1.0.6": {
     "en": "Added support for startup ON/OFF for Smart Plug (V1, v2, E2) and Multi-Function Night Light."
+  },
+  "1.0.7": {
+    "en": "Fix system abnormalities that may be caused by the operation of the device when it is offline."
   }
 }
