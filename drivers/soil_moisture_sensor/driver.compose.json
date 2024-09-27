@@ -6,8 +6,7 @@
   "capabilities": [
     "measure_battery",
     "measure_humidity",
-    "measure_temperature",
-    "third_reality_Fahrenheit"
+    "measure_temperature"
   ],
   "platforms": [
     "local",

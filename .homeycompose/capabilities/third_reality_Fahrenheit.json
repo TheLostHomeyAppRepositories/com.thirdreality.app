@@ -1,8 +1,0 @@
-{
-    "type": "string",
-    "title": { "en": "Fahrenheit degree" },
-    "uiComponent": "sensor",
-    "getable": true,
-    "setable": false,
-    "icon": "assets/custom_icons/temperature.svg"
-  }

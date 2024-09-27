@@ -790,8 +790,7 @@
       "capabilities": [
         "measure_battery",
         "measure_humidity",
-        "measure_temperature",
-        "third_reality_Fahrenheit"
+        "measure_temperature"
       ],
       "platforms": [
         "local",
@@ -909,8 +908,7 @@
       "capabilities": [
         "measure_battery",
         "measure_humidity",
-        "measure_temperature",
-        "third_reality_Fahrenheit"
+        "measure_temperature"
       ],
       "platforms": [
         "local",
@@ -962,8 +960,7 @@
       "capabilities": [
         "measure_battery",
         "measure_humidity",
-        "measure_temperature",
-        "third_reality_Fahrenheit"
+        "measure_temperature"
       ],
       "platforms": [
         "local",
@@ -1216,16 +1213,6 @@
       "uiComponent": "button",
       "uiQuickAction": true,
       "insights": true
-    },
-    "third_reality_Fahrenheit": {
-      "type": "string",
-      "title": {
-        "en": "Fahrenheit degree"
-      },
-      "uiComponent": "sensor",
-      "getable": true,
-      "setable": false,
-      "icon": "assets/custom_icons/temperature.svg"
     },
     "third_reality_garage_sensor_capability": {
       "type": "boolean",

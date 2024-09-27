@@ -32,10 +32,6 @@ class soilMoistureSensor extends ZigBeeDevice {
 		const parsedValue = this.getSetting('temperature_decimals') === '2' ? Math.round((measuredValue / 100) * 100) / 100 : Math.round((measuredValue / 100) * 10) / 10;
 		this.log('measure_temperature | temperatureMeasurement - measuredValue (temperature):', parsedValue, '+ temperature offset', temperatureOffset);
 		this.setCapabilityValue('measure_temperature', parsedValue + temperatureOffset).catch(this.error);
-    
-    const fahrenheit_degree = this.getSetting('temperature_decimals') === '2' ? Math.round(((parsedValue + temperatureOffset) * 9 / 5 + 32) * 100) / 100 : Math.round(((parsedValue + temperatureOffset) * 9 / 5 + 32) * 10) / 10;
-    this.log('third_reality_Fahrenheit: ', fahrenheit_degree);
-    this.setCapabilityValue("third_reality_Fahrenheit",fahrenheit_degree+temperatureOffset+" °F").catch(this.error);
 	}
 
 	onRelativeHumidityMeasuredAttributeReport(measuredValue) {
