@@ -3,8 +3,12 @@ ThirdReality Devices support without Bridge for Homey
 
 ## Release notes:
 
+### v1.0.9
+- Remove the custom Fahrenheit capability.
+  
 ### v1.0.8
 - Added support for Smart Watering Kit, Smart Color Bulb ZL1, Smart Soil Moisture Sensor.
+- Support temperature class equipment, add Fahrenheit display.
 
 ### v1.0.7
 - Fix system abnormalities that may be caused by the operation of the device when it is offline.

@@ -22,5 +22,8 @@
   },
   "1.0.8": {
     "en": "Added support for Smart Watering Kit, Smart Color Bulb ZL1, Smart Soil Moisture Sensor. Support temperature class equipment, add Fahrenheit display."
+  },
+  "1.0.9": {
+    "en": "Remove the custom Fahrenheit capability."
   }
 }
