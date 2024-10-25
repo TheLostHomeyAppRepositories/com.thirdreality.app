@@ -3,6 +3,10 @@ ThirdReality Devices support without Bridge for Homey
 
 ## Release notes:
 
+### v1.00.10
+- Added manufacturerName of Smart Color Bulb ZL1.
+- Modify the icon of some devices that do not meet the requirements.
+
 ### v1.0.9
 - Remove the custom Fahrenheit capability.
   

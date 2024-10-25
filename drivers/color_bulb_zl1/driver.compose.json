@@ -23,7 +23,8 @@
   },
   "zigbee": {
     "manufacturerName": [
-      "Thirdreality"
+      "Thirdreality",
+      "Third Reality, Inc"
     ],
     "productId": [
       "3RCB01057Z"
