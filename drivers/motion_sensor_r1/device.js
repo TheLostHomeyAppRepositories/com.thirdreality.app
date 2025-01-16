@@ -2,11 +2,8 @@
 
 const { ZigBeeDevice } = require("homey-zigbeedriver");
 const { CLUSTER,Cluster } = require("zigbee-clusters");
-// const motionCooldownTimeCluster = require("../../lib/motionCooldownTimeSpecificCluster")
 
-// Cluster.addCluster(motionCooldownTimeCluster)
-
-class Motion extends ZigBeeDevice {
+class MotionR1 extends ZigBeeDevice {
 
   /**
    * onInit is called when the device is initialized.
@@ -84,7 +81,7 @@ class Motion extends ZigBeeDevice {
    * onAdded is called when the user adds the device, called just after pairing.
    */
   async onAdded() {
-    this.log('Motion Sensor has been added');
+    this.log('Motion Sensor R1 has been added');
   }
 
  
@@ -97,7 +94,7 @@ class Motion extends ZigBeeDevice {
    * @returns {Promise<string|void>} return a custom message that will be displayed
    */
   async onSettings({ oldSettings, newSettings, changedKeys }) {
-    this.log('Motion Sensor settings where changed');
+    this.log('Motion Sensor R1 settings where changed');
   }
 
   /**
@@ -106,7 +103,7 @@ class Motion extends ZigBeeDevice {
    * @param {string} name The new name
    */
   async onRenamed(name) {
-    this.log('Motion Sensor was renamed');
+    this.log('Motion Sensor R1 was renamed');
   }
 
 
@@ -121,21 +118,13 @@ class Motion extends ZigBeeDevice {
     this.setCapabilityValue('measure_battery', batteryPercentageRemaining / 2).catch(this.error);
   }
 
-  // async onSettings({ oldSettings, newSettings, changedKeys }) {
-  //   this.log(newSettings)
-  //   if (changedKeys == "cooldown_time") {
-  //     await this.zclNode.endpoints[1].clusters["coolDownTime"].writeAttributes({ coolDownTime: newSettings["cooldown_time"] }).catch(err => { this.error(err)})   
-  //     await this.zclNode.endpoints[1].clusters["coolDownTime"].readAttributes(["coolDownTime"]).catch(err => { this.error(err)})
-  //   }
-  // }
-
   /**
    * onDeleted is called when the user deleted the device.
    */
   async onDeleted() {
-    this.log('Motion Sensor has been deleted');
+    this.log('Motion Sensor R1 has been deleted');
   }
 
 }
 
-module.exports = Motion;
+module.exports = MotionR1;

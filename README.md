@@ -3,6 +3,10 @@ ThirdReality Devices support without Bridge for Homey
 
 ## Release notes:
 
+### v1.00.11
+- Modify the manufacturerName of all devices.
+- Added support for Smart Motion Sensor R1.
+  
 ### v1.00.10
 - Added manufacturerName of Smart Color Bulb ZL1.
 - Modify the icon of some devices that do not meet the requirements.

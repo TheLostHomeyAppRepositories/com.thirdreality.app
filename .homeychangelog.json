@@ -28,5 +28,8 @@
   },
   "1.0.10": {
     "en": "Added manufacturerName of Smart Color Bulb ZL1 and modify the icon of some devices that do not meet the requirements."
+  },
+  "1.0.11": {
+    "en": "Modify the manufacturerName of all devices. And Added support for Smart Motion Sensor R1."
   }
 }

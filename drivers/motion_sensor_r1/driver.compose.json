@@ -1,13 +1,11 @@
 {
   "name": {
-    "en": "Smart Plug E2"
+    "en": "Smart Motion Sensor R1"
   },
-  "class": "socket",
+  "class": "sensor",
   "capabilities": [
-    "onoff",
-    "measure_power",
-    "measure_current",
-    "measure_voltage"
+    "measure_battery",
+    "alarm_motion"
   ],
   "platforms": [
     "local",
@@ -16,6 +14,13 @@
   "connectivity": [
     "zigbee"
   ],
+  "energy": {
+    "batteries": [
+      "AA",
+      "AA",
+      "AA"
+    ]
+  },
   "images": {
     "small": "{{driverAssetsPath}}/images/small.png",
     "large": "{{driverAssetsPath}}/images/large.png"
@@ -26,23 +31,21 @@
       "Third Reality, Inc"
     ],
     "productId": [
-      "3RSPE01044BZ"
+      "3RSMR01067Z"
     ],
     "endpoints": {
       "1": {
         "clusters": [
           0,
-          4,
-          5,
-          6,
-          1794,
-          2820
+          1,
+          1280,
+          65281
         ]
       }
     },
     "learnmode": {
-      "instruction":{
-        "en":"Press and hold the reset button until the red light is blinking."
+      "instruction": {
+        "en": "Press and hold the + button for 10 seconds to factory reset the sensor.\nConfirm the sensitivity indicator is flashing rapidly."
       }
     }
   }
