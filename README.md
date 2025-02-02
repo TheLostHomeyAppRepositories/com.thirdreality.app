@@ -3,6 +3,9 @@ ThirdReality Devices support without Bridge for Homey
 
 ## Release notes:
 
+### v1.00.12
+- Modify the manufacturerName of old T&H Sensor Lite and Contact Sensor
+
 ### v1.00.11
 - Modify the manufacturerName of all devices.
 - Added support for Smart Motion Sensor R1.

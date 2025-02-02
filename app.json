@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.thirdreality.app",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "platforms": [
@@ -253,7 +253,7 @@
       },
       "zigbee": {
         "manufacturerName": [
-          "Thirdreality",
+          "THIRDREALITY",
           "Third Reality, Inc"
         ],
         "productId": [
@@ -1047,7 +1047,7 @@
       },
       "zigbee": {
         "manufacturerName": [
-          "Thirdreality",
+          "Third Reality",
           "Third Reality, Inc"
         ],
         "productId": [

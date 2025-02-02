@@ -31,5 +31,8 @@
   },
   "1.0.11": {
     "en": "Modify the manufacturerName of all devices. And Added support for Smart Motion Sensor R1."
+  },
+  "1.0.12": {
+    "en": "Modify the manufacturerName of old T&H Sensor Lite and Contact Sensor"
   }
 }
