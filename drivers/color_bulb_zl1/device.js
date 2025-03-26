@@ -45,7 +45,7 @@ class colorBulbZL1 extends ZigBeeDevice {
       this.setCapabilityValue("dim",currentLevel/MAX_DIM).catch(this.error)
     })
 
-    await wrapAsyncWithRetry(this.readLevelContorlAttributes.bind(this));
+    // await wrapAsyncWithRetry(this.readLevelContorlAttributes.bind(this));
     if (!this.getStoreValue('colorClusterConfigured')
       && (this.hasCapability('light_hue')
       || this.hasCapability('light_saturation')
@@ -99,18 +99,20 @@ class colorBulbZL1 extends ZigBeeDevice {
     return this.levelControlCluster.moveToLevelWithOnOff(moveToLevelWithOnOffCommand)
       .then(async result => {
         // Update onoff value
-        // if (dim === 0) {
-        //   this.setCapabilityValue('onoff', false).catch(this.error);
-        // } else if (this.getCapabilityValue('onoff') === false && dim > 0) {
-        //   this.setCapabilityValue('onoff', true).catch(this.error);
-        // }
+        if (dim === 0) {
+          this.log("dim is 0")
+          this.setCapabilityValue('onoff', false).catch(this.error);
+        } else if (this.getCapabilityValue('onoff') === false && dim > 0) {
+          this.log("dim is not 0")
+          this.setCapabilityValue('onoff', true).catch(this.error);
+        }
         this.zclNode.endpoints[1].clusters.levelControl.readAttributes(["currentLevel"])
         // Do not update onoff value
-        if (dim === 0) {
-            this.log("dim is 0")
-          } else if (this.getCapabilityValue('onoff') === false && dim > 0) {
-            this.log("dim is not 0")
-          }
+        // if (dim === 0) {
+        //     this.log("dim is 0")
+        //   } else if (this.getCapabilityValue('onoff') === false && dim > 0) {
+        //     this.log("dim is not 0")
+        //   }
         return result;
       });
   }

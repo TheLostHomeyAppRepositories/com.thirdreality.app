@@ -3,6 +3,9 @@ ThirdReality Devices support without Bridge for Homey
 
 ## Release notes:
 
+### v1.00.13
+- Optimized the issue that the brightness control of the colored bulb did not have a synchronized state.
+
 ### v1.00.12
 - Modify the manufacturerName of old T&H Sensor Lite and Contact Sensor
 
