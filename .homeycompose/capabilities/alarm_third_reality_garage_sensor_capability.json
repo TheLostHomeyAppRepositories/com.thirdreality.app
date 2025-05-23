@@ -5,7 +5,7 @@
     },
     "getable": true,
     "setable": false,
-    "uiComponent": "toggle",
+    "uiComponent": "button",
     "uiQuickAction": true,
     "insights": true
 }

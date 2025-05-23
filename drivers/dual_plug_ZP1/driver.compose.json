@@ -1,0 +1,71 @@
+{
+  "name": {
+    "en": "Smart Dual Plug ZP1"
+  },
+  "class": "socket",
+  "capabilities": [
+    "third_reality_dual_plug_left_switch_capability",
+    "third_reality_dual_plug_right_switch_capability",
+    "reset_left_summation_delivered_capability",
+    "reset_right_summation_delivered_capability",
+    "measure_current_of_left_dual_plug",
+    "measure_current_of_right_dual_plug",
+    "measure_power_of_left_dual_plug",
+    "measure_power_of_right_dual_plug",
+    "measure_voltage_of_left_dual_plug",
+    "measure_voltage_of_right_dual_plug",
+    "meter_power_of_left_dual_plug",
+    "meter_power_of_right_dual_plug"
+
+
+  ],
+  "platforms": [
+    "local",
+    "cloud"
+  ],
+  "connectivity": [
+    "zigbee"
+  ],
+  "images": {
+    "small": "{{driverAssetsPath}}/images/small.png",
+    "large": "{{driverAssetsPath}}/images/large.png"
+  },
+  "zigbee": {
+    "manufacturerName": [
+      "Thirdreality",
+      "Third Reality, Inc"
+    ],
+    "productId": [
+      "3RDP01072Z"
+    ],
+    "endpoints": {
+      "1": {
+        "clusters": [
+          0,
+          4,
+          5,
+          6,
+          1794,
+          2820,
+          65283
+        ]
+      },
+      "2": {
+        "clusters": [
+          0,
+          4,
+          5,
+          6,
+          1794,
+          2820,
+          65283
+        ]
+      }
+    },
+    "learnmode": {
+      "instruction":{
+        "en":"Press and hold the reset button until the red light is blinking."
+      }
+    }
+  }
+}

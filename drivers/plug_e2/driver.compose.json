@@ -5,9 +5,11 @@
   "class": "socket",
   "capabilities": [
     "onoff",
+    "meter_power",
     "measure_power",
     "measure_current",
-    "measure_voltage"
+    "measure_voltage",
+    "third_reality_reset_summation_delivered_capability"
   ],
   "platforms": [
     "local",
@@ -36,7 +38,8 @@
           5,
           6,
           1794,
-          2820
+          2820,
+          65283
         ]
       }
     },

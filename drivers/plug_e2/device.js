@@ -1,17 +1,36 @@
 'use strict';
 
-
 const { ZigBeeDevice } = require("homey-zigbeedriver");
 const { CLUSTER, Cluster } = require("zigbee-clusters");
-const startUpOnOffCluster = require("../../lib/startUpOnOffSpecificCluster")
+const PlugOnOffCluster = require("../../lib/startUpOnOffSpecificCluster")
+const PlugPrivateCluster = require("../../lib/plugPrivateCluster")
 
-Cluster.addCluster(startUpOnOffCluster)
+Cluster.addCluster(PlugOnOffCluster)
+Cluster.addCluster(PlugPrivateCluster)
 
-
-
-class Plug extends ZigBeeDevice {
+class Plug_E2 extends ZigBeeDevice {
   async onNodeInit({ zclNode }) {
     this.registerCapability("onoff", CLUSTER.ON_OFF);
+    
+    this.setCapabilityValue('third_reality_reset_summation_delivered_capability',false)
+
+    this.registerCapabilityListener('third_reality_reset_summation_delivered_capability',async (value) =>{
+      if (value === true){
+        await this.zclNode.endpoints[1].clusters["plugPrivateCluster"].writeAttributes({ reset_summation_delivered: 1 }).catch(err => { this.error(err)})
+      }
+      
+    })
+
+    this.registerCapability('meter_power',CLUSTER.METERING,{
+      reportParser: (value) => {
+        this.log("meter_power: ", value / 3600000)
+        return value / 3600000;
+      },
+      getOpts: {
+        getOnStart: true,
+        pollInterval: 240000
+      }
+    })
 
     this.registerCapability('measure_power', CLUSTER.ELECTRICAL_MEASUREMENT, {
       reportParser: value => {
@@ -69,8 +88,13 @@ class Plug extends ZigBeeDevice {
             console.log("Start Up On/Off is PREVIOUS")
         }
       }
+      else if(changedKeys == "count_down_time"){
+        const seconds = newSettings[changedKeys]
+        this.log("count_down_time: ",seconds)
+        this.zclNode.endpoints[1].clusters["plugPrivateCluster"].writeAttributes({ count_down_time: seconds }).catch(err => { this.error(err)})
+      }
     }
 }
 
 
-module.exports = Plug;
+module.exports = Plug_E2;

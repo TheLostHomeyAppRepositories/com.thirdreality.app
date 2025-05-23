@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.thirdreality.app",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "platforms": [
@@ -315,7 +315,8 @@
           "Third Reality, Inc"
         ],
         "productId": [
-          "3RSB015BZ"
+          "3RSB015BZ",
+          "3RSB02015Z"
         ],
         "endpoints": {
           "1": {
@@ -338,6 +339,124 @@
         }
       },
       "id": "curtain"
+    },
+    {
+      "name": {
+        "en": "Smart Dual Plug ZP1"
+      },
+      "class": "socket",
+      "capabilities": [
+        "third_reality_dual_plug_left_switch_capability",
+        "third_reality_dual_plug_right_switch_capability",
+        "reset_left_summation_delivered_capability",
+        "reset_right_summation_delivered_capability",
+        "measure_current_of_left_dual_plug",
+        "measure_current_of_right_dual_plug",
+        "measure_power_of_left_dual_plug",
+        "measure_power_of_right_dual_plug",
+        "measure_voltage_of_left_dual_plug",
+        "measure_voltage_of_right_dual_plug",
+        "meter_power_of_left_dual_plug",
+        "meter_power_of_right_dual_plug"
+      ],
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "zigbee"
+      ],
+      "images": {
+        "small": "/drivers/dual_plug_ZP1/assets/images/small.png",
+        "large": "/drivers/dual_plug_ZP1/assets/images/large.png"
+      },
+      "zigbee": {
+        "manufacturerName": [
+          "Thirdreality",
+          "Third Reality, Inc"
+        ],
+        "productId": [
+          "3RDP01072Z"
+        ],
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              4,
+              5,
+              6,
+              1794,
+              2820,
+              65283
+            ]
+          },
+          "2": {
+            "clusters": [
+              0,
+              4,
+              5,
+              6,
+              1794,
+              2820,
+              65283
+            ]
+          }
+        },
+        "learnmode": {
+          "instruction": {
+            "en": "Press and hold the reset button until the red light is blinking."
+          }
+        }
+      },
+      "id": "dual_plug_ZP1",
+      "settings": [
+        {
+          "id": "start_up_on_off",
+          "type": "dropdown",
+          "label": {
+            "en": "Start Up ON/OFF"
+          },
+          "values": [
+            {
+              "id": "0",
+              "label": {
+                "en": "OFF"
+              }
+            },
+            {
+              "id": "1",
+              "label": {
+                "en": "ON"
+              }
+            },
+            {
+              "id": "2",
+              "label": {
+                "en": "TOGGLE"
+              }
+            },
+            {
+              "id": "255",
+              "label": {
+                "en": "PREVIOUS"
+              }
+            }
+          ]
+        },
+        {
+          "id": "count_down_time",
+          "type": "number",
+          "label": {
+            "en": "Count Down Time"
+          },
+          "value": 0,
+          "min": 0,
+          "max": 65535,
+          "units": {
+            "en": "seconds"
+          }
+        }
+      ]
     },
     {
       "name": {
@@ -598,9 +717,11 @@
       "class": "socket",
       "capabilities": [
         "onoff",
+        "meter_power",
         "measure_power",
         "measure_current",
-        "measure_voltage"
+        "measure_voltage",
+        "third_reality_reset_summation_delivered_capability"
       ],
       "platforms": [
         "local",
@@ -629,7 +750,8 @@
               5,
               6,
               1794,
-              2820
+              2820,
+              65283
             ]
           }
         },
@@ -674,6 +796,19 @@
               }
             }
           ]
+        },
+        {
+          "id": "count_down_time",
+          "type": "number",
+          "label": {
+            "en": "Count Down Time"
+          },
+          "value": 0,
+          "min": 0,
+          "max": 65535,
+          "units": {
+            "en": "seconds"
+          }
         }
       ]
     },
@@ -768,7 +903,9 @@
         "onoff",
         "measure_power",
         "measure_current",
-        "measure_voltage"
+        "measure_voltage",
+        "meter_power",
+        "third_reality_reset_summation_delivered_capability"
       ],
       "platforms": [
         "local",
@@ -797,7 +934,8 @@
               5,
               6,
               1794,
-              2820
+              2820,
+              65283
             ]
           }
         },
@@ -812,7 +950,6 @@
         {
           "id": "start_up_on_off",
           "type": "dropdown",
-          "value": "heating",
           "label": {
             "en": "Start Up ON/OFF"
           },
@@ -842,8 +979,49 @@
               }
             }
           ]
+        },
+        {
+          "id": "count_down_time",
+          "type": "number",
+          "label": {
+            "en": "Count Down Time"
+          },
+          "value": 0,
+          "min": 0,
+          "max": 65535,
+          "units": {
+            "en": "seconds"
+          }
         }
       ]
+    },
+    {
+      "name": {
+        "en": "Smart Mechanical Keyboard MK1"
+      },
+      "class": "other",
+      "capabilities": [],
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "matter"
+      ],
+      "images": {
+        "small": "/drivers/smart_mechanical_keyboard_mk1/assets/images/small.png",
+        "large": "/drivers/smart_mechanical_keyboard_mk1/assets/images/large.png",
+        "xlarge": "/drivers/smart_mechanical_keyboard_mk1/assets/images/xlarge.png"
+      },
+      "matter": {
+        "vendorId": 5127,
+        "productId": 5000,
+        "learnmode": {
+          "instruction": {
+            "en": "Press Fn + Pause + Esc/Space on your device three times"
+          }
+        }
+      },
+      "id": "smart_mechanical_keyboard_mk1"
     },
     {
       "name": {
@@ -1241,6 +1419,139 @@
     }
   ],
   "capabilities": {
+    "alarm_third_reality_garage_sensor_capability": {
+      "type": "boolean",
+      "title": {
+        "en": "Garage door"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "button",
+      "uiQuickAction": true,
+      "insights": true
+    },
+    "measure_current_of_left_dual_plug": {
+      "type": "number",
+      "title": {
+        "en": "Left Current"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "units": {
+        "en": "A"
+      },
+      "icon": "/assets/power_icon/power_electrical.svg"
+    },
+    "measure_current_of_right_dual_plug": {
+      "type": "number",
+      "title": {
+        "en": "Right Current"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "units": {
+        "en": "A"
+      },
+      "icon": "/assets/power_icon/power_electrical.svg"
+    },
+    "measure_power_of_left_dual_plug": {
+      "type": "number",
+      "title": {
+        "en": "Left Power"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "units": {
+        "en": "W"
+      },
+      "icon": "/assets/power_icon/power_electrical.svg"
+    },
+    "measure_power_of_right_dual_plug": {
+      "type": "number",
+      "title": {
+        "en": "Right Power"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "units": {
+        "en": "W"
+      },
+      "icon": "/assets/power_icon/power_electrical.svg"
+    },
+    "measure_voltage_of_left_dual_plug": {
+      "type": "number",
+      "title": {
+        "en": "Left Voltage"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "units": {
+        "en": "V"
+      },
+      "icon": "/assets/power_icon/power_electrical.svg"
+    },
+    "measure_voltage_of_right_dual_plug": {
+      "type": "number",
+      "title": {
+        "en": "Right Voltage"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "units": {
+        "en": "V"
+      },
+      "icon": "/assets/power_icon/power_electrical.svg"
+    },
+    "meter_power_of_left_dual_plug": {
+      "type": "number",
+      "title": {
+        "en": "Left Energy"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "units": {
+        "en": "kWh"
+      },
+      "icon": "/assets/power_icon/power_meter.svg"
+    },
+    "meter_power_of_right_dual_plug": {
+      "type": "number",
+      "title": {
+        "en": "Right Energy"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "units": {
+        "en": "kWh"
+      },
+      "icon": "/assets/power_icon/power_meter.svg"
+    },
+    "reset_left_summation_delivered_capability": {
+      "type": "boolean",
+      "title": {
+        "en": "Reset summation delivered(Left)"
+      },
+      "getable": false,
+      "setable": true,
+      "uiComponent": "button"
+    },
+    "reset_right_summation_delivered_capability": {
+      "type": "boolean",
+      "title": {
+        "en": "Reset summation delivered(Right)"
+      },
+      "getable": false,
+      "setable": true,
+      "uiComponent": "button"
+    },
     "third_reality_button_capability": {
       "type": "enum",
       "title": {
@@ -1284,16 +1595,36 @@
       "uiQuickAction": true,
       "insights": true
     },
-    "third_reality_garage_sensor_capability": {
+    "third_reality_dual_plug_left_switch_capability": {
       "type": "boolean",
       "title": {
-        "en": "Garage door"
+        "en": "Left Switch"
       },
       "getable": true,
-      "setable": false,
-      "uiComponent": "toggle",
+      "setable": true,
+      "uiComponent": "button",
       "uiQuickAction": true,
       "insights": true
+    },
+    "third_reality_dual_plug_right_switch_capability": {
+      "type": "boolean",
+      "title": {
+        "en": "Right Switch"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "button",
+      "uiQuickAction": true,
+      "insights": true
+    },
+    "third_reality_reset_summation_delivered_capability": {
+      "type": "boolean",
+      "title": {
+        "en": "Reset summation delivered"
+      },
+      "getable": false,
+      "setable": true,
+      "uiComponent": "button"
     }
   }
 }
