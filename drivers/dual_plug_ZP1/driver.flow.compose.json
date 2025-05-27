@@ -1,0 +1,54 @@
+{
+  "triggers": [
+    {
+      "id": "turn_on_left",
+      "title": {
+        "en": "Turn on(Left)"
+      }     
+    },
+    {
+      "id": "turn_on_right",
+      "title": {
+        "en": "Turn on(Right)"
+      }
+    },
+    {
+      "id": "turn_off_left",
+      "title": {
+        "en": "Turn off(Left)"
+      }
+    },
+    {
+      "id": "turn_off_right",
+      "title": {
+        "en": "Turn off(Right)"
+      }
+    }
+  ],
+  "actions":[
+    {
+      "id": "turn_on_left",
+      "title": {
+        "en": "Turn on(Left)"
+      }     
+    },
+    {
+      "id": "turn_on_right",
+      "title": {
+        "en": "Turn on(Right)"
+      }
+    },
+    {
+      "id": "turn_off_left",
+      "title": {
+        "en": "Turn off(Left)"
+      }
+    },
+    {
+      "id": "turn_off_right",
+      "title": {
+        "en": "Turn off(Right)"
+      }
+    }
+  ]
+}

@@ -82,6 +82,112 @@
             "filter": "driver_id=button"
           }
         ]
+      },
+      {
+        "id": "turn_on_left",
+        "title": {
+          "en": "Turn on(Left)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          }
+        ]
+      },
+      {
+        "id": "turn_on_right",
+        "title": {
+          "en": "Turn on(Right)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          }
+        ]
+      },
+      {
+        "id": "turn_off_left",
+        "title": {
+          "en": "Turn off(Left)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          }
+        ]
+      },
+      {
+        "id": "turn_off_right",
+        "title": {
+          "en": "Turn off(Right)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "turn_on_left",
+        "title": {
+          "en": "Turn on(Left)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          }
+        ]
+      },
+      {
+        "id": "turn_on_right",
+        "title": {
+          "en": "Turn on(Right)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          }
+        ]
+      },
+      {
+        "id": "turn_off_left",
+        "title": {
+          "en": "Turn off(Left)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          }
+        ]
+      },
+      {
+        "id": "turn_off_right",
+        "title": {
+          "en": "Turn off(Right)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          }
+        ]
       }
     ]
   },

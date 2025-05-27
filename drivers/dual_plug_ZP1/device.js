@@ -33,9 +33,11 @@ class Plug_V2 extends ZigBeeDevice {
     this.registerCapabilityListener('third_reality_dual_plug_left_switch_capability',async (value) =>{
       if (value === true){
         await this.zclNode.endpoints[1].clusters['onOff'].setOn().catch(err => { this.error(err)})
+        this.driver.triggerTurnOnLeftSwitch(this)
       }
       else{
         await this.zclNode.endpoints[1].clusters['onOff'].setOff().catch(err => { this.error(err)})
+        this.driver.triggerTurnOffLeftSwitch(this)
       }
       
     })
@@ -43,9 +45,11 @@ class Plug_V2 extends ZigBeeDevice {
     this.registerCapabilityListener('third_reality_dual_plug_right_switch_capability',async (value) =>{
       if (value === true){
         await this.zclNode.endpoints[2].clusters['onOff'].setOn().catch(err => { this.error(err)})
+        this.driver.triggerTurnOnRightSwitch(this)
       }
       else{
         await this.zclNode.endpoints[2].clusters['onOff'].setOff().catch(err => { this.error(err)})
+        this.driver.triggerTurnOffRightSwitch(this)
       }
       
     })
@@ -64,39 +68,52 @@ class Plug_V2 extends ZigBeeDevice {
       
     })
 
+    this.driver._turn_on_left_action.registerRunListener(async (args, state) => {
+      await this.zclNode.endpoints[1].clusters['onOff'].setOn().catch(err => { this.error(err)})
+    })
+    this.driver._turn_on_right_action.registerRunListener(async (args, state) => {
+      await this.zclNode.endpoints[2].clusters['onOff'].setOn().catch(err => { this.error(err)})
+    })
+    this.driver._turn_off_left_action.registerRunListener(async (args, state) => {
+      await this.zclNode.endpoints[1].clusters['onOff'].setOff().catch(err => { this.error(err)})
+    })
+    this.driver._turn_off_right_action.registerRunListener(async (args, state) => {
+      await this.zclNode.endpoints[2].clusters['onOff'].setOff().catch(err => { this.error(err)})
+    })
+
 
   }
 
   async configAttributeReport(ep){
     await this.zclNode.endpoints[ep].clusters[CLUSTER.ON_OFF.NAME].configureReporting({
       onOff:{
-        minInterval: 1000,
-        maxInterval: 10000
+        minInterval: 0,
+        maxInterval: 300
       }
     })
     await this.zclNode.endpoints[ep].clusters[CLUSTER.ELECTRICAL_MEASUREMENT.NAME].configureReporting({
         rmsCurrent: {
-          minInterval: 1000,
-          maxInterval: 10000,
-          minChange: 1
+          minInterval: 0,
+          maxInterval: 1800,
+          reportableChange: 1
         },
         rmsVoltage: {
           minInterval: 0,
-          maxInterval: 10000,
-          minChange: 1
+          maxInterval: 1800,
+          reportableChange: 1
         },
         activePower: {
           minInterval: 0,
-          maxInterval: 10000,
-          minChange: 1
+          maxInterval: 1800,
+          reportableChange: 1
         },
       }).catch(err => { this.error(err)});
 
     await this.zclNode.endpoints[ep].clusters[CLUSTER.METERING.NAME].configureReporting({
         currentSummationDelivered: {
           minInterval: 0,
-          maxInterval: 10000,
-          minChange: 1
+          maxInterval: 1800,
+          reportableChange: 1
         },
       }).catch(err => { this.error(err)}); 
   }
