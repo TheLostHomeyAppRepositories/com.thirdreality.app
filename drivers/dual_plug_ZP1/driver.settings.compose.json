@@ -1,8 +1,8 @@
 [
     {
-        "id": "start_up_on_off",
+        "id": "start_up_on_off_left",
         "type": "dropdown",
-        "label": { "en": "Start Up ON/OFF" },
+        "label": { "en": "Startup ON/OFF(Left)" },
         "values": [
         {
             "id": "0",
@@ -23,13 +23,27 @@
         ]
     },
     {
-    "id": "count_down_time",
-    "type": "number",
-    "label": { "en": "Count Down Time" },
-    "value": 0,
-    "min": 0,
-    "max": 65535,
-    "units": { "en": "seconds" }
+        "id": "start_up_on_off_right",
+        "type": "dropdown",
+        "label": { "en": "Startup ON/OFF(Right)" },
+        "values": [
+        {
+            "id": "0",
+            "label": { "en": "OFF" }
+        },
+        {
+            "id": "1",
+            "label": { "en": "ON" }
+        },
+        {
+            "id": "2",
+            "label": { "en": "TOGGLE" }
+        },
+        {
+            "id": "255",
+            "label": { "en": "PREVIOUS" }
+        }
+        ]
     }
 
 ]

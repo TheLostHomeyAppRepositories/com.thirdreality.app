@@ -12,6 +12,11 @@ Cluster.addCluster(PlugPrivateCluster)
 class Plug_V2 extends ZigBeeDevice {
   async onNodeInit({ zclNode }) {
 
+    const _turned_on_left_condition = this.homey.flow.getConditionCard("is_turned_on_left");
+    const _turned_off_left_condition = this.homey.flow.getConditionCard("is_turned_off_left");
+    const _turned_on_right_condition = this.homey.flow.getConditionCard("is_turned_on_right");
+    const _turned_off_right_condition = this.homey.flow.getConditionCard("is_turned_off_right");
+
     this.registerCapability("measure_current_of_left_dual_plug", CLUSTER.ELECTRICAL_MEASUREMENT)
     this.registerCapability("measure_current_of_right_dual_plug", CLUSTER.ELECTRICAL_MEASUREMENT)
     this.registerCapability("measure_power_of_left_dual_plug", CLUSTER.ELECTRICAL_MEASUREMENT)
@@ -20,6 +25,7 @@ class Plug_V2 extends ZigBeeDevice {
     this.registerCapability("measure_voltage_of_right_dual_plug", CLUSTER.ELECTRICAL_MEASUREMENT)
     this.registerCapability("meter_power_of_left_dual_plug", CLUSTER.METERING)
     this.registerCapability("meter_power_of_right_dual_plug", CLUSTER.METERING)
+
     await this.configAttributeReport(1)
     await this.configAttributeReport(2)
 
@@ -30,14 +36,31 @@ class Plug_V2 extends ZigBeeDevice {
     await this.updatePowerCapabilitiesValue(1)
     await this.updatePowerCapabilitiesValue(2)
 
-    this.registerCapabilityListener('third_reality_dual_plug_left_switch_capability',async (value) =>{
-      if (value === true){
-        await this.zclNode.endpoints[1].clusters['onOff'].setOn().catch(err => { this.error(err)})
+    
+    await zclNode.endpoints[1].clusters[CLUSTER.ON_OFF.NAME].on("attr.onOff", (onOffState) => {
+      if (onOffState === true){
         this.driver.triggerTurnOnLeftSwitch(this)
       }
       else{
-        await this.zclNode.endpoints[1].clusters['onOff'].setOff().catch(err => { this.error(err)})
         this.driver.triggerTurnOffLeftSwitch(this)
+      }
+    })
+
+    await zclNode.endpoints[2].clusters[CLUSTER.ON_OFF.NAME].on("attr.onOff", (onOffState) => {
+      if (onOffState === true){
+        this.driver.triggerTurnOnRightSwitch(this)
+      }
+      else{
+        this.driver.triggerTurnOffRightSwitch(this)
+      }
+    })
+
+    this.registerCapabilityListener('third_reality_dual_plug_left_switch_capability',async (value) =>{
+      if (value === true){
+        await this.zclNode.endpoints[1].clusters['onOff'].setOn().catch(err => { this.error(err)})
+      }
+      else{
+        await this.zclNode.endpoints[1].clusters['onOff'].setOff().catch(err => { this.error(err)})
       }
       
     })
@@ -45,11 +68,9 @@ class Plug_V2 extends ZigBeeDevice {
     this.registerCapabilityListener('third_reality_dual_plug_right_switch_capability',async (value) =>{
       if (value === true){
         await this.zclNode.endpoints[2].clusters['onOff'].setOn().catch(err => { this.error(err)})
-        this.driver.triggerTurnOnRightSwitch(this)
       }
       else{
         await this.zclNode.endpoints[2].clusters['onOff'].setOff().catch(err => { this.error(err)})
-        this.driver.triggerTurnOffRightSwitch(this)
       }
       
     })
@@ -68,6 +89,34 @@ class Plug_V2 extends ZigBeeDevice {
       
     })
 
+    _turned_on_left_condition.registerRunListener(async (args, state) => {
+    const currentValue = await this.getCapabilityValue("third_reality_dual_plug_left_switch_capability")
+      if (currentValue === true){
+        return true
+      }
+    })
+  
+    _turned_off_left_condition.registerRunListener(async (args, state) => {
+    const currentValue = await this.getCapabilityValue("third_reality_dual_plug_left_switch_capability")
+      if (currentValue === false){
+        return true
+      }
+    })
+
+    _turned_on_right_condition.registerRunListener(async (args, state) => {
+    const currentValue = await this.getCapabilityValue("third_reality_dual_plug_right_switch_capability")
+      if (currentValue === true){
+        return true
+      }
+    })
+
+    _turned_off_right_condition.registerRunListener(async (args, state) => {
+    const currentValue = await this.getCapabilityValue("third_reality_dual_plug_right_switch_capability")
+      if (currentValue === false){
+        return true
+      }
+    })
+
     this.driver._turn_on_left_action.registerRunListener(async (args, state) => {
       await this.zclNode.endpoints[1].clusters['onOff'].setOn().catch(err => { this.error(err)})
     })
@@ -80,10 +129,8 @@ class Plug_V2 extends ZigBeeDevice {
     this.driver._turn_off_right_action.registerRunListener(async (args, state) => {
       await this.zclNode.endpoints[2].clusters['onOff'].setOff().catch(err => { this.error(err)})
     })
-
-
   }
-
+  
   async configAttributeReport(ep){
     await this.zclNode.endpoints[ep].clusters[CLUSTER.ON_OFF.NAME].configureReporting({
       onOff:{
@@ -214,32 +261,54 @@ class Plug_V2 extends ZigBeeDevice {
     this.log("changedKeys: ",changedKeys)
     this.log("newSettings: ",newSettings)
     this.log("oldSettings: ",oldSettings)
-      if (changedKeys == "start_up_on_off") {
+      if (changedKeys == "start_up_on_off_left") {
         if (newSettings[changedKeys] == "0") {
           await this.zclNode.endpoints[1].clusters["onOff"].writeAttributes({ startUpOnOff: 0 }).catch(err => { this.error(err)})
-          console.log("Start Up On/Off is OFF")
+          console.log("Startup ON/OFF(Left) is OFF")
 
         }
         else if (newSettings[changedKeys] == "1") {
           await this.zclNode.endpoints[1].clusters["onOff"].writeAttributes({ startUpOnOff: 1 }).catch(err => { this.error(err)})
-          console.log("Start Up On/Off is ON")
+          console.log("Startup ON/OFF(Left) is ON")
 
         }
         else if (newSettings[changedKeys] == "2") {
           await this.zclNode.endpoints[1].clusters["onOff"].writeAttributes({ startUpOnOff: 2 }).catch(err => { this.error(err)})
-          console.log("Start Up On/Off is TOGGLE")
+          console.log("Startup ON/OFF(Left) is TOGGLE")
 
         }
         else if (newSettings[changedKeys] == "255") {
           await this.zclNode.endpoints[1].clusters["onOff"].writeAttributes({ startUpOnOff: 255 }).catch(err => { this.error(err)})
-          console.log("Start Up On/Off is PREVIOUS")
+          console.log("Startup ON/OFF(Left) is PREVIOUS")
         }
       }
-      else if(changedKeys == "count_down_time"){
-        const seconds = newSettings[changedKeys]
-        this.log("count_down_time: ",seconds)
-        this.zclNode.endpoints[1].clusters["plugPrivateCluster"].writeAttributes({ count_down_time: seconds }).catch(err => { this.error(err)})
+      else if(changedKeys == "start_up_on_off_right"){
+        if (newSettings[changedKeys] == "0") {
+          await this.zclNode.endpoints[2].clusters["onOff"].writeAttributes({ startUpOnOff: 0 }).catch(err => { this.error(err)})
+          console.log("Startup ON/OFF(Right) is OFF")
+
+        }
+        else if (newSettings[changedKeys] == "1") {
+          await this.zclNode.endpoints[2].clusters["onOff"].writeAttributes({ startUpOnOff: 1 }).catch(err => { this.error(err)})
+          console.log("Startup ON/OFF(Right) is ON")
+
+        }
+        else if (newSettings[changedKeys] == "2") {
+          await this.zclNode.endpoints[2].clusters["onOff"].writeAttributes({ startUpOnOff: 2 }).catch(err => { this.error(err)})
+          console.log("Startup ON/OFF(Right) is TOGGLE")
+
+        }
+        else if (newSettings[changedKeys] == "255") {
+          await this.zclNode.endpoints[2].clusters["onOff"].writeAttributes({ startUpOnOff: 255 }).catch(err => { this.error(err)})
+          console.log("Startup ON/OFF(Right) is PREVIOUS")
+        }
       }
+
+      // else if(changedKeys == "count_down_time"){
+      //   const seconds = newSettings[changedKeys]
+      //   this.log("count_down_time: ",seconds)
+      //   this.zclNode.endpoints[1].clusters["plugPrivateCluster"].writeAttributes({ count_down_time: seconds }).catch(err => { this.error(err)})
+      // }
     }
   }
 

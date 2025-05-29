@@ -25,6 +25,32 @@
       }
     }
   ],
+  "conditions":[
+    {
+      "id": "is_turned_on_left",
+      "title": {
+        "en": "Is turned on(Left)"
+      }
+    },
+    {
+      "id": "is_turned_off_left",
+      "title": {
+        "en": "Is turned off(Left)"
+      }
+    },
+    {
+      "id": "is_turned_on_right",
+      "title": {
+        "en": "Is turned on(Right)"
+      }
+    },
+    {
+      "id": "is_turned_off_right",
+      "title": {
+        "en": "Is turned off(Right)"
+      }
+    }
+  ],
   "actions":[
     {
       "id": "turn_on_left",
