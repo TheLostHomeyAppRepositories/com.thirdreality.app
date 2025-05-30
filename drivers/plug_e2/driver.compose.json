@@ -5,10 +5,10 @@
   "class": "socket",
   "capabilities": [
     "onoff",
-    "meter_power",
     "measure_power",
     "measure_current",
     "measure_voltage",
+    "meter_power",
     "third_reality_reset_summation_delivered_capability"
   ],
   "platforms": [

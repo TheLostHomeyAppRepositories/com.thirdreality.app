@@ -19,7 +19,7 @@
     "vendorId": 5127,
     "productId": 5000,
     "learnmode": {
-      "instruction": { "en": "Press Fn + Pause + Esc/Space on your device three times" }
+      "instruction": { "en": "Hold Matter + Pause + Esc/Space for 5 seconds until the ESC key's LED blinks blue." }
     }
   }
 }

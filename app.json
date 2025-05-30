@@ -897,10 +897,10 @@
       "class": "socket",
       "capabilities": [
         "onoff",
-        "meter_power",
         "measure_power",
         "measure_current",
         "measure_voltage",
+        "meter_power",
         "third_reality_reset_summation_delivered_capability"
       ],
       "platforms": [
@@ -1197,7 +1197,7 @@
         "productId": 5000,
         "learnmode": {
           "instruction": {
-            "en": "Press Fn + Pause + Esc/Space on your device three times"
+            "en": "Hold Matter + Pause + Esc/Space for 5 seconds until the ESC key's LED blinks blue."
           }
         }
       },
