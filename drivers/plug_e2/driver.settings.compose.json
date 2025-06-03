@@ -2,7 +2,6 @@
     {
         "id": "start_up_on_off",
         "type": "dropdown",
-        "value": "heating",
         "label": { "en": "Start Up ON/OFF" },
         "values": [
         {

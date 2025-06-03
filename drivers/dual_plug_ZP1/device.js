@@ -261,49 +261,54 @@ class Plug_V2 extends ZigBeeDevice {
     this.log("changedKeys: ",changedKeys)
     this.log("newSettings: ",newSettings)
     this.log("oldSettings: ",oldSettings)
-      if (changedKeys == "start_up_on_off_left") {
-        if (newSettings[changedKeys] == "0") {
+    for(let changedKey of changedKeys){
+      this.log(`changedKey: ${changedKey}`)
+      if (changedKey == "start_up_on_off_left") {
+        if (newSettings[changedKey] == "0") {
           await this.zclNode.endpoints[1].clusters["onOff"].writeAttributes({ startUpOnOff: 0 }).catch(err => { this.error(err)})
           console.log("Startup ON/OFF(Left) is OFF")
 
         }
-        else if (newSettings[changedKeys] == "1") {
+        else if (newSettings[changedKey] == "1") {
           await this.zclNode.endpoints[1].clusters["onOff"].writeAttributes({ startUpOnOff: 1 }).catch(err => { this.error(err)})
           console.log("Startup ON/OFF(Left) is ON")
 
         }
-        else if (newSettings[changedKeys] == "2") {
+        else if (newSettings[changedKey] == "2") {
           await this.zclNode.endpoints[1].clusters["onOff"].writeAttributes({ startUpOnOff: 2 }).catch(err => { this.error(err)})
           console.log("Startup ON/OFF(Left) is TOGGLE")
 
         }
-        else if (newSettings[changedKeys] == "255") {
+        else if (newSettings[changedKey] == "255") {
           await this.zclNode.endpoints[1].clusters["onOff"].writeAttributes({ startUpOnOff: 255 }).catch(err => { this.error(err)})
           console.log("Startup ON/OFF(Left) is PREVIOUS")
         }
       }
-      else if(changedKeys == "start_up_on_off_right"){
-        if (newSettings[changedKeys] == "0") {
+      else if(changedKey == "start_up_on_off_right"){
+        if (newSettings[changedKey] == "0") {
           await this.zclNode.endpoints[2].clusters["onOff"].writeAttributes({ startUpOnOff: 0 }).catch(err => { this.error(err)})
           console.log("Startup ON/OFF(Right) is OFF")
 
         }
-        else if (newSettings[changedKeys] == "1") {
+        else if (newSettings[changedKey] == "1") {
           await this.zclNode.endpoints[2].clusters["onOff"].writeAttributes({ startUpOnOff: 1 }).catch(err => { this.error(err)})
           console.log("Startup ON/OFF(Right) is ON")
 
         }
-        else if (newSettings[changedKeys] == "2") {
+        else if (newSettings[changedKey] == "2") {
           await this.zclNode.endpoints[2].clusters["onOff"].writeAttributes({ startUpOnOff: 2 }).catch(err => { this.error(err)})
           console.log("Startup ON/OFF(Right) is TOGGLE")
 
         }
-        else if (newSettings[changedKeys] == "255") {
+        else if (newSettings[changedKey] == "255") {
           await this.zclNode.endpoints[2].clusters["onOff"].writeAttributes({ startUpOnOff: 255 }).catch(err => { this.error(err)})
           console.log("Startup ON/OFF(Right) is PREVIOUS")
         }
       }
 
+
+    }
+      
       // else if(changedKeys == "count_down_time"){
       //   const seconds = newSettings[changedKeys]
       //   this.log("count_down_time: ",seconds)

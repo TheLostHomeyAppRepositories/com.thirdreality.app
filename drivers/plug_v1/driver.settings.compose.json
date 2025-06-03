@@ -2,7 +2,6 @@
     {
         "id": "start_up_on_off",
         "type": "dropdown",
-        "value": "heating",
         "label": { "en": "Start Up ON/OFF" },
         "values": [
         {
@@ -22,5 +21,14 @@
             "label": { "en": "PREVIOUS" }
         }
         ]
+    },
+    {
+    "id": "count_down_time",
+    "type": "number",
+    "label": { "en": "Count Down Time" },
+    "value": 0,
+    "min": 0,
+    "max": 65535,
+    "units": { "en": "seconds" }
     }
 ]
