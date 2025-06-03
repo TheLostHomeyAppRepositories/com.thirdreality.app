@@ -3,6 +3,14 @@ ThirdReality Devices support without Bridge for Homey
 
 ## Release notes:
 
+### v1.00.14
+- Added support for Smart Dual Plug ZP1.
+- Added support for Smart Mechanical Keyboard MK1.
+- Added support for count down time for Smart Plug (Gen1, Gen2, E2)
+- Added support for count down time for Smart Plug (Gen1, Gen2, E2)
+- Added support for meter_power for Smart Plug (Gen2, E2)
+- Added support for reset summation delivered for Smart Plug (Gen2, E2)
+
 ### v1.00.13
 - Optimized the issue that the brightness control of the colored bulb did not have a synchronized state.
 
