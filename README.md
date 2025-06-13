@@ -3,6 +3,9 @@ ThirdReality Devices support without Bridge for Homey
 
 ## Release notes:
 
+### v1.00.15
+- Cancel the config report of the dual plug.
+
 ### v1.00.14
 - Added support for Smart Dual Plug ZP1.
 - Added support for Smart Mechanical Keyboard MK1.
@@ -42,7 +45,7 @@ ThirdReality Devices support without Bridge for Homey
 - Add support for Garage Door Tilt Sensor and Temperature and Humidity Sensor Lite
 
 ### v1.0.4
--Add support for Vibration Sensor and Button
+- Add support for Vibration Sensor and Button
 
 ### v1.0.3
 - Add support for Homey Bridge

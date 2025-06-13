@@ -37,5 +37,8 @@
   },
   "1.0.13": {
     "en": "Optimized the issue that the brightness control of the colored bulb did not have a synchronized state."
+  },
+  "1.0.14": {
+    "en": "Added support for Smart Dual Plug ZP1 and Smart Mechanical Keyboard MK1. Add the meter_power and reset summation delivered functions of existing plug devices."
   }
 }

@@ -26,8 +26,8 @@ class Plug_V2 extends ZigBeeDevice {
     this.registerCapability("meter_power_of_left_dual_plug", CLUSTER.METERING)
     this.registerCapability("meter_power_of_right_dual_plug", CLUSTER.METERING)
 
-    await this.configAttributeReport(1)
-    await this.configAttributeReport(2)
+    // await this.configAttributeReport(1)
+    // await this.configAttributeReport(2)
 
 
     await this.readEndpointOnOffState(1)
@@ -140,27 +140,27 @@ class Plug_V2 extends ZigBeeDevice {
     })
     await this.zclNode.endpoints[ep].clusters[CLUSTER.ELECTRICAL_MEASUREMENT.NAME].configureReporting({
         rmsCurrent: {
-          minInterval: 0,
+          minInterval: 5,
           maxInterval: 1800,
-          reportableChange: 1
+          minChange: 1
         },
         rmsVoltage: {
-          minInterval: 0,
+          minInterval: 5,
           maxInterval: 1800,
-          reportableChange: 1
+          minChange: 1
         },
         activePower: {
-          minInterval: 0,
+          minInterval: 5,
           maxInterval: 1800,
-          reportableChange: 1
+          minChange: 1
         },
       }).catch(err => { this.error(err)});
 
     await this.zclNode.endpoints[ep].clusters[CLUSTER.METERING.NAME].configureReporting({
         currentSummationDelivered: {
-          minInterval: 0,
+          minInterval: 5,
           maxInterval: 1800,
-          reportableChange: 1
+          minChange: 1
         },
       }).catch(err => { this.error(err)}); 
   }
