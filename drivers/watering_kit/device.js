@@ -10,6 +10,12 @@ class waterKit extends ZigBeeDevice {
     const device_ieee = this.getSettings()["zb_ieee_address"]
     const modeNum = this.getSettings()["zb_product_id"]
 
+    this.registerCapability("alarm_water", CLUSTER.IAS_ZONE);
+
+    zclNode.endpoints[1].clusters[CLUSTER.IAS_ZONE.NAME].onZoneStatusChangeNotification = payload => {
+      this.onIASZoneStatusChangeNotification(payload);
+    }
+
     zclNode.endpoints[1].clusters["powerConfiguration"]
       .on('attr.batteryPercentageRemaining', (batteryPercentageRemaining) => { this.onBatteryPercentageRemainingAttributeReport(batteryPercentageRemaining) });
   }
@@ -24,8 +30,13 @@ class waterKit extends ZigBeeDevice {
  * onAdded is called when the user adds the device, called just after pairing.
  */
   async onAdded() {
-    this.log('Soil Moisture Sensor has been added');
+    this.log('Watering Kit has been added');
   }
+
+  onIASZoneStatusChangeNotification({zoneStatus, extendedStatus, zoneId, delay,}) {
+		this.log('IASZoneStatusChangeNotification received:', zoneStatus, extendedStatus, zoneId, delay);
+		this.setCapabilityValue('alarm_water', zoneStatus.alarm1).catch(this.error);
+	}
 
   /**
    * onSettings is called when the user updates the device's settings.
@@ -36,7 +47,7 @@ class waterKit extends ZigBeeDevice {
    * @returns {Promise<string|void>} return a custom message that will be displayed
    */
   async onSettings({ oldSettings, newSettings, changedKeys }) {
-    this.log('Soil Moisture Sensor settings where changed');
+    this.log('Watering Kit settings where changed');
   }
 
   /**
@@ -45,14 +56,14 @@ class waterKit extends ZigBeeDevice {
    * @param {string} name The new name
    */
   async onRenamed(name) {
-    this.log('Soil Moisture Sensor was renamed');
+    this.log('Watering Kit was renamed');
   }
 
   /**
    * onDeleted is called when the user deleted the device.
    */
   async onDeleted() {
-    this.log('Soil Moisture Sensor has been deleted');
+    this.log('Watering Kit has been deleted');
   }
 }
 

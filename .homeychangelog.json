@@ -40,5 +40,11 @@
   },
   "1.0.14": {
     "en": "Added support for Smart Dual Plug ZP1 and Smart Mechanical Keyboard MK1. Add the meter_power and reset summation delivered functions of existing plug devices."
+  },
+  "1.0.15": {
+    "en": "Cancel the config report of the dual plug."
+  },
+  "1.0.16": {
+    "en": "Added support for water shortage alarm in watering kit."
   }
 }

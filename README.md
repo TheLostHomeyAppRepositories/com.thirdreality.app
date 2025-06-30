@@ -3,6 +3,9 @@ ThirdReality Devices support without Bridge for Homey
 
 ## Release notes:
 
+### v1.00.16
+- Added support for water shortage alarm in watering kit.
+
 ### v1.00.15
 - Cancel the config report of the dual plug.
 
