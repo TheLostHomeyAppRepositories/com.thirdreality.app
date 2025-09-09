@@ -1,23 +1,15 @@
 {
   "name": {
-    "en": "Smart Dual Plug ZP1"
+    "en": "Smart Plug UZ1"
   },
   "class": "socket",
   "capabilities": [
-    "third_reality_dual_plug_left_switch_capability",
-    "third_reality_dual_plug_right_switch_capability",
-    "reset_left_summation_delivered_capability",
-    "reset_right_summation_delivered_capability",
-    "measure_current_of_left_dual_plug",
-    "measure_current_of_right_dual_plug",
-    "measure_power_of_left_dual_plug",
-    "measure_power_of_right_dual_plug",
-    "measure_voltage_of_left_dual_plug",
-    "measure_voltage_of_right_dual_plug",
-    "meter_power_of_left_dual_plug",
-    "meter_power_of_right_dual_plug"
-
-
+    "onoff",
+    "measure_power",
+    "measure_current",
+    "measure_voltage",
+    "meter_power",
+    "third_reality_reset_summation_delivered_capability"
   ],
   "platforms": [
     "local",
@@ -36,7 +28,7 @@
       "Third Reality, Inc"
     ],
     "productId": [
-      "3RDP01072Z"
+      "3RSPU01080Z"
     ],
     "endpoints": {
       "1": {
@@ -48,10 +40,8 @@
           1794,
           2820,
           65283
-        ]
-      },
-      "2": {
-        "clusters": [
+        ],
+        "bindings":[
           0,
           4,
           5,

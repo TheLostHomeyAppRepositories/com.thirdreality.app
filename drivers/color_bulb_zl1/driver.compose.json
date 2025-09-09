@@ -1,6 +1,6 @@
 {
   "name": {
-    "en": "Smart Color Bulb ZL1"
+    "en": "Smart Color Bulb"
   },
   "class": "light",
   "capabilities": [
@@ -27,7 +27,8 @@
       "Third Reality, Inc"
     ],
     "productId": [
-      "3RCB01057Z"
+      "3RCB01057Z",
+      "3RCB02070Z"
     ],
     "endpoints": {
       "1": {

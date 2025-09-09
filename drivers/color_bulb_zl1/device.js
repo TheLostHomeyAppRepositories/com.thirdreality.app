@@ -369,22 +369,22 @@ class colorBulbZL1 extends ZigBeeDevice {
 
   async onSettings({ oldSettings, newSettings, changedKeys }) {
     if (changedKeys == "start_up_on_off") {
-      if (newSettings[changedKeys] == "0") {
+      if (newSettings[changedKeys] == "off") {
         this.zclNode.endpoints[1].clusters["onOff"].writeAttributes({ startUpOnOff: 0 }).catch(err => { this.error(err) })
         console.log("Start Up On/Off is OFF")
 
       }
-      else if (newSettings[changedKeys] == "1") {
+      else if (newSettings[changedKeys] == "on") {
         this.zclNode.endpoints[1].clusters["onOff"].writeAttributes({ startUpOnOff: 1 }).catch(err => { this.error(err) })
         console.log("Start Up On/Off is ON")
 
       }
-      else if (newSettings[changedKeys] == "2") {
+      else if (newSettings[changedKeys] == "toggle") {
         this.zclNode.endpoints[1].clusters["onOff"].writeAttributes({ startUpOnOff: 2 }).catch(err => { this.error(err) })
         console.log("Start Up On/Off is TOGGLE")
 
       }
-      else if (newSettings[changedKeys] == "255") {
+      else if (newSettings[changedKeys] == "previous") {
         this.zclNode.endpoints[1].clusters["onOff"].writeAttributes({ startUpOnOff: 255 }).catch(err => { this.error(err) })
         console.log("Start Up On/Off is PREVIOUS")
       }

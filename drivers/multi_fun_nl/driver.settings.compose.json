@@ -2,23 +2,23 @@
     {
         "id": "start_up_on_off",
         "type": "dropdown",
-        "value": "heating",
+        "value": "previous",
         "label": { "en": "Start Up ON/OFF" },
         "values": [
         {
-            "id": "0",
+            "id": "off",
             "label": { "en": "OFF" }
         },
         {
-            "id": "1",
+            "id": "on",
             "label": { "en": "ON" }
         },
         {
-            "id": "2",
+            "id": "toggle",
             "label": { "en": "TOGGLE" }
         },
         {
-            "id": "255",
+            "id": "previous",
             "label": { "en": "PREVIOUS" }
         }
         ]

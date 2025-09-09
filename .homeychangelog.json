@@ -46,5 +46,8 @@
   },
   "1.0.16": {
     "en": "Added support for water shortage alarm in watering kit."
+  },
+  "1.0.17": {
+    "en": "1. Provide users with the option to set the config report of the soil sensor and temperature and humidity sensor lite in Advanced Settings."
   }
 }

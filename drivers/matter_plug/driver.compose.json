@@ -1,0 +1,29 @@
+{
+  "name": {
+    "en": "Smart WiFi Plug"
+  },
+  "class": "socket", 
+  "capabilities": [
+    "onoff"
+  ],
+  "platforms": [
+    "local"
+  ],
+  "connectivity": [
+    "matter"
+  ],
+  "images": {
+    "small": "{{driverAssetsPath}}/images/small.png",
+    "large": "{{driverAssetsPath}}/images/large.png",
+    "xlarge": "{{driverAssetsPath}}/images/xlarge.png"
+  },
+  "matter": {
+    "vendorId": 5217,
+    "productId": 4488
+  },
+  "learnmode": {
+    "instruction": {
+      "en": "Press and hold the reset button until the red light is blinking."
+    }
+  }
+}

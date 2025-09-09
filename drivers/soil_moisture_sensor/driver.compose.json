@@ -5,8 +5,8 @@
   "class": "sensor",
   "capabilities": [
     "measure_battery",
-    "measure_humidity",
-    "measure_temperature"
+    "measure_temperature",
+    "measure_humidity"
   ],
   "platforms": [
     "local",
@@ -38,7 +38,15 @@
           0,
           1,
           1026,
-          1029
+          1029,
+          1032
+        ],
+        "bindings":[
+          0,
+          1,
+          1026,
+          1029,
+          1032
         ]
       }
     },

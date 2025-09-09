@@ -1,0 +1,33 @@
+{
+  "name": {
+    "en": "Smart Color Night Light"
+  },
+  "class": "light",
+  "capabilities": [
+    "light_saturation",
+    "light_temperature",
+    "dim",
+    "light_hue",
+    "alarm_motion"
+  ],
+  "platforms": [
+    "local"
+  ],
+  "connectivity": [
+    "matter"
+  ],
+  "images": {
+    "small": "{{driverAssetsPath}}/images/small.png",
+    "large": "{{driverAssetsPath}}/images/large.png",
+    "xlarge": "{{driverAssetsPath}}/images/xlarge.png"
+  },
+  "matter": {
+    "vendorId": 5127,
+    "productId": 4232
+  },
+  "learnmode": {
+    "instruction": {
+      "en": "Press and hold the reset button until the red light is on."
+    }
+  }
+}

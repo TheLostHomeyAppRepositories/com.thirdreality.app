@@ -27,11 +27,9 @@ class multiFunNightLight extends ZigBeeDevice {
    */
   async onNodeInit({ zclNode }) {
 
-    this.addCapability("alarm_motion")
     this.registerCapability("onoff", CLUSTER.ON_OFF);
     this.registerCapability("dim", CLUSTER.LEVEL_CONTROL)
     this.registerCapability("measure_luminance", CLUSTER.ILLUMINANCE_MEASUREMENT)
-
 
     if (this.hasCapability('light_hue')
       || this.hasCapability('light_saturation')
@@ -63,7 +61,6 @@ class multiFunNightLight extends ZigBeeDevice {
   async onPrivateMotionValue(value) {
     this.log("Night Light motion: ", value.alarm1)
     this.setCapabilityValue("alarm_motion", value.alarm1).catch(this.error)
-
   }
 
   async registerColorCapabilities({ zclNode }) {
@@ -75,9 +72,9 @@ class multiFunNightLight extends ZigBeeDevice {
     if (this.hasCapability('light_saturation')) {
       groupedCapabilities.push(lightSaturationCapabilityDefinition);
     }
-    if (this.hasCapability('light_mode')) {
-      groupedCapabilities.push(lightModeCapabilityDefinition);
-    }
+    // if (this.hasCapability('light_mode')) {
+    //   groupedCapabilities.push(lightModeCapabilityDefinition);
+    // }
 
     // Register multiple capabilities, they will be debounced when one of them is called
     // eslint-disable-next-line consistent-return
@@ -197,28 +194,28 @@ class multiFunNightLight extends ZigBeeDevice {
   }
 
   async onSettings({ oldSettings, newSettings, changedKeys }) {
-      if (changedKeys == "start_up_on_off") {
-        if (newSettings[changedKeys] == "0") {
-            this.zclNode.endpoints[1].clusters["onOff"].writeAttributes({ startUpOnOff: 0 }).catch(err => { this.error(err)})
-            console.log("Start Up On/Off is OFF")
+    if (changedKeys.includes("start_up_on_off")) {
+      if (newSettings[changedKeys] == "off") {
+        this.zclNode.endpoints[1].clusters["onOff"].writeAttributes({ startUpOnOff: 0 }).catch(err => { this.error(err) })
+        console.log("Start Up On/Off is OFF")
 
-        }
-        else if (newSettings[changedKeys] == "1") {
-            this.zclNode.endpoints[1].clusters["onOff"].writeAttributes({ startUpOnOff: 1 }).catch(err => { this.error(err)})
-            console.log("Start Up On/Off is ON")
+      }
+      else if (newSettings[changedKeys] == "on") {
+        this.zclNode.endpoints[1].clusters["onOff"].writeAttributes({ startUpOnOff: 1 }).catch(err => { this.error(err) })
+        console.log("Start Up On/Off is ON")
 
-        }
-        else if (newSettings[changedKeys] == "2") {
-            this.zclNode.endpoints[1].clusters["onOff"].writeAttributes({ startUpOnOff: 2 }).catch(err => { this.error(err)})
-            console.log("Start Up On/Off is TOGGLE")
+      }
+      else if (newSettings[changedKeys] == "toggle") {
+        this.zclNode.endpoints[1].clusters["onOff"].writeAttributes({ startUpOnOff: 2 }).catch(err => { this.error(err) })
+        console.log("Start Up On/Off is TOGGLE")
 
-        }
-        else if (newSettings[changedKeys] == "255") {
-            this.zclNode.endpoints[1].clusters["onOff"].writeAttributes({ startUpOnOff: 255 }).catch(err => { this.error(err)})
-            console.log("Start Up On/Off is PREVIOUS")
-        }
+      }
+      else if (newSettings[changedKeys] == "previous") {
+        this.zclNode.endpoints[1].clusters["onOff"].writeAttributes({ startUpOnOff: 255 }).catch(err => { this.error(err) })
+        console.log("Start Up On/Off is PREVIOUS")
       }
     }
+  }
 }
 
 module.exports = multiFunNightLight;

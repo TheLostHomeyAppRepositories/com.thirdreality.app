@@ -1,0 +1,27 @@
+{
+  "name": {
+    "en": "Matter-Zigbee Bridge"
+  },
+  "class": "bridge",
+  "capabilities": [],
+  "platforms": [
+    "local"
+  ],
+  "connectivity": [
+    "matter"
+  ],
+  "images": {
+    "small": "{{driverAssetsPath}}/images/small.png",
+    "large": "{{driverAssetsPath}}/images/large.png",
+    "xlarge": "{{driverAssetsPath}}/images/xlarge.png"
+  },
+  "matter": {
+    "vendorId": 5127,
+    "productId": 4744
+  },
+  "learnmode": {
+    "instruction": {
+      "en": "Press and hold the reset button until the three indicator lights flash and then release it."
+    }
+  }
+}

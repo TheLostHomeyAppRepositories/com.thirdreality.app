@@ -3,6 +3,15 @@ ThirdReality Devices support without Bridge for Homey
 
 ## Release notes:
 
+### v1.00.17
+- Provide users with the option to set the config report of the soil sensor and temperature and humidity sensor lite in Advanced Settings.
+- The motion sensor status of the Multi-Function Night Light is displayed in the activity card.
+- Added support for Smart Plug UZ1.
+- Added support for identification of Matter Bridges.
+- Added support for identifying Matter Night Light.
+- Added support for Matter Plug recognition.
+
+
 ### v1.00.16
 - Added support for water shortage alarm in watering kit.
 

@@ -2,13 +2,14 @@
   "name": {
     "en": "Multi-Function Night Light"
   },
-  "class": "light",
+  "class": "other",
   "capabilities": [
     "light_saturation",
     "light_hue",
     "dim",
     "onoff",
-    "measure_luminance"
+    "measure_luminance",
+    "alarm_motion"
   ],
   "platforms": [
     "local",
@@ -32,6 +33,17 @@
     "endpoints": {
       "1": {
         "clusters": [
+          0,
+          1,
+          6,
+          8,
+          768,
+          1024,
+          1280,
+          4096,
+          64512
+        ],
+        "bindings":[
           0,
           1,
           6,
