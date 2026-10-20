@@ -2,79 +2,183 @@
   "triggers": [
     {
       "id": "wall_zw1_turn_on_bottom",
-      "title": {
-        "en": "Turn on(Bottom)"
-      }     
-    },
-    {
-      "id": "wall_zw1_turn_on_top",
-      "title": {
-        "en": "Turn on(Top)"
-      }
+      "title": { "en": "Turned on (Bottom)" }
     },
     {
       "id": "wall_zw1_turn_off_bottom",
-      "title": {
-        "en": "Turn off(Bottom)"
-      }
+      "title": { "en": "Turned off (Bottom)" }
+    },
+    {
+      "id": "wall_zw1_turn_on_top",
+      "title": { "en": "Turned on (Top)" }
     },
     {
       "id": "wall_zw1_turn_off_top",
-      "title": {
-        "en": "Turn off(Top)"
-      }
+      "title": { "en": "Turned off (Top)" }
     }
   ],
-  "conditions":[
+  "conditions": [
     {
       "id": "wall_zw1_is_turned_on_bottom",
-      "title": {
-        "en": "Is turned on(Bottom)"
-      }
+      "title": { "en": "Bottom switch !{{is|isn't}} on" }
     },
     {
       "id": "wall_zw1_is_turned_off_bottom",
-      "title": {
-        "en": "Is turned off(Bottom)"
-      }
+      "title": { "en": "Bottom switch !{{is|isn't}} off" }
     },
     {
       "id": "wall_zw1_is_turned_on_top",
-      "title": {
-        "en": "Is turned on(Top)"
-      }
+      "title": { "en": "Top switch !{{is|isn't}} on" }
     },
     {
       "id": "wall_zw1_is_turned_off_top",
-      "title": {
-        "en": "Is turned off(Top)"
-      }
-    }
-  ],
-  "actions":[
-    {
-      "id": "wall_zw1_turn_on_bottom",
-      "title": {
-        "en": "Turn on(Bottom)"
-      }     
+      "title": { "en": "Top switch !{{is|isn't}} off" }
     },
     {
-      "id": "wall_zw1_turn_on_top",
-      "title": {
-        "en": "Turn on(Top)"
-      }
+      "id": "wall_zw1_current_greater_than_bottom",
+      "title": { "en": "Bottom current !{{is|isn't}} greater than" },
+      "titleFormatted": { "en": "Bottom current !{{is|isn't}} greater than [[value]] A" },
+      "args": [
+        { "name": "value", "type": "number", "title": { "en": "Current (A)" }, "min": 0, "step": 0.01 }
+      ]
+    },
+    {
+      "id": "wall_zw1_current_less_than_bottom",
+      "title": { "en": "Bottom current !{{is|isn't}} less than" },
+      "titleFormatted": { "en": "Bottom current !{{is|isn't}} less than [[value]] A" },
+      "args": [
+        { "name": "value", "type": "number", "title": { "en": "Current (A)" }, "min": 0, "step": 0.01 }
+      ]
+    },
+    {
+      "id": "wall_zw1_current_greater_than_top",
+      "title": { "en": "Top current !{{is|isn't}} greater than" },
+      "titleFormatted": { "en": "Top current !{{is|isn't}} greater than [[value]] A" },
+      "args": [
+        { "name": "value", "type": "number", "title": { "en": "Current (A)" }, "min": 0, "step": 0.01 }
+      ]
+    },
+    {
+      "id": "wall_zw1_current_less_than_top",
+      "title": { "en": "Top current !{{is|isn't}} less than" },
+      "titleFormatted": { "en": "Top current !{{is|isn't}} less than [[value]] A" },
+      "args": [
+        { "name": "value", "type": "number", "title": { "en": "Current (A)" }, "min": 0, "step": 0.01 }
+      ]
+    },
+    {
+      "id": "wall_zw1_voltage_greater_than_bottom",
+      "title": { "en": "Bottom voltage !{{is|isn't}} greater than" },
+      "titleFormatted": { "en": "Bottom voltage !{{is|isn't}} greater than [[value]] V" },
+      "args": [
+        { "name": "value", "type": "number", "title": { "en": "Voltage (V)" }, "min": 0, "step": 0.1 }
+      ]
+    },
+    {
+      "id": "wall_zw1_voltage_less_than_bottom",
+      "title": { "en": "Bottom voltage !{{is|isn't}} less than" },
+      "titleFormatted": { "en": "Bottom voltage !{{is|isn't}} less than [[value]] V" },
+      "args": [
+        { "name": "value", "type": "number", "title": { "en": "Voltage (V)" }, "min": 0, "step": 0.1 }
+      ]
+    },
+    {
+      "id": "wall_zw1_voltage_greater_than_top",
+      "title": { "en": "Top voltage !{{is|isn't}} greater than" },
+      "titleFormatted": { "en": "Top voltage !{{is|isn't}} greater than [[value]] V" },
+      "args": [
+        { "name": "value", "type": "number", "title": { "en": "Voltage (V)" }, "min": 0, "step": 0.1 }
+      ]
+    },
+    {
+      "id": "wall_zw1_voltage_less_than_top",
+      "title": { "en": "Top voltage !{{is|isn't}} less than" },
+      "titleFormatted": { "en": "Top voltage !{{is|isn't}} less than [[value]] V" },
+      "args": [
+        { "name": "value", "type": "number", "title": { "en": "Voltage (V)" }, "min": 0, "step": 0.1 }
+      ]
+    },
+    {
+      "id": "wall_zw1_power_greater_than_bottom",
+      "title": { "en": "Bottom power !{{is|isn't}} greater than" },
+      "titleFormatted": { "en": "Bottom power !{{is|isn't}} greater than [[value]] W" },
+      "args": [
+        { "name": "value", "type": "number", "title": { "en": "Power (W)" }, "min": 0, "step": 0.1 }
+      ]
+    },
+    {
+      "id": "wall_zw1_power_less_than_bottom",
+      "title": { "en": "Bottom power !{{is|isn't}} less than" },
+      "titleFormatted": { "en": "Bottom power !{{is|isn't}} less than [[value]] W" },
+      "args": [
+        { "name": "value", "type": "number", "title": { "en": "Power (W)" }, "min": 0, "step": 0.1 }
+      ]
+    },
+    {
+      "id": "wall_zw1_power_greater_than_top",
+      "title": { "en": "Top power !{{is|isn't}} greater than" },
+      "titleFormatted": { "en": "Top power !{{is|isn't}} greater than [[value]] W" },
+      "args": [
+        { "name": "value", "type": "number", "title": { "en": "Power (W)" }, "min": 0, "step": 0.1 }
+      ]
+    },
+    {
+      "id": "wall_zw1_power_less_than_top",
+      "title": { "en": "Top power !{{is|isn't}} less than" },
+      "titleFormatted": { "en": "Top power !{{is|isn't}} less than [[value]] W" },
+      "args": [
+        { "name": "value", "type": "number", "title": { "en": "Power (W)" }, "min": 0, "step": 0.1 }
+      ]
+    },
+    {
+      "id": "wall_zw1_energy_greater_than_bottom",
+      "title": { "en": "Bottom energy !{{is|isn't}} greater than" },
+      "titleFormatted": { "en": "Bottom energy !{{is|isn't}} greater than [[value]] kWh" },
+      "args": [
+        { "name": "value", "type": "number", "title": { "en": "Energy (kWh)" }, "min": 0, "step": 0.01 }
+      ]
+    },
+    {
+      "id": "wall_zw1_energy_less_than_bottom",
+      "title": { "en": "Bottom energy !{{is|isn't}} less than" },
+      "titleFormatted": { "en": "Bottom energy !{{is|isn't}} less than [[value]] kWh" },
+      "args": [
+        { "name": "value", "type": "number", "title": { "en": "Energy (kWh)" }, "min": 0, "step": 0.01 }
+      ]
+    },
+    {
+      "id": "wall_zw1_energy_greater_than_top",
+      "title": { "en": "Top energy !{{is|isn't}} greater than" },
+      "titleFormatted": { "en": "Top energy !{{is|isn't}} greater than [[value]] kWh" },
+      "args": [
+        { "name": "value", "type": "number", "title": { "en": "Energy (kWh)" }, "min": 0, "step": 0.01 }
+      ]
+    },
+    {
+      "id": "wall_zw1_energy_less_than_top",
+      "title": { "en": "Top energy !{{is|isn't}} less than" },
+      "titleFormatted": { "en": "Top energy !{{is|isn't}} less than [[value]] kWh" },
+      "args": [
+        { "name": "value", "type": "number", "title": { "en": "Energy (kWh)" }, "min": 0, "step": 0.01 }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "wall_zw1_turn_on_bottom",
+      "title": { "en": "Turn on (Bottom)" }
     },
     {
       "id": "wall_zw1_turn_off_bottom",
-      "title": {
-        "en": "Turn off(Bottom)"
-      }
+      "title": { "en": "Turn off (Bottom)" }
+    },
+    {
+      "id": "wall_zw1_turn_on_top",
+      "title": { "en": "Turn on (Top)" }
     },
     {
       "id": "wall_zw1_turn_off_top",
-      "title": {
-        "en": "Turn off(Top)"
-      }
+      "title": { "en": "Turn off (Top)" }
     }
   ]
 }

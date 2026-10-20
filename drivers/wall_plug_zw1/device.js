@@ -8,22 +8,31 @@ const PlugPrivateCluster = require("../../lib/plugPrivateCluster")
 Cluster.addCluster(PlugOnOffCluster)
 Cluster.addCluster(PlugPrivateCluster)
 
+const LEGACY_CAPABILITY_MIGRATION_MAP = {
+  wall_plug_zw1_bottom_switch_capability: "onoff.1",
+  wall_plug_zw1_top_switch_capability: "onoff.2",
+  wall_plug_zw1_bottom_measure_current: "measure_current.1",
+  wall_plug_zw1_top_measure_current: "measure_current.2",
+  wall_plug_zw1_bottom_measure_power: "measure_power.1",
+  wall_plug_zw1_top_measure_power: "measure_power.2",
+  wall_plug_zw1_bottom_measure_voltage: "measure_voltage.1",
+  wall_plug_zw1_top_measure_voltage: "measure_voltage.2",
+  wall_plug_zw1_bottom_meter_power: "meter_power.1",
+  wall_plug_zw1_top_meter_power: "meter_power.2",
+};
 
 class Wall_Plug_ZW1 extends ZigBeeDevice {
   async onNodeInit({ zclNode }) {
-    const _turned_on_bottom_condition = this.homey.flow.getConditionCard("wall_zw1_is_turned_on_bottom");
-    const _turned_off_bottom_condition = this.homey.flow.getConditionCard("wall_zw1_is_turned_off_bottom");
-    const _turned_on_top_condition = this.homey.flow.getConditionCard("wall_zw1_is_turned_on_top");
-    const _turned_off_top_condition = this.homey.flow.getConditionCard("wall_zw1_is_turned_off_top");
+    await this.migrateLegacyCapabilities();
 
-    this.registerCapability("wall_plug_zw1_bottom_measure_current", CLUSTER.ELECTRICAL_MEASUREMENT)
-    this.registerCapability("wall_plug_zw1_top_measure_current", CLUSTER.ELECTRICAL_MEASUREMENT)
-    this.registerCapability("wall_plug_zw1_bottom_measure_power", CLUSTER.ELECTRICAL_MEASUREMENT)
-    this.registerCapability("wall_plug_zw1_top_measure_power", CLUSTER.ELECTRICAL_MEASUREMENT)
-    this.registerCapability("wall_plug_zw1_bottom_measure_voltage", CLUSTER.ELECTRICAL_MEASUREMENT)
-    this.registerCapability("wall_plug_zw1_top_measure_voltage", CLUSTER.ELECTRICAL_MEASUREMENT)
-    this.registerCapability("wall_plug_zw1_bottom_meter_power", CLUSTER.METERING)
-    this.registerCapability("wall_plug_zw1_top_meter_power", CLUSTER.METERING)
+    this.registerCapability("measure_current.1", CLUSTER.ELECTRICAL_MEASUREMENT)
+    this.registerCapability("measure_current.2", CLUSTER.ELECTRICAL_MEASUREMENT)
+    this.registerCapability("measure_power.1", CLUSTER.ELECTRICAL_MEASUREMENT)
+    this.registerCapability("measure_power.2", CLUSTER.ELECTRICAL_MEASUREMENT)
+    this.registerCapability("measure_voltage.1", CLUSTER.ELECTRICAL_MEASUREMENT)
+    this.registerCapability("measure_voltage.2", CLUSTER.ELECTRICAL_MEASUREMENT)
+    this.registerCapability("meter_power.1", CLUSTER.METERING)
+    this.registerCapability("meter_power.2", CLUSTER.METERING)
 
     await this.configAttributeReport(1)
     await this.configAttributeReport(2)
@@ -53,8 +62,8 @@ class Wall_Plug_ZW1 extends ZigBeeDevice {
       }
     })
 
-    this.registerCapabilityListener('wall_plug_zw1_bottom_switch_capability', async (value) => {
-      this.log("wall_plug_zw1_bottom_switch_capability value: ", value)
+    this.registerCapabilityListener('onoff.1', async (value) => {
+      this.log("onoff.1 value: ", value)
       if (value === true) {
         await this.zclNode.endpoints[1].clusters['onOff'].setOn().catch(err => { this.error(err) })
       }
@@ -64,8 +73,8 @@ class Wall_Plug_ZW1 extends ZigBeeDevice {
 
     })
 
-    this.registerCapabilityListener('wall_plug_zw1_top_switch_capability', async (value) => {
-      this.log("wall_plug_zw1_top_switch_capability value: ", value)
+    this.registerCapabilityListener('onoff.2', async (value) => {
+      this.log("onoff.2 value: ", value)
       if (value === true) {
         await this.zclNode.endpoints[2].clusters['onOff'].setOn().catch(err => { this.error(err) })
       }
@@ -89,46 +98,6 @@ class Wall_Plug_ZW1 extends ZigBeeDevice {
 
     })
 
-    _turned_on_bottom_condition.registerRunListener(async (args, state) => {
-      const currentValue = await this.getCapabilityValue("wall_plug_zw1_bottom_switch_capability")
-      if (currentValue === true) {
-        return true
-      }
-    })
-
-    _turned_off_bottom_condition.registerRunListener(async (args, state) => {
-      const currentValue = await this.getCapabilityValue("wall_plug_zw1_bottom_switch_capability")
-      if (currentValue === false) {
-        return true
-      }
-    })
-
-    _turned_on_top_condition.registerRunListener(async (args, state) => {
-      const currentValue = await this.getCapabilityValue("wall_plug_zw1_top_switch_capability")
-      if (currentValue === true) {
-        return true
-      }
-    })
-
-    _turned_off_top_condition.registerRunListener(async (args, state) => {
-      const currentValue = await this.getCapabilityValue("wall_plug_zw1_top_switch_capability")
-      if (currentValue === false) {
-        return true
-      }
-    })
-
-    this.driver._turn_on_bottom_action.registerRunListener(async (args, state) => {
-      await this.zclNode.endpoints[1].clusters['onOff'].setOn().catch(err => { this.error(err) })
-    })
-    this.driver._turn_on_top_action.registerRunListener(async (args, state) => {
-      await this.zclNode.endpoints[2].clusters['onOff'].setOn().catch(err => { this.error(err) })
-    })
-    this.driver._turn_off_bottom_action.registerRunListener(async (args, state) => {
-      await this.zclNode.endpoints[1].clusters['onOff'].setOff().catch(err => { this.error(err) })
-    })
-    this.driver._turn_off_top_action.registerRunListener(async (args, state) => {
-      await this.zclNode.endpoints[2].clusters['onOff'].setOff().catch(err => { this.error(err) })
-    })
   }
 
   async configAttributeReport(ep) {
@@ -172,7 +141,7 @@ class Wall_Plug_ZW1 extends ZigBeeDevice {
         (value) => {
           const currentValue = value / 1000
           this.log(`bottom_current_value: ${currentValue} A`)
-          this.setCapabilityValue("wall_plug_zw1_bottom_measure_current", currentValue)
+          this.setCapabilityValue("measure_current.1", currentValue).catch(err => { this.error(err) })
         }
       )
 
@@ -181,7 +150,7 @@ class Wall_Plug_ZW1 extends ZigBeeDevice {
         (value) => {
           const voltageValue = value / 10
           this.log(`bottom_voltage_value: ${voltageValue} V`)
-          this.setCapabilityValue("wall_plug_zw1_bottom_measure_voltage", voltageValue)
+          this.setCapabilityValue("measure_voltage.1", voltageValue).catch(err => { this.error(err) })
         }
       )
 
@@ -190,7 +159,7 @@ class Wall_Plug_ZW1 extends ZigBeeDevice {
         (value) => {
           const powerValue = value / 10
           this.log(`bottom_power_value: ${powerValue} W`)
-          this.setCapabilityValue("wall_plug_zw1_bottom_measure_power", powerValue)
+          this.setCapabilityValue("measure_power.1", powerValue).catch(err => { this.error(err) })
         }
       )
 
@@ -199,7 +168,7 @@ class Wall_Plug_ZW1 extends ZigBeeDevice {
         (value) => {
           const meteringValue = value / 1000
           this.log(`bottom_metering_value: ${meteringValue} kWh`)
-          this.setCapabilityValue("wall_plug_zw1_bottom_meter_power", meteringValue)
+          this.setCapabilityValue("meter_power.1", meteringValue).catch(err => { this.error(err) })
         }
       )
     }
@@ -210,7 +179,7 @@ class Wall_Plug_ZW1 extends ZigBeeDevice {
         (value) => {
           const currentValue = value / 1000
           this.log(`top_current_value: ${currentValue} A`)
-          this.setCapabilityValue("wall_plug_zw1_top_measure_current", currentValue)
+          this.setCapabilityValue("measure_current.2", currentValue).catch(err => { this.error(err) })
         }
       )
 
@@ -219,7 +188,7 @@ class Wall_Plug_ZW1 extends ZigBeeDevice {
         (value) => {
           const voltageValue = value / 10
           this.log(`top_voltage_value: ${voltageValue} V`)
-          this.setCapabilityValue("wall_plug_zw1_top_measure_voltage", voltageValue)
+          this.setCapabilityValue("measure_voltage.2", voltageValue).catch(err => { this.error(err) })
         }
       )
 
@@ -228,7 +197,7 @@ class Wall_Plug_ZW1 extends ZigBeeDevice {
         (value) => {
           const powerValue = value / 10
           this.log(`top_power_value: ${powerValue} W`)
-          this.setCapabilityValue("wall_plug_zw1_top_measure_power", powerValue)
+          this.setCapabilityValue("measure_power.2", powerValue).catch(err => { this.error(err) })
         }
       )
 
@@ -237,7 +206,7 @@ class Wall_Plug_ZW1 extends ZigBeeDevice {
         (value) => {
           const meteringValue = value / 1000
           this.log(`top_metering_value: ${meteringValue} kWh`)
-          this.setCapabilityValue("wall_plug_zw1_top_meter_power", meteringValue)
+          this.setCapabilityValue("meter_power.2", meteringValue).catch(err => { this.error(err) })
         }
       )
     }
@@ -248,13 +217,33 @@ class Wall_Plug_ZW1 extends ZigBeeDevice {
     await this.zclNode.endpoints[ep].clusters['onOff'].on("attr.onOff", (onOffState) => {
       this.log(`on_off_state_${ep}: `, onOffState)
       if (ep === 1) {
-        this.setCapabilityValue("wall_plug_zw1_bottom_switch_capability", onOffState).catch(err => { this.error(err) })
+        this.setCapabilityValue("onoff.1", onOffState).catch(err => { this.error(err) })
       }
       else if (ep === 2) {
-        this.setCapabilityValue("wall_plug_zw1_top_switch_capability", onOffState).catch(err => { this.error(err) })
+        this.setCapabilityValue("onoff.2", onOffState).catch(err => { this.error(err) })
       }
 
     })
+  }
+
+  async migrateLegacyCapabilities() {
+    for (const [oldCapabilityId, newCapabilityId] of Object.entries(
+      LEGACY_CAPABILITY_MIGRATION_MAP,
+    )) {
+      if (this.hasCapability(oldCapabilityId)) {
+        try {
+          if (!this.hasCapability(newCapabilityId)) {
+            await this.addCapability(newCapabilityId);
+          }
+          await this.removeCapability(oldCapabilityId);
+        } catch (err) {
+          this.error(
+            `Failed to migrate capability ${oldCapabilityId} -> ${newCapabilityId}`,
+            err,
+          );
+        }
+      }
+    }
   }
 
   async onSettings({ oldSettings, newSettings, changedKeys }) {

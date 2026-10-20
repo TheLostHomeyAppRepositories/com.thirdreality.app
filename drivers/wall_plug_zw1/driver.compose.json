@@ -4,19 +4,51 @@
   },
   "class": "socket",
   "capabilities": [
-    "wall_plug_zw1_bottom_measure_current",
-    "wall_plug_zw1_bottom_measure_power",
-    "wall_plug_zw1_bottom_measure_voltage",
-    "wall_plug_zw1_bottom_meter_power",
-    "wall_plug_zw1_bottom_switch_capability",
+    "onoff.1",
+    "onoff.2",
     "wall_plug_zw1_reset_bottom_summation_delivered_capability",
     "wall_plug_zw1_reset_top_summation_delivered_capability",
-    "wall_plug_zw1_top_measure_current",
-    "wall_plug_zw1_top_measure_power",
-    "wall_plug_zw1_top_measure_voltage",
-    "wall_plug_zw1_top_meter_power",
-    "wall_plug_zw1_top_switch_capability"
+    "measure_current.1",
+    "measure_current.2",
+    "measure_power.1",
+    "measure_power.2",
+    "measure_voltage.1",
+    "measure_voltage.2",
+    "meter_power.1",
+    "meter_power.2"
   ],
+  "capabilitiesOptions": {
+    "onoff.1": {
+      "title": { "en": "Bottom Switch" }
+    },
+    "onoff.2": {
+      "title": { "en": "Top Switch" }
+    },
+    "measure_current.1": {
+      "title": { "en": "Bottom Current" }
+    },
+    "measure_current.2": {
+      "title": { "en": "Top Current" }
+    },
+    "measure_power.1": {
+      "title": { "en": "Bottom Power" }
+    },
+    "measure_power.2": {
+      "title": { "en": "Top Power" }
+    },
+    "measure_voltage.1": {
+      "title": { "en": "Bottom Voltage" }
+    },
+    "measure_voltage.2": {
+      "title": { "en": "Top Voltage" }
+    },
+    "meter_power.1": {
+      "title": { "en": "Bottom Energy" }
+    },
+    "meter_power.2": {
+      "title": { "en": "Top Energy" }
+    }
+  },
   "platforms": [
     "local",
     "cloud"

@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.thirdreality.app",
-  "version": "1.0.30",
+  "version": "1.0.31",
   "compatibility": ">=12.5.0",
   "sdk": 3,
   "platforms": [
@@ -1267,19 +1267,71 @@
       },
       "class": "socket",
       "capabilities": [
-        "third_reality_dual_plug_left_switch_capability",
-        "third_reality_dual_plug_right_switch_capability",
+        "onoff.1",
+        "onoff.2",
         "reset_left_summation_delivered_capability",
         "reset_right_summation_delivered_capability",
-        "measure_current_of_left_dual_plug",
-        "measure_current_of_right_dual_plug",
-        "measure_power_of_left_dual_plug",
-        "measure_power_of_right_dual_plug",
-        "measure_voltage_of_left_dual_plug",
-        "measure_voltage_of_right_dual_plug",
-        "meter_power_of_left_dual_plug",
-        "meter_power_of_right_dual_plug"
+        "measure_current.1",
+        "measure_current.2",
+        "measure_power.1",
+        "measure_power.2",
+        "measure_voltage.1",
+        "measure_voltage.2",
+        "meter_power.1",
+        "meter_power.2"
       ],
+      "capabilitiesOptions": {
+        "onoff.1": {
+          "title": {
+            "en": "Left Switch"
+          }
+        },
+        "onoff.2": {
+          "title": {
+            "en": "Right Switch"
+          }
+        },
+        "measure_current.1": {
+          "title": {
+            "en": "Left Current"
+          }
+        },
+        "measure_current.2": {
+          "title": {
+            "en": "Right Current"
+          }
+        },
+        "measure_power.1": {
+          "title": {
+            "en": "Left Power"
+          }
+        },
+        "measure_power.2": {
+          "title": {
+            "en": "Right Power"
+          }
+        },
+        "measure_voltage.1": {
+          "title": {
+            "en": "Left Voltage"
+          }
+        },
+        "measure_voltage.2": {
+          "title": {
+            "en": "Right Voltage"
+          }
+        },
+        "meter_power.1": {
+          "title": {
+            "en": "Left Energy"
+          }
+        },
+        "meter_power.2": {
+          "title": {
+            "en": "Right Energy"
+          }
+        }
+      },
       "platforms": [
         "local",
         "cloud"
@@ -2856,27 +2908,14 @@
         {
           "type": "group",
           "label": {
-            "en": "Config Report"
+            "en": "Polling"
           },
           "children": [
             {
-              "id": "temperature_report_min_interval",
+              "id": "temperature_poll_interval",
               "type": "number",
               "label": {
-                "en": "Temperature report(minium interval)"
-              },
-              "value": 180,
-              "min": 0,
-              "max": 65535,
-              "units": {
-                "en": "seconds"
-              }
-            },
-            {
-              "id": "temperature_report_max_interval",
-              "type": "number",
-              "label": {
-                "en": "Temperature report(maximum interval)"
+                "en": "Temperature poll interval"
               },
               "value": 300,
               "min": 0,
@@ -2886,55 +2925,16 @@
               }
             },
             {
-              "id": "temperature_report_change",
+              "id": "humidity_poll_interval",
               "type": "number",
               "label": {
-                "en": "Temperature report Change"
-              },
-              "value": 20,
-              "min": 0,
-              "max": 65535,
-              "units": {
-                "en": "0.01(℃)"
-              }
-            },
-            {
-              "id": "humidity_report_min_interval",
-              "type": "number",
-              "label": {
-                "en": "Humidity report(minium interval)"
-              },
-              "value": 15,
-              "min": 0,
-              "max": 65535,
-              "units": {
-                "en": "seconds"
-              }
-            },
-            {
-              "id": "humidity_report_max_interval",
-              "type": "number",
-              "label": {
-                "en": "Humidity report(maximum interval)"
+                "en": "Humidity poll interval"
               },
               "value": 300,
               "min": 0,
               "max": 65535,
               "units": {
                 "en": "seconds"
-              }
-            },
-            {
-              "id": "humidity_report_change",
-              "type": "number",
-              "label": {
-                "en": "Humidity report Change"
-              },
-              "value": 20,
-              "min": 0,
-              "max": 32767,
-              "units": {
-                "en": "0.01(%)"
               }
             }
           ]
@@ -3032,16 +3032,16 @@
         {
           "type": "group",
           "label": {
-            "en": "Config Report"
+            "en": "Polling"
           },
           "children": [
             {
-              "id": "temperature_report_min_interval",
+              "id": "temperature_poll_interval",
               "type": "number",
               "label": {
-                "en": "Temperature report(minium interval)"
+                "en": "Temperature poll interval"
               },
-              "value": 5,
+              "value": 300,
               "min": 0,
               "max": 65535,
               "units": {
@@ -3049,68 +3049,16 @@
               }
             },
             {
-              "id": "temperature_report_max_interval",
+              "id": "humidity_poll_interval",
               "type": "number",
               "label": {
-                "en": "Temperature report(maximum interval)"
+                "en": "Humidity poll interval"
               },
-              "value": 36000,
+              "value": 300,
               "min": 0,
               "max": 65535,
               "units": {
                 "en": "seconds"
-              }
-            },
-            {
-              "id": "temperature_report_change",
-              "type": "number",
-              "label": {
-                "en": "Temperature report Change"
-              },
-              "value": 100,
-              "min": 0,
-              "max": 65535,
-              "units": {
-                "en": "0.01(℃)"
-              }
-            },
-            {
-              "id": "humidity_report_min_interval",
-              "type": "number",
-              "label": {
-                "en": "Humidity report(minium interval)"
-              },
-              "value": 5,
-              "min": 0,
-              "max": 65535,
-              "units": {
-                "en": "seconds"
-              }
-            },
-            {
-              "id": "humidity_report_max_interval",
-              "type": "number",
-              "label": {
-                "en": "Humidity report(maximum interval)"
-              },
-              "value": 36000,
-              "min": 0,
-              "max": 65535,
-              "units": {
-                "en": "seconds"
-              }
-            },
-            {
-              "id": "humidity_report_change",
-              "type": "number",
-              "label": {
-                "en": "Humidity report Change"
-              },
-              "value": 200,
-              "min": 0,
-              "max": 32767,
-              "units": {
-                "en": "0.01(%)"
               }
             }
           ]
@@ -3298,7 +3246,43 @@
           }
         }
       },
-      "id": "thermal"
+      "id": "thermal",
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Polling"
+          },
+          "children": [
+            {
+              "id": "temperature_poll_interval",
+              "type": "number",
+              "label": {
+                "en": "Temperature poll interval"
+              },
+              "value": 300,
+              "min": 0,
+              "max": 65535,
+              "units": {
+                "en": "seconds"
+              }
+            },
+            {
+              "id": "humidity_poll_interval",
+              "type": "number",
+              "label": {
+                "en": "Humidity poll interval"
+              },
+              "value": 300,
+              "min": 0,
+              "max": 65535,
+              "units": {
+                "en": "seconds"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "name": {
@@ -3369,16 +3353,16 @@
         {
           "type": "group",
           "label": {
-            "en": "Config Report"
+            "en": "Polling"
           },
           "children": [
             {
-              "id": "temperature_report_min_interval",
+              "id": "temperature_poll_interval",
               "type": "number",
               "label": {
-                "en": "Temperature report(minium interval)"
+                "en": "Temperature poll interval"
               },
-              "value": 7,
+              "value": 300,
               "min": 0,
               "max": 65535,
               "units": {
@@ -3386,68 +3370,16 @@
               }
             },
             {
-              "id": "temperature_report_max_interval",
+              "id": "humidity_poll_interval",
               "type": "number",
               "label": {
-                "en": "Temperature report(maximum interval)"
+                "en": "Humidity poll interval"
               },
-              "value": 900,
+              "value": 300,
               "min": 0,
               "max": 65535,
               "units": {
                 "en": "seconds"
-              }
-            },
-            {
-              "id": "temperature_report_change",
-              "type": "number",
-              "label": {
-                "en": "Temperature report Change"
-              },
-              "value": 200,
-              "min": 0,
-              "max": 65535,
-              "units": {
-                "en": "0.01(℃)"
-              }
-            },
-            {
-              "id": "humidity_report_min_interval",
-              "type": "number",
-              "label": {
-                "en": "Humidity report(minium interval)"
-              },
-              "value": 7,
-              "min": 0,
-              "max": 65535,
-              "units": {
-                "en": "seconds"
-              }
-            },
-            {
-              "id": "humidity_report_max_interval",
-              "type": "number",
-              "label": {
-                "en": "Humidity report(maximum interval)"
-              },
-              "value": 900,
-              "min": 0,
-              "max": 65535,
-              "units": {
-                "en": "seconds"
-              }
-            },
-            {
-              "id": "humidity_report_change",
-              "type": "number",
-              "label": {
-                "en": "Humidity report Change"
-              },
-              "value": 500,
-              "min": 0,
-              "max": 32767,
-              "units": {
-                "en": "0.01(%)"
               }
             }
           ]
@@ -3546,19 +3478,71 @@
       },
       "class": "socket",
       "capabilities": [
-        "wall_plug_zw1_bottom_measure_current",
-        "wall_plug_zw1_bottom_measure_power",
-        "wall_plug_zw1_bottom_measure_voltage",
-        "wall_plug_zw1_bottom_meter_power",
-        "wall_plug_zw1_bottom_switch_capability",
+        "onoff.1",
+        "onoff.2",
         "wall_plug_zw1_reset_bottom_summation_delivered_capability",
         "wall_plug_zw1_reset_top_summation_delivered_capability",
-        "wall_plug_zw1_top_measure_current",
-        "wall_plug_zw1_top_measure_power",
-        "wall_plug_zw1_top_measure_voltage",
-        "wall_plug_zw1_top_meter_power",
-        "wall_plug_zw1_top_switch_capability"
+        "measure_current.1",
+        "measure_current.2",
+        "measure_power.1",
+        "measure_power.2",
+        "measure_voltage.1",
+        "measure_voltage.2",
+        "meter_power.1",
+        "meter_power.2"
       ],
+      "capabilitiesOptions": {
+        "onoff.1": {
+          "title": {
+            "en": "Bottom Switch"
+          }
+        },
+        "onoff.2": {
+          "title": {
+            "en": "Top Switch"
+          }
+        },
+        "measure_current.1": {
+          "title": {
+            "en": "Bottom Current"
+          }
+        },
+        "measure_current.2": {
+          "title": {
+            "en": "Top Current"
+          }
+        },
+        "measure_power.1": {
+          "title": {
+            "en": "Bottom Power"
+          }
+        },
+        "measure_power.2": {
+          "title": {
+            "en": "Top Power"
+          }
+        },
+        "measure_voltage.1": {
+          "title": {
+            "en": "Bottom Voltage"
+          }
+        },
+        "measure_voltage.2": {
+          "title": {
+            "en": "Top Voltage"
+          }
+        },
+        "meter_power.1": {
+          "title": {
+            "en": "Bottom Energy"
+          }
+        },
+        "meter_power.2": {
+          "title": {
+            "en": "Top Energy"
+          }
+        }
+      },
       "platforms": [
         "local",
         "cloud"
@@ -4196,20 +4180,7 @@
       {
         "id": "turn_on_left",
         "title": {
-          "en": "Turn on(Left)"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=dual_plug_ZP1"
-          }
-        ]
-      },
-      {
-        "id": "turn_on_right",
-        "title": {
-          "en": "Turn on(Right)"
+          "en": "Turned on (Left)"
         },
         "args": [
           {
@@ -4222,7 +4193,20 @@
       {
         "id": "turn_off_left",
         "title": {
-          "en": "Turn off(Left)"
+          "en": "Turned off (Left)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          }
+        ]
+      },
+      {
+        "id": "turn_on_right",
+        "title": {
+          "en": "Turned on (Right)"
         },
         "args": [
           {
@@ -4235,7 +4219,7 @@
       {
         "id": "turn_off_right",
         "title": {
-          "en": "Turn off(Right)"
+          "en": "Turned off (Right)"
         },
         "args": [
           {
@@ -4248,20 +4232,7 @@
       {
         "id": "wall_zw1_turn_on_bottom",
         "title": {
-          "en": "Turn on(Bottom)"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=wall_plug_zw1"
-          }
-        ]
-      },
-      {
-        "id": "wall_zw1_turn_on_top",
-        "title": {
-          "en": "Turn on(Top)"
+          "en": "Turned on (Bottom)"
         },
         "args": [
           {
@@ -4274,7 +4245,20 @@
       {
         "id": "wall_zw1_turn_off_bottom",
         "title": {
-          "en": "Turn off(Bottom)"
+          "en": "Turned off (Bottom)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_turn_on_top",
+        "title": {
+          "en": "Turned on (Top)"
         },
         "args": [
           {
@@ -4287,7 +4271,7 @@
       {
         "id": "wall_zw1_turn_off_top",
         "title": {
-          "en": "Turn off(Top)"
+          "en": "Turned off (Top)"
         },
         "args": [
           {
@@ -4302,7 +4286,7 @@
       {
         "id": "is_turned_on_left",
         "title": {
-          "en": "Is turned on(Left)"
+          "en": "Left switch !{{is|isn't}} on"
         },
         "args": [
           {
@@ -4315,7 +4299,7 @@
       {
         "id": "is_turned_off_left",
         "title": {
-          "en": "Is turned off(Left)"
+          "en": "Left switch !{{is|isn't}} off"
         },
         "args": [
           {
@@ -4328,7 +4312,7 @@
       {
         "id": "is_turned_on_right",
         "title": {
-          "en": "Is turned on(Right)"
+          "en": "Right switch !{{is|isn't}} on"
         },
         "args": [
           {
@@ -4341,7 +4325,7 @@
       {
         "id": "is_turned_off_right",
         "title": {
-          "en": "Is turned off(Right)"
+          "en": "Right switch !{{is|isn't}} off"
         },
         "args": [
           {
@@ -4352,9 +4336,409 @@
         ]
       },
       {
+        "id": "current_greater_than_left",
+        "title": {
+          "en": "Left current !{{is|isn't}} greater than"
+        },
+        "titleFormatted": {
+          "en": "Left current !{{is|isn't}} greater than [[value]] A"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Current (A)"
+            },
+            "min": 0,
+            "step": 0.01
+          }
+        ]
+      },
+      {
+        "id": "current_less_than_left",
+        "title": {
+          "en": "Left current !{{is|isn't}} less than"
+        },
+        "titleFormatted": {
+          "en": "Left current !{{is|isn't}} less than [[value]] A"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Current (A)"
+            },
+            "min": 0,
+            "step": 0.01
+          }
+        ]
+      },
+      {
+        "id": "current_greater_than_right",
+        "title": {
+          "en": "Right current !{{is|isn't}} greater than"
+        },
+        "titleFormatted": {
+          "en": "Right current !{{is|isn't}} greater than [[value]] A"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Current (A)"
+            },
+            "min": 0,
+            "step": 0.01
+          }
+        ]
+      },
+      {
+        "id": "current_less_than_right",
+        "title": {
+          "en": "Right current !{{is|isn't}} less than"
+        },
+        "titleFormatted": {
+          "en": "Right current !{{is|isn't}} less than [[value]] A"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Current (A)"
+            },
+            "min": 0,
+            "step": 0.01
+          }
+        ]
+      },
+      {
+        "id": "voltage_greater_than_left",
+        "title": {
+          "en": "Left voltage !{{is|isn't}} greater than"
+        },
+        "titleFormatted": {
+          "en": "Left voltage !{{is|isn't}} greater than [[value]] V"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Voltage (V)"
+            },
+            "min": 0,
+            "step": 0.1
+          }
+        ]
+      },
+      {
+        "id": "voltage_less_than_left",
+        "title": {
+          "en": "Left voltage !{{is|isn't}} less than"
+        },
+        "titleFormatted": {
+          "en": "Left voltage !{{is|isn't}} less than [[value]] V"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Voltage (V)"
+            },
+            "min": 0,
+            "step": 0.1
+          }
+        ]
+      },
+      {
+        "id": "voltage_greater_than_right",
+        "title": {
+          "en": "Right voltage !{{is|isn't}} greater than"
+        },
+        "titleFormatted": {
+          "en": "Right voltage !{{is|isn't}} greater than [[value]] V"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Voltage (V)"
+            },
+            "min": 0,
+            "step": 0.1
+          }
+        ]
+      },
+      {
+        "id": "voltage_less_than_right",
+        "title": {
+          "en": "Right voltage !{{is|isn't}} less than"
+        },
+        "titleFormatted": {
+          "en": "Right voltage !{{is|isn't}} less than [[value]] V"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Voltage (V)"
+            },
+            "min": 0,
+            "step": 0.1
+          }
+        ]
+      },
+      {
+        "id": "power_greater_than_left",
+        "title": {
+          "en": "Left power !{{is|isn't}} greater than"
+        },
+        "titleFormatted": {
+          "en": "Left power !{{is|isn't}} greater than [[value]] W"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Power (W)"
+            },
+            "min": 0,
+            "step": 0.1
+          }
+        ]
+      },
+      {
+        "id": "power_less_than_left",
+        "title": {
+          "en": "Left power !{{is|isn't}} less than"
+        },
+        "titleFormatted": {
+          "en": "Left power !{{is|isn't}} less than [[value]] W"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Power (W)"
+            },
+            "min": 0,
+            "step": 0.1
+          }
+        ]
+      },
+      {
+        "id": "power_greater_than_right",
+        "title": {
+          "en": "Right power !{{is|isn't}} greater than"
+        },
+        "titleFormatted": {
+          "en": "Right power !{{is|isn't}} greater than [[value]] W"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Power (W)"
+            },
+            "min": 0,
+            "step": 0.1
+          }
+        ]
+      },
+      {
+        "id": "power_less_than_right",
+        "title": {
+          "en": "Right power !{{is|isn't}} less than"
+        },
+        "titleFormatted": {
+          "en": "Right power !{{is|isn't}} less than [[value]] W"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Power (W)"
+            },
+            "min": 0,
+            "step": 0.1
+          }
+        ]
+      },
+      {
+        "id": "energy_greater_than_left",
+        "title": {
+          "en": "Left energy !{{is|isn't}} greater than"
+        },
+        "titleFormatted": {
+          "en": "Left energy !{{is|isn't}} greater than [[value]] kWh"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Energy (kWh)"
+            },
+            "min": 0,
+            "step": 0.01
+          }
+        ]
+      },
+      {
+        "id": "energy_less_than_left",
+        "title": {
+          "en": "Left energy !{{is|isn't}} less than"
+        },
+        "titleFormatted": {
+          "en": "Left energy !{{is|isn't}} less than [[value]] kWh"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Energy (kWh)"
+            },
+            "min": 0,
+            "step": 0.01
+          }
+        ]
+      },
+      {
+        "id": "energy_greater_than_right",
+        "title": {
+          "en": "Right energy !{{is|isn't}} greater than"
+        },
+        "titleFormatted": {
+          "en": "Right energy !{{is|isn't}} greater than [[value]] kWh"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Energy (kWh)"
+            },
+            "min": 0,
+            "step": 0.01
+          }
+        ]
+      },
+      {
+        "id": "energy_less_than_right",
+        "title": {
+          "en": "Right energy !{{is|isn't}} less than"
+        },
+        "titleFormatted": {
+          "en": "Right energy !{{is|isn't}} less than [[value]] kWh"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Energy (kWh)"
+            },
+            "min": 0,
+            "step": 0.01
+          }
+        ]
+      },
+      {
         "id": "wall_zw1_is_turned_on_bottom",
         "title": {
-          "en": "Is turned on(Bottom)"
+          "en": "Bottom switch !{{is|isn't}} on"
         },
         "args": [
           {
@@ -4367,7 +4751,7 @@
       {
         "id": "wall_zw1_is_turned_off_bottom",
         "title": {
-          "en": "Is turned off(Bottom)"
+          "en": "Bottom switch !{{is|isn't}} off"
         },
         "args": [
           {
@@ -4380,7 +4764,7 @@
       {
         "id": "wall_zw1_is_turned_on_top",
         "title": {
-          "en": "Is turned on(Top)"
+          "en": "Top switch !{{is|isn't}} on"
         },
         "args": [
           {
@@ -4393,7 +4777,7 @@
       {
         "id": "wall_zw1_is_turned_off_top",
         "title": {
-          "en": "Is turned off(Top)"
+          "en": "Top switch !{{is|isn't}} off"
         },
         "args": [
           {
@@ -4402,26 +4786,413 @@
             "filter": "driver_id=wall_plug_zw1"
           }
         ]
+      },
+      {
+        "id": "wall_zw1_current_greater_than_bottom",
+        "title": {
+          "en": "Bottom current !{{is|isn't}} greater than"
+        },
+        "titleFormatted": {
+          "en": "Bottom current !{{is|isn't}} greater than [[value]] A"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Current (A)"
+            },
+            "min": 0,
+            "step": 0.01
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_current_less_than_bottom",
+        "title": {
+          "en": "Bottom current !{{is|isn't}} less than"
+        },
+        "titleFormatted": {
+          "en": "Bottom current !{{is|isn't}} less than [[value]] A"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Current (A)"
+            },
+            "min": 0,
+            "step": 0.01
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_current_greater_than_top",
+        "title": {
+          "en": "Top current !{{is|isn't}} greater than"
+        },
+        "titleFormatted": {
+          "en": "Top current !{{is|isn't}} greater than [[value]] A"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Current (A)"
+            },
+            "min": 0,
+            "step": 0.01
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_current_less_than_top",
+        "title": {
+          "en": "Top current !{{is|isn't}} less than"
+        },
+        "titleFormatted": {
+          "en": "Top current !{{is|isn't}} less than [[value]] A"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Current (A)"
+            },
+            "min": 0,
+            "step": 0.01
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_voltage_greater_than_bottom",
+        "title": {
+          "en": "Bottom voltage !{{is|isn't}} greater than"
+        },
+        "titleFormatted": {
+          "en": "Bottom voltage !{{is|isn't}} greater than [[value]] V"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Voltage (V)"
+            },
+            "min": 0,
+            "step": 0.1
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_voltage_less_than_bottom",
+        "title": {
+          "en": "Bottom voltage !{{is|isn't}} less than"
+        },
+        "titleFormatted": {
+          "en": "Bottom voltage !{{is|isn't}} less than [[value]] V"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Voltage (V)"
+            },
+            "min": 0,
+            "step": 0.1
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_voltage_greater_than_top",
+        "title": {
+          "en": "Top voltage !{{is|isn't}} greater than"
+        },
+        "titleFormatted": {
+          "en": "Top voltage !{{is|isn't}} greater than [[value]] V"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Voltage (V)"
+            },
+            "min": 0,
+            "step": 0.1
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_voltage_less_than_top",
+        "title": {
+          "en": "Top voltage !{{is|isn't}} less than"
+        },
+        "titleFormatted": {
+          "en": "Top voltage !{{is|isn't}} less than [[value]] V"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Voltage (V)"
+            },
+            "min": 0,
+            "step": 0.1
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_power_greater_than_bottom",
+        "title": {
+          "en": "Bottom power !{{is|isn't}} greater than"
+        },
+        "titleFormatted": {
+          "en": "Bottom power !{{is|isn't}} greater than [[value]] W"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Power (W)"
+            },
+            "min": 0,
+            "step": 0.1
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_power_less_than_bottom",
+        "title": {
+          "en": "Bottom power !{{is|isn't}} less than"
+        },
+        "titleFormatted": {
+          "en": "Bottom power !{{is|isn't}} less than [[value]] W"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Power (W)"
+            },
+            "min": 0,
+            "step": 0.1
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_power_greater_than_top",
+        "title": {
+          "en": "Top power !{{is|isn't}} greater than"
+        },
+        "titleFormatted": {
+          "en": "Top power !{{is|isn't}} greater than [[value]] W"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Power (W)"
+            },
+            "min": 0,
+            "step": 0.1
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_power_less_than_top",
+        "title": {
+          "en": "Top power !{{is|isn't}} less than"
+        },
+        "titleFormatted": {
+          "en": "Top power !{{is|isn't}} less than [[value]] W"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Power (W)"
+            },
+            "min": 0,
+            "step": 0.1
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_energy_greater_than_bottom",
+        "title": {
+          "en": "Bottom energy !{{is|isn't}} greater than"
+        },
+        "titleFormatted": {
+          "en": "Bottom energy !{{is|isn't}} greater than [[value]] kWh"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Energy (kWh)"
+            },
+            "min": 0,
+            "step": 0.01
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_energy_less_than_bottom",
+        "title": {
+          "en": "Bottom energy !{{is|isn't}} less than"
+        },
+        "titleFormatted": {
+          "en": "Bottom energy !{{is|isn't}} less than [[value]] kWh"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Energy (kWh)"
+            },
+            "min": 0,
+            "step": 0.01
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_energy_greater_than_top",
+        "title": {
+          "en": "Top energy !{{is|isn't}} greater than"
+        },
+        "titleFormatted": {
+          "en": "Top energy !{{is|isn't}} greater than [[value]] kWh"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Energy (kWh)"
+            },
+            "min": 0,
+            "step": 0.01
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_energy_less_than_top",
+        "title": {
+          "en": "Top energy !{{is|isn't}} less than"
+        },
+        "titleFormatted": {
+          "en": "Top energy !{{is|isn't}} less than [[value]] kWh"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "title": {
+              "en": "Energy (kWh)"
+            },
+            "min": 0,
+            "step": 0.01
+          }
+        ]
       }
     ],
     "actions": [
       {
         "id": "turn_on_left",
         "title": {
-          "en": "Turn on(Left)"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=dual_plug_ZP1"
-          }
-        ]
-      },
-      {
-        "id": "turn_on_right",
-        "title": {
-          "en": "Turn on(Right)"
+          "en": "Turn on (Left)"
         },
         "args": [
           {
@@ -4434,7 +5205,20 @@
       {
         "id": "turn_off_left",
         "title": {
-          "en": "Turn off(Left)"
+          "en": "Turn off (Left)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=dual_plug_ZP1"
+          }
+        ]
+      },
+      {
+        "id": "turn_on_right",
+        "title": {
+          "en": "Turn on (Right)"
         },
         "args": [
           {
@@ -4447,7 +5231,7 @@
       {
         "id": "turn_off_right",
         "title": {
-          "en": "Turn off(Right)"
+          "en": "Turn off (Right)"
         },
         "args": [
           {
@@ -4460,20 +5244,7 @@
       {
         "id": "wall_zw1_turn_on_bottom",
         "title": {
-          "en": "Turn on(Bottom)"
-        },
-        "args": [
-          {
-            "type": "device",
-            "name": "device",
-            "filter": "driver_id=wall_plug_zw1"
-          }
-        ]
-      },
-      {
-        "id": "wall_zw1_turn_on_top",
-        "title": {
-          "en": "Turn on(Top)"
+          "en": "Turn on (Bottom)"
         },
         "args": [
           {
@@ -4486,7 +5257,20 @@
       {
         "id": "wall_zw1_turn_off_bottom",
         "title": {
-          "en": "Turn off(Bottom)"
+          "en": "Turn off (Bottom)"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=wall_plug_zw1"
+          }
+        ]
+      },
+      {
+        "id": "wall_zw1_turn_on_top",
+        "title": {
+          "en": "Turn on (Top)"
         },
         "args": [
           {
@@ -4499,7 +5283,7 @@
       {
         "id": "wall_zw1_turn_off_top",
         "title": {
-          "en": "Turn off(Top)"
+          "en": "Turn off (Top)"
         },
         "args": [
           {

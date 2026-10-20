@@ -8,76 +8,26 @@ const PlugPrivateCluster = require("../../lib/plugPrivateCluster");
 Cluster.addCluster(PlugOnOffCluster);
 Cluster.addCluster(PlugPrivateCluster);
 
+const LEGACY_CAPABILITY_MIGRATION_MAP = {
+  third_reality_dual_plug_left_switch_capability: "onoff.1",
+  third_reality_dual_plug_right_switch_capability: "onoff.2",
+  measure_current_of_left_dual_plug: "measure_current.1",
+  measure_current_of_right_dual_plug: "measure_current.2",
+  measure_power_of_left_dual_plug: "measure_power.1",
+  measure_power_of_right_dual_plug: "measure_power.2",
+  measure_voltage_of_left_dual_plug: "measure_voltage.1",
+  measure_voltage_of_right_dual_plug: "measure_voltage.2",
+  meter_power_of_left_dual_plug: "meter_power.1",
+  meter_power_of_right_dual_plug: "meter_power.2",
+};
+
 class Dual_Plug extends ZigBeeDevice {
   async onNodeInit({ zclNode }) {
     try {
-      const _turned_on_left_condition =
-        this.homey.flow.getConditionCard("is_turned_on_left");
-      const _turned_off_left_condition =
-        this.homey.flow.getConditionCard("is_turned_off_left");
-      const _turned_on_right_condition =
-        this.homey.flow.getConditionCard("is_turned_on_right");
-      const _turned_off_right_condition = this.homey.flow.getConditionCard(
-        "is_turned_off_right",
-      );
-
-      this.registerCapability(
-        "measure_current_of_left_dual_plug",
-        CLUSTER.ELECTRICAL_MEASUREMENT,
-      );
-      this.registerCapability(
-        "measure_current_of_right_dual_plug",
-        CLUSTER.ELECTRICAL_MEASUREMENT,
-      );
-      this.registerCapability(
-        "measure_power_of_left_dual_plug",
-        CLUSTER.ELECTRICAL_MEASUREMENT,
-      );
-      this.registerCapability(
-        "measure_power_of_right_dual_plug",
-        CLUSTER.ELECTRICAL_MEASUREMENT,
-      );
-      this.registerCapability(
-        "measure_voltage_of_left_dual_plug",
-        CLUSTER.ELECTRICAL_MEASUREMENT,
-      );
-      this.registerCapability(
-        "measure_voltage_of_right_dual_plug",
-        CLUSTER.ELECTRICAL_MEASUREMENT,
-      );
-      this.registerCapability(
-        "meter_power_of_left_dual_plug",
-        CLUSTER.METERING,
-      );
-      this.registerCapability(
-        "meter_power_of_right_dual_plug",
-        CLUSTER.METERING,
-      );
-
-      await zclNode.endpoints[1].clusters[CLUSTER.ON_OFF.NAME].on(
-        "attr.onOff",
-        (onOffState) => {
-          if (onOffState === true) {
-            this.driver.triggerTurnOnLeftSwitch(this);
-          } else {
-            this.driver.triggerTurnOffLeftSwitch(this);
-          }
-        },
-      );
-
-      await zclNode.endpoints[2].clusters[CLUSTER.ON_OFF.NAME].on(
-        "attr.onOff",
-        (onOffState) => {
-          if (onOffState === true) {
-            this.driver.triggerTurnOnRightSwitch(this);
-          } else {
-            this.driver.triggerTurnOffRightSwitch(this);
-          }
-        },
-      );
+      await this.migrateLegacyCapabilities();
 
       this.registerCapabilityListener(
-        "third_reality_dual_plug_left_switch_capability",
+        "onoff.1",
         async (value) => {
           if (value === true) {
             await this.zclNode.endpoints[1].clusters["onOff"]
@@ -96,7 +46,7 @@ class Dual_Plug extends ZigBeeDevice {
       );
 
       this.registerCapabilityListener(
-        "third_reality_dual_plug_right_switch_capability",
+        "onoff.2",
         async (value) => {
           if (value === true) {
             await this.zclNode.endpoints[2].clusters["onOff"]
@@ -153,79 +103,6 @@ class Dual_Plug extends ZigBeeDevice {
       }catch(error){
         this.error("Failed to initialize some attributes, but continuing...", error);
       }
-      
-      _turned_on_left_condition.registerRunListener(async (args, state) => {
-        const currentValue = await this.getCapabilityValue(
-          "third_reality_dual_plug_left_switch_capability",
-        );
-        if (currentValue === true) {
-          return true;
-        }
-      });
-
-      _turned_off_left_condition.registerRunListener(async (args, state) => {
-        const currentValue = await this.getCapabilityValue(
-          "third_reality_dual_plug_left_switch_capability",
-        );
-        if (currentValue === false) {
-          return true;
-        }
-      });
-
-      _turned_on_right_condition.registerRunListener(async (args, state) => {
-        const currentValue = await this.getCapabilityValue(
-          "third_reality_dual_plug_right_switch_capability",
-        );
-        if (currentValue === true) {
-          return true;
-        }
-      });
-
-      _turned_off_right_condition.registerRunListener(async (args, state) => {
-        const currentValue = await this.getCapabilityValue(
-          "third_reality_dual_plug_right_switch_capability",
-        );
-        if (currentValue === false) {
-          return true;
-        }
-      });
-
-      this.driver._turn_on_left_action.registerRunListener(
-        async (args, state) => {
-          await this.zclNode.endpoints[1].clusters["onOff"]
-            .setOn()
-            .catch((err) => {
-              this.error(err);
-            });
-        },
-      );
-      this.driver._turn_on_right_action.registerRunListener(
-        async (args, state) => {
-          await this.zclNode.endpoints[2].clusters["onOff"]
-            .setOn()
-            .catch((err) => {
-              this.error(err);
-            });
-        },
-      );
-      this.driver._turn_off_left_action.registerRunListener(
-        async (args, state) => {
-          await this.zclNode.endpoints[1].clusters["onOff"]
-            .setOff()
-            .catch((err) => {
-              this.error(err);
-            });
-        },
-      );
-      this.driver._turn_off_right_action.registerRunListener(
-        async (args, state) => {
-          await this.zclNode.endpoints[2].clusters["onOff"]
-            .setOff()
-            .catch((err) => {
-              this.error(err);
-            });
-        },
-      );
     } catch (err) {
       this.log(err);
     }
@@ -284,10 +161,9 @@ class Dual_Plug extends ZigBeeDevice {
       ].on("attr.rmsCurrent", (value) => {
         const currentValue = value / 1000;
         this.log(`left_current_value: ${currentValue} A`);
-        this.setCapabilityValue(
-          "measure_current_of_left_dual_plug",
-          currentValue,
-        );
+        this.setCapabilityValue("measure_current.1", currentValue).catch((err) => {
+          this.error(err);
+        });
       });
 
       await this.zclNode.endpoints[ep].clusters[
@@ -295,10 +171,9 @@ class Dual_Plug extends ZigBeeDevice {
       ].on("attr.rmsVoltage", (value) => {
         const voltageValue = value / 10;
         this.log(`left_voltage_value: ${voltageValue} V`);
-        this.setCapabilityValue(
-          "measure_voltage_of_left_dual_plug",
-          voltageValue,
-        );
+        this.setCapabilityValue("measure_voltage.1", voltageValue).catch((err) => {
+          this.error(err);
+        });
       });
 
       await this.zclNode.endpoints[ep].clusters[
@@ -306,7 +181,9 @@ class Dual_Plug extends ZigBeeDevice {
       ].on("attr.activePower", (value) => {
         const powerValue = value / 10;
         this.log(`left_power_value: ${powerValue} W`);
-        this.setCapabilityValue("measure_power_of_left_dual_plug", powerValue);
+        this.setCapabilityValue("measure_power.1", powerValue).catch((err) => {
+          this.error(err);
+        });
       });
 
       await this.zclNode.endpoints[ep].clusters[CLUSTER.METERING.NAME].on(
@@ -314,10 +191,9 @@ class Dual_Plug extends ZigBeeDevice {
         (value) => {
           const meteringValue = value / 1000;
           this.log(`left_metering_value: ${meteringValue} kWh`);
-          this.setCapabilityValue(
-            "meter_power_of_left_dual_plug",
-            meteringValue,
-          );
+          this.setCapabilityValue("meter_power.1", meteringValue).catch((err) => {
+            this.error(err);
+          });
         },
       );
     } else if (ep === 2) {
@@ -326,10 +202,9 @@ class Dual_Plug extends ZigBeeDevice {
       ].on("attr.rmsCurrent", (value) => {
         const currentValue = value / 1000;
         this.log(`right_current_value: ${currentValue} A`);
-        this.setCapabilityValue(
-          "measure_current_of_right_dual_plug",
-          currentValue,
-        );
+        this.setCapabilityValue("measure_current.2", currentValue).catch((err) => {
+          this.error(err);
+        });
       });
 
       await this.zclNode.endpoints[ep].clusters[
@@ -337,10 +212,9 @@ class Dual_Plug extends ZigBeeDevice {
       ].on("attr.rmsVoltage", (value) => {
         const voltageValue = value / 10;
         this.log(`right_voltage_value: ${voltageValue} V`);
-        this.setCapabilityValue(
-          "measure_voltage_of_right_dual_plug",
-          voltageValue,
-        );
+        this.setCapabilityValue("measure_voltage.2", voltageValue).catch((err) => {
+          this.error(err);
+        });
       });
 
       await this.zclNode.endpoints[ep].clusters[
@@ -348,7 +222,9 @@ class Dual_Plug extends ZigBeeDevice {
       ].on("attr.activePower", (value) => {
         const powerValue = value / 10;
         this.log(`right_power_value: ${powerValue} W`);
-        this.setCapabilityValue("measure_power_of_right_dual_plug", powerValue);
+        this.setCapabilityValue("measure_power.2", powerValue).catch((err) => {
+          this.error(err);
+        });
       });
 
       await this.zclNode.endpoints[ep].clusters[CLUSTER.METERING.NAME].on(
@@ -356,10 +232,9 @@ class Dual_Plug extends ZigBeeDevice {
         (value) => {
           const meteringValue = value / 1000;
           this.log(`right_metering_value: ${meteringValue} kWh`);
-          this.setCapabilityValue(
-            "meter_power_of_right_dual_plug",
-            meteringValue,
-          );
+          this.setCapabilityValue("meter_power.2", meteringValue).catch((err) => {
+            this.error(err);
+          });
         },
       );
     }
@@ -371,22 +246,46 @@ class Dual_Plug extends ZigBeeDevice {
       (onOffState) => {
         this.log(`on_off_state_${ep}: `, onOffState);
         if (ep === 1) {
-          this.setCapabilityValue(
-            "third_reality_dual_plug_left_switch_capability",
-            onOffState,
-          ).catch((err) => {
+          this.setCapabilityValue("onoff.1", onOffState).catch((err) => {
             this.error(err);
           });
+          if (onOffState === true) {
+            this.driver.triggerTurnOnLeft(this);
+          } else {
+            this.driver.triggerTurnOffLeft(this);
+          }
         } else if (ep === 2) {
-          this.setCapabilityValue(
-            "third_reality_dual_plug_right_switch_capability",
-            onOffState,
-          ).catch((err) => {
+          this.setCapabilityValue("onoff.2", onOffState).catch((err) => {
             this.error(err);
           });
+          if (onOffState === true) {
+            this.driver.triggerTurnOnRight(this);
+          } else {
+            this.driver.triggerTurnOffRight(this);
+          }
         }
       },
     );
+  }
+
+  async migrateLegacyCapabilities() {
+    for (const [oldCapabilityId, newCapabilityId] of Object.entries(
+      LEGACY_CAPABILITY_MIGRATION_MAP,
+    )) {
+      if (this.hasCapability(oldCapabilityId)) {
+        try {
+          if (!this.hasCapability(newCapabilityId)) {
+            await this.addCapability(newCapabilityId);
+          }
+          await this.removeCapability(oldCapabilityId);
+        } catch (err) {
+          this.error(
+            `Failed to migrate capability ${oldCapabilityId} -> ${newCapabilityId}`,
+            err,
+          );
+        }
+      }
+    }
   }
 
   async onSettings({ oldSettings, newSettings, changedKeys }) {

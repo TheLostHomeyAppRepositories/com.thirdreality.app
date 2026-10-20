@@ -16,6 +16,8 @@ class soilMoistureSensor extends ZigBeeDevice {
    */
   device_version = null
   zclNode = null
+  temperaturePollIntervalId = null
+  humidityPollIntervalId = null
 
   async onNodeInit({ zclNode }) {
     try {
@@ -29,19 +31,85 @@ class soilMoistureSensor extends ZigBeeDevice {
       this.device_version = await zclNode.endpoints[1].clusters.basic.readAttributes(['appVersion']).catch(error => { this.error(error) })
       await this.registerCapability("measure_battery", CLUSTER.POWER_CONFIGURATION);
 
-      this.zclNode.endpoints[1].clusters[CLUSTER.TEMPERATURE_MEASUREMENT.NAME]
-        .on('attr.measuredValue', this.onTemperatureMeasuredAttributeReport.bind(this));
-
       // measure_battery // alarm_battery
       this.zclNode.endpoints[1].clusters[CLUSTER.POWER_CONFIGURATION.NAME]
         .on('attr.batteryPercentageRemaining', this.onBatteryPercentageRemainingAttributeReport.bind(this));
 
-      this.zclNode.endpoints[1].clusters[CLUSTER.RELATIVE_HUMIDITY_MEASUREMENT.NAME].on('attr.measuredValue', this.onRelativeHumidityMeasuredAttributeReport.bind(this));
+      // Zigbee 认证要求：温湿度不再使用主动上报(report)，改为由 HUB 定时主动 read
+      // 老版本可能已经给设备写入过上报配置，升级后需要主动关闭，避免设备仍在主动上报
+      await this.disableLegacyReporting()
+      this.startTemperaturePolling()
+      this.startHumidityPolling()
 
     } catch (err) {
       this.log(err)
     }
 
+  }
+
+  // 关闭设备端残留的温湿度上报配置（例如从老版本 app 升级而来的设备），
+  // 确保设备不再主动上报，统一由 HUB 轮询 read。
+  async disableLegacyReporting() {
+    await this.zclNode.endpoints[1].clusters[CLUSTER.TEMPERATURE_MEASUREMENT.NAME].configureReporting({
+      measuredValue: {
+        minInterval: 0xFFFF,
+        maxInterval: 0xFFFF,
+        // measuredValue 是有符号 int16（-32768~32767），不能用 0xFFFF
+        minChange: 0x7FFF
+      }
+    }).catch(error => { this.error(error) })
+
+    await this.zclNode.endpoints[1].clusters['privateMoistureHumidity'].configureReporting({
+      measuredValue: {
+        minInterval: 0xFFFF,
+        maxInterval: 0xFFFF,
+        minChange: 0xFFFF
+      }
+    }).catch(error => { this.error(error) })
+  }
+
+  startTemperaturePolling(pollIntervalSeconds) {
+    if (this.temperaturePollIntervalId) {
+      this.homey.clearInterval(this.temperaturePollIntervalId)
+    }
+
+    pollIntervalSeconds = pollIntervalSeconds || this.getSetting('temperature_poll_interval') || 300
+    this.temperaturePollIntervalId = this.homey.setInterval(() => {
+      this.pollTemperature()
+    }, pollIntervalSeconds * 1000)
+
+    // 立即读取一次，避免等待第一个轮询周期
+    this.pollTemperature()
+  }
+
+  startHumidityPolling(pollIntervalSeconds) {
+    if (this.humidityPollIntervalId) {
+      this.homey.clearInterval(this.humidityPollIntervalId)
+    }
+
+    pollIntervalSeconds = pollIntervalSeconds || this.getSetting('humidity_poll_interval') || 300
+    this.humidityPollIntervalId = this.homey.setInterval(() => {
+      this.pollHumidity()
+    }, pollIntervalSeconds * 1000)
+
+    // 立即读取一次，避免等待第一个轮询周期
+    this.pollHumidity()
+  }
+
+  async pollTemperature() {
+    const temperatureAttributes = await this.zclNode.endpoints[1].clusters[CLUSTER.TEMPERATURE_MEASUREMENT.NAME]
+      .readAttributes(['measuredValue']).catch(error => { this.error(error) })
+    if (temperatureAttributes) {
+      this.onTemperatureMeasuredAttributeReport(temperatureAttributes.measuredValue)
+    }
+  }
+
+  async pollHumidity() {
+    const humidityAttributes = await this.zclNode.endpoints[1].clusters['privateMoistureHumidity']
+      .readAttributes(['measuredValue']).catch(error => { this.error(error) })
+    if (humidityAttributes) {
+      this.onMoistureHumidityMeasuredAttributeReport(humidityAttributes.measuredValue)
+    }
   }
 
   onTemperatureMeasuredAttributeReport(measuredValue) {
@@ -51,10 +119,10 @@ class soilMoistureSensor extends ZigBeeDevice {
     this.setCapabilityValue('measure_temperature', parsedValue + temperatureOffset).catch(this.error);
   }
 
-  onRelativeHumidityMeasuredAttributeReport(measuredValue) {
+  onMoistureHumidityMeasuredAttributeReport(measuredValue) {
     const humidityOffset = this.getSetting('humidity_offset') || 0;
     const parsedValue = this.getSetting('humidity_decimals') === '2' ? Math.round((measuredValue / 100) * 100) / 100 : Math.round((measuredValue / 100) * 10) / 10;
-    this.log('relativeHumidity:', parsedValue, '+ humidity offset', humidityOffset);
+    this.log('MoistureHumidity:', parsedValue, '+ humidity offset', humidityOffset);
     this.setCapabilityValue('measure_moisture', parsedValue + humidityOffset).catch(this.error);
   }
 
@@ -83,62 +151,19 @@ class soilMoistureSensor extends ZigBeeDevice {
    * @returns {Promise<string|void>} return a custom message that will be displayed
    */
 
+  // 温湿度不再使用 configureReporting，改为由 HUB 定时主动 read。
+  // 这里仅在轮询间隔设置变更时重启对应的轮询定时器。
   async setTemperaturAndHumidityConfigReport(oldSettings, newSettings, changedKeys) {
     this.log(`changedKeys: ${changedKeys}`)
-    let temperature_report_min_interval_value
-    let temperature_report_max_interval_value
-    let temperature_report_change_value
-    let humidity_report_min_interval_value
-    let humidity_report_max_interval_value
-    let humidity_report_change_value
 
-    temperature_report_min_interval_value = changedKeys.includes('temperature_report_min_interval') ? newSettings['temperature_report_min_interval'] : oldSettings['temperature_report_min_interval']
-    temperature_report_max_interval_value = changedKeys.includes('temperature_report_max_interval') ? newSettings['temperature_report_max_interval'] : oldSettings['temperature_report_max_interval']
-    temperature_report_change_value = changedKeys.includes('temperature_report_change') ? newSettings['temperature_report_change'] : oldSettings['temperature_report_change']
-    humidity_report_min_interval_value = changedKeys.includes('humidity_report_min_interval') ? newSettings['humidity_report_min_interval'] : oldSettings['humidity_report_min_interval']
-    humidity_report_max_interval_value = changedKeys.includes('humidity_report_max_interval') ? newSettings['humidity_report_max_interval'] : oldSettings['humidity_report_max_interval']
-    humidity_report_change_value = changedKeys.includes('humidity_report_change') ? newSettings['humidity_report_change'] : oldSettings['humidity_report_change']
-
-    this.log(`temperature_report_min_interval_value: ${temperature_report_min_interval_value}`)
-    this.log(`temperature_report_max_interval_value: ${temperature_report_max_interval_value}`)
-    this.log(`temperature_report_change_value: ${temperature_report_change_value}`)
-    this.log(`humidity_report_min_interval_value: ${humidity_report_min_interval_value}`)
-    this.log(`humidity_report_max_interval_value: ${humidity_report_max_interval_value}`)
-    this.log(`humidity_report_change_value: ${humidity_report_change_value}`)
-
-    if (temperature_report_min_interval_value > temperature_report_max_interval_value || humidity_report_min_interval_value > humidity_report_max_interval_value) {
-      throw new Error("The minimum interval must be smaller than the maximum interval")
+    if (changedKeys.includes('temperature_poll_interval')) {
+      this.log(`temperature poll interval changed to: ${newSettings['temperature_poll_interval']}`)
+      this.startTemperaturePolling(newSettings['temperature_poll_interval'])
     }
 
-    if (changedKeys.includes("temperature_report_min_interval") || changedKeys.includes("temperature_report_max_interval") || changedKeys.includes("temperature_report_change")) {
-      await this.zclNode.endpoints[1].clusters['temperatureMeasurement'].configureReporting({
-        measuredValue: {
-          minInterval: temperature_report_min_interval_value,
-          maxInterval: temperature_report_max_interval_value,
-          minChange: temperature_report_change_value
-        }
-
-      }).catch(error => { this.log(error) })
-    }
-
-    if (changedKeys.includes("humidity_report_min_interval") || changedKeys.includes("humidity_report_max_interval") || changedKeys.includes("humidity_report_change")) {
-
-      await this.zclNode.endpoints[1].clusters['relativeHumidity'].configureReporting({
-        measuredValue: {
-          minInterval: humidity_report_min_interval_value,
-          maxInterval: humidity_report_max_interval_value,
-          minChange: humidity_report_change_value
-        }
-      }).catch(error => { this.log(error) })
-
-      await this.zclNode.endpoints[1].clusters['privateMoistureHumidity'].configureReporting({
-        measuredValue: {
-          minInterval: humidity_report_min_interval_value,
-          maxInterval: humidity_report_max_interval_value,
-          minChange: humidity_report_change_value
-        }
-      }).catch(error => { this.log(error) })
-
+    if (changedKeys.includes('humidity_poll_interval')) {
+      this.log(`humidity poll interval changed to: ${newSettings['humidity_poll_interval']}`)
+      this.startHumidityPolling(newSettings['humidity_poll_interval'])
     }
   }
 
@@ -160,6 +185,12 @@ class soilMoistureSensor extends ZigBeeDevice {
    * onDeleted is called when the user deleted the device.
    */
   async onDeleted() {
+    if (this.temperaturePollIntervalId) {
+      this.homey.clearInterval(this.temperaturePollIntervalId)
+    }
+    if (this.humidityPollIntervalId) {
+      this.homey.clearInterval(this.humidityPollIntervalId)
+    }
     this.log('Soil Moisture Sensor has been deleted');
   }
 

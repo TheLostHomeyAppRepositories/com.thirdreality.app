@@ -2,79 +2,183 @@
   "triggers": [
     {
       "id": "turn_on_left",
-      "title": {
-        "en": "Turn on(Left)"
-      }     
-    },
-    {
-      "id": "turn_on_right",
-      "title": {
-        "en": "Turn on(Right)"
-      }
+      "title": { "en": "Turned on (Left)" }
     },
     {
       "id": "turn_off_left",
-      "title": {
-        "en": "Turn off(Left)"
-      }
+      "title": { "en": "Turned off (Left)" }
+    },
+    {
+      "id": "turn_on_right",
+      "title": { "en": "Turned on (Right)" }
     },
     {
       "id": "turn_off_right",
-      "title": {
-        "en": "Turn off(Right)"
-      }
+      "title": { "en": "Turned off (Right)" }
     }
   ],
-  "conditions":[
+  "conditions": [
     {
       "id": "is_turned_on_left",
-      "title": {
-        "en": "Is turned on(Left)"
-      }
+      "title": { "en": "Left switch !{{is|isn't}} on" }
     },
     {
       "id": "is_turned_off_left",
-      "title": {
-        "en": "Is turned off(Left)"
-      }
+      "title": { "en": "Left switch !{{is|isn't}} off" }
     },
     {
       "id": "is_turned_on_right",
-      "title": {
-        "en": "Is turned on(Right)"
-      }
+      "title": { "en": "Right switch !{{is|isn't}} on" }
     },
     {
       "id": "is_turned_off_right",
-      "title": {
-        "en": "Is turned off(Right)"
-      }
-    }
-  ],
-  "actions":[
-    {
-      "id": "turn_on_left",
-      "title": {
-        "en": "Turn on(Left)"
-      }     
+      "title": { "en": "Right switch !{{is|isn't}} off" }
     },
     {
-      "id": "turn_on_right",
-      "title": {
-        "en": "Turn on(Right)"
-      }
+      "id": "current_greater_than_left",
+      "title": { "en": "Left current !{{is|isn't}} greater than" },
+      "titleFormatted": { "en": "Left current !{{is|isn't}} greater than [[value]] A" },
+      "args": [
+        { "name": "value", "type": "number", "title": { "en": "Current (A)" }, "min": 0, "step": 0.01 }
+      ]
+    },
+    {
+      "id": "current_less_than_left",
+      "title": { "en": "Left current !{{is|isn't}} less than" },
+      "titleFormatted": { "en": "Left current !{{is|isn't}} less than [[value]] A" },
+      "args": [
+        { "name": "value", "type": "number", "title": { "en": "Current (A)" }, "min": 0, "step": 0.01 }
+      ]
+    },
+    {
+      "id": "current_greater_than_right",
+      "title": { "en": "Right current !{{is|isn't}} greater than" },
+      "titleFormatted": { "en": "Right current !{{is|isn't}} greater than [[value]] A" },
+      "args": [
+        { "name": "value", "type": "number", "title": { "en": "Current (A)" }, "min": 0, "step": 0.01 }
+      ]
+    },
+    {
+      "id": "current_less_than_right",
+      "title": { "en": "Right current !{{is|isn't}} less than" },
+      "titleFormatted": { "en": "Right current !{{is|isn't}} less than [[value]] A" },
+      "args": [
+        { "name": "value", "type": "number", "title": { "en": "Current (A)" }, "min": 0, "step": 0.01 }
+      ]
+    },
+    {
+      "id": "voltage_greater_than_left",
+      "title": { "en": "Left voltage !{{is|isn't}} greater than" },
+      "titleFormatted": { "en": "Left voltage !{{is|isn't}} greater than [[value]] V" },
+      "args": [
+        { "name": "value", "type": "number", "title": { "en": "Voltage (V)" }, "min": 0, "step": 0.1 }
+      ]
+    },
+    {
+      "id": "voltage_less_than_left",
+      "title": { "en": "Left voltage !{{is|isn't}} less than" },
+      "titleFormatted": { "en": "Left voltage !{{is|isn't}} less than [[value]] V" },
+      "args": [
+        { "name": "value", "type": "number", "title": { "en": "Voltage (V)" }, "min": 0, "step": 0.1 }
+      ]
+    },
+    {
+      "id": "voltage_greater_than_right",
+      "title": { "en": "Right voltage !{{is|isn't}} greater than" },
+      "titleFormatted": { "en": "Right voltage !{{is|isn't}} greater than [[value]] V" },
+      "args": [
+        { "name": "value", "type": "number", "title": { "en": "Voltage (V)" }, "min": 0, "step": 0.1 }
+      ]
+    },
+    {
+      "id": "voltage_less_than_right",
+      "title": { "en": "Right voltage !{{is|isn't}} less than" },
+      "titleFormatted": { "en": "Right voltage !{{is|isn't}} less than [[value]] V" },
+      "args": [
+        { "name": "value", "type": "number", "title": { "en": "Voltage (V)" }, "min": 0, "step": 0.1 }
+      ]
+    },
+    {
+      "id": "power_greater_than_left",
+      "title": { "en": "Left power !{{is|isn't}} greater than" },
+      "titleFormatted": { "en": "Left power !{{is|isn't}} greater than [[value]] W" },
+      "args": [
+        { "name": "value", "type": "number", "title": { "en": "Power (W)" }, "min": 0, "step": 0.1 }
+      ]
+    },
+    {
+      "id": "power_less_than_left",
+      "title": { "en": "Left power !{{is|isn't}} less than" },
+      "titleFormatted": { "en": "Left power !{{is|isn't}} less than [[value]] W" },
+      "args": [
+        { "name": "value", "type": "number", "title": { "en": "Power (W)" }, "min": 0, "step": 0.1 }
+      ]
+    },
+    {
+      "id": "power_greater_than_right",
+      "title": { "en": "Right power !{{is|isn't}} greater than" },
+      "titleFormatted": { "en": "Right power !{{is|isn't}} greater than [[value]] W" },
+      "args": [
+        { "name": "value", "type": "number", "title": { "en": "Power (W)" }, "min": 0, "step": 0.1 }
+      ]
+    },
+    {
+      "id": "power_less_than_right",
+      "title": { "en": "Right power !{{is|isn't}} less than" },
+      "titleFormatted": { "en": "Right power !{{is|isn't}} less than [[value]] W" },
+      "args": [
+        { "name": "value", "type": "number", "title": { "en": "Power (W)" }, "min": 0, "step": 0.1 }
+      ]
+    },
+    {
+      "id": "energy_greater_than_left",
+      "title": { "en": "Left energy !{{is|isn't}} greater than" },
+      "titleFormatted": { "en": "Left energy !{{is|isn't}} greater than [[value]] kWh" },
+      "args": [
+        { "name": "value", "type": "number", "title": { "en": "Energy (kWh)" }, "min": 0, "step": 0.01 }
+      ]
+    },
+    {
+      "id": "energy_less_than_left",
+      "title": { "en": "Left energy !{{is|isn't}} less than" },
+      "titleFormatted": { "en": "Left energy !{{is|isn't}} less than [[value]] kWh" },
+      "args": [
+        { "name": "value", "type": "number", "title": { "en": "Energy (kWh)" }, "min": 0, "step": 0.01 }
+      ]
+    },
+    {
+      "id": "energy_greater_than_right",
+      "title": { "en": "Right energy !{{is|isn't}} greater than" },
+      "titleFormatted": { "en": "Right energy !{{is|isn't}} greater than [[value]] kWh" },
+      "args": [
+        { "name": "value", "type": "number", "title": { "en": "Energy (kWh)" }, "min": 0, "step": 0.01 }
+      ]
+    },
+    {
+      "id": "energy_less_than_right",
+      "title": { "en": "Right energy !{{is|isn't}} less than" },
+      "titleFormatted": { "en": "Right energy !{{is|isn't}} less than [[value]] kWh" },
+      "args": [
+        { "name": "value", "type": "number", "title": { "en": "Energy (kWh)" }, "min": 0, "step": 0.01 }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": "turn_on_left",
+      "title": { "en": "Turn on (Left)" }
     },
     {
       "id": "turn_off_left",
-      "title": {
-        "en": "Turn off(Left)"
-      }
+      "title": { "en": "Turn off (Left)" }
+    },
+    {
+      "id": "turn_on_right",
+      "title": { "en": "Turn on (Right)" }
     },
     {
       "id": "turn_off_right",
-      "title": {
-        "en": "Turn off(Right)"
-      }
+      "title": { "en": "Turn off (Right)" }
     }
   ]
 }

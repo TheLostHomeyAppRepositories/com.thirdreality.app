@@ -4,21 +4,51 @@
   },
   "class": "socket",
   "capabilities": [
-    "third_reality_dual_plug_left_switch_capability",
-    "third_reality_dual_plug_right_switch_capability",
+    "onoff.1",
+    "onoff.2",
     "reset_left_summation_delivered_capability",
     "reset_right_summation_delivered_capability",
-    "measure_current_of_left_dual_plug",
-    "measure_current_of_right_dual_plug",
-    "measure_power_of_left_dual_plug",
-    "measure_power_of_right_dual_plug",
-    "measure_voltage_of_left_dual_plug",
-    "measure_voltage_of_right_dual_plug",
-    "meter_power_of_left_dual_plug",
-    "meter_power_of_right_dual_plug"
-
-
+    "measure_current.1",
+    "measure_current.2",
+    "measure_power.1",
+    "measure_power.2",
+    "measure_voltage.1",
+    "measure_voltage.2",
+    "meter_power.1",
+    "meter_power.2"
   ],
+  "capabilitiesOptions": {
+    "onoff.1": {
+      "title": { "en": "Left Switch" }
+    },
+    "onoff.2": {
+      "title": { "en": "Right Switch" }
+    },
+    "measure_current.1": {
+      "title": { "en": "Left Current" }
+    },
+    "measure_current.2": {
+      "title": { "en": "Right Current" }
+    },
+    "measure_power.1": {
+      "title": { "en": "Left Power" }
+    },
+    "measure_power.2": {
+      "title": { "en": "Right Power" }
+    },
+    "measure_voltage.1": {
+      "title": { "en": "Left Voltage" }
+    },
+    "measure_voltage.2": {
+      "title": { "en": "Right Voltage" }
+    },
+    "meter_power.1": {
+      "title": { "en": "Left Energy" }
+    },
+    "meter_power.2": {
+      "title": { "en": "Right Energy" }
+    }
+  },
   "platforms": [
     "local",
     "cloud"
