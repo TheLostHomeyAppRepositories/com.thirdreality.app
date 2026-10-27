@@ -3,6 +3,13 @@ ThirdReality Devices support without Bridge for Homey
 
 ## Release notes:
 
+### v1.0.31
+
+- Add a setting for the color bulb to retrieve the on/off state after being added and sync it to the Capability.
+- On Homey, set to disable the report of the Temperature & Humidity Sensor Gen1, Temperature & Humidity Sensor Lite Gen1/Gen2, and Soil Sensor Gen1/Gen2. Also set the HUB to actively read attributes every 5 minutes.
+- Migrate the custom Capability of Smart Dual Plug ZP1 to the official Capability.
+- Migrate the custom Capability of Smart Wall Outlet ZW1 to the official Capability.
+
 ### v1.0.30
 - Change the title of the "measure_tvoc_index" capability of the Air Quality Sensor to "VOC index".
 - OTA support: water_leak_gen2 v1.00.18
