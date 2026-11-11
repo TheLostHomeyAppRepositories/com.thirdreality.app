@@ -2533,6 +2533,32 @@
                 "integrity": "sha256:5af7d276fbb2303bc056b2641695599f8fb485c9d0d3a0115c08218a7c700023"
               }
             ]
+          },
+          {
+            "changelog": {
+              "en": "1. BL0943 chip zero-crossing: adopts an adaptive algorithm to automatically adjust the zero-crossing delay time based on frequency\\n2. Distinguish the zero-crossing delays of the two chips\\n3. On power-up again, report current and power promptly\\n"
+            },
+            "device": {
+              "manufacturerName": [
+                "Thirdreality",
+                "Third Reality, Inc"
+              ],
+              "productId": "3RSP02064Z"
+            },
+            "files": [
+              {
+                "fileVersion": 63,
+                "imageType": 54205,
+                "manufacturerCode": 5127,
+                "minFileVersion": 41,
+                "maxFileVersion": 257,
+                "maxHardwareVersion": 65520,
+                "minHardwareVersion": 0,
+                "size": 285854,
+                "name": "bl702_plug_gen3_usa_1.00.63.ota",
+                "integrity": "sha256:1ea7430147e1d47a01897f67a58802948e98395dee926a90f7a8ce11ace80201"
+              }
+            ]
           }
         ],
         "wakeInstruction": {
@@ -3904,6 +3930,28 @@
                 "size": 145586,
                 "name": "3RWS18BZ_ZHA_073_20260512_074532.ota",
                 "integrity": "sha256:380a3a247c38f153bbafe7cf8dfe1c651f519b5521e61dedbf65bf876e32ff29"
+              }
+            ]
+          },
+          {
+            "changelog": {
+              "en": "Long press until the threshold is reached — the red light turns on at 100% brightness; release to reset."
+            },
+            "device": {
+              "manufacturerName": [
+                "Thirdreality",
+                "Third Reality, Inc"
+              ],
+              "productId": "3RWS18BZ"
+            },
+            "files": [
+              {
+                "fileVersion": 80,
+                "imageType": 54179,
+                "manufacturerCode": 4659,
+                "size": 151666,
+                "name": "3RWS18BZ_ZHA_080_20261021_080915.ota",
+                "integrity": "sha256:1ca1160691a43cdb06440e75df5fd2a8c6009b3c549cc64bed4b64bfd8ee4900"
               }
             ]
           }

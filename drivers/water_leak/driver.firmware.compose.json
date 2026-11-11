@@ -21,6 +21,28 @@
           "integrity": "sha256:380a3a247c38f153bbafe7cf8dfe1c651f519b5521e61dedbf65bf876e32ff29"
         }
       ]
+    },
+    {
+      "changelog": {
+        "en": "Long press until the threshold is reached — the red light turns on at 100% brightness; release to reset."
+      },
+      "device": {
+        "manufacturerName": [
+          "Thirdreality",
+          "Third Reality, Inc"
+        ],
+        "productId": "3RWS18BZ"
+      },
+      "files": [
+        {
+          "fileVersion": 80,
+          "imageType": 54179,
+          "manufacturerCode": 4659,
+          "size": 151666,
+          "name": "3RWS18BZ_ZHA_080_20261021_080915.ota",
+          "integrity": "sha256:1ca1160691a43cdb06440e75df5fd2a8c6009b3c549cc64bed4b64bfd8ee4900"
+        }
+      ]
     }
   ],
   "wakeInstruction": {
