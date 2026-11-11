@@ -1,0 +1,34 @@
+{
+  "name": {
+    "en": "Smart Color Bulb LZ12"
+  },
+  "class": "light",
+  "capabilities": [
+    "light_saturation",
+    "light_temperature",
+    "dim",
+    "light_hue",
+    "light_mode",
+    "onoff"
+  ],
+  "platforms": ["local", "cloud"],
+  "connectivity": ["zigbee"],
+  "images": {
+    "small": "{{driverAssetsPath}}/images/small.png",
+    "large": "{{driverAssetsPath}}/images/large.png"
+  },
+  "zigbee": {
+    "manufacturerName": ["Thirdreality", "Third Reality, Inc"],
+    "productId": ["3RCB1097Z"],
+    "endpoints": {
+      "1": {
+        "clusters": [0, 1, 6, 8, 25, 768]
+      }
+    },
+    "learnmode": {
+      "instruction": {
+        "en": "Turn the bulb off and on >= 5 times to put the bulb into reset mode (Light effect: after waiting for about 1 second, it lights up in warm white at maximum brightness; after a few seconds, it cycles through cool white, red, green, and blue in sequence, then stays on in warm white at 100%.)"
+      }
+    }
+  }
+}

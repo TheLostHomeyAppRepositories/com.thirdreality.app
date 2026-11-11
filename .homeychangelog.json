@@ -88,5 +88,8 @@
   },
   "1.0.30": {
     "en": "Change the title of the \"measure_tvoc_index\" capability of the Air Quality Sensor to \"VOC index\".\\nOTA support: water_leak_gen2 v1.00.18"
+  },
+  "1.0.31": {
+    "en": "Add a setting for the color bulb to retrieve the on/off state after being added and "
   }
 }

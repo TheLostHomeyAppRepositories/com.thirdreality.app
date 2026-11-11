@@ -1,0 +1,57 @@
+{
+  "name": {
+    "en": "Smart Outdoor Range Extender HZ20"
+  },
+  "class": "other",
+  "capabilities": [
+    "measure_battery",
+    "onoff"
+  ],
+  "platforms": [
+    "local",
+    "cloud"
+  ],
+  "connectivity": [
+    "zigbee"
+  ],
+  "energy": {
+    "batteries": [
+      "INTERNAL"
+    ]
+  },
+  "images": {
+    "small": "{{driverAssetsPath}}/images/small.png",
+    "large": "{{driverAssetsPath}}/images/large.png",
+    "xlarge": "{{driverAssetsPath}}/images/xlarge.png"
+  },
+  "zigbee": {
+    "manufacturerName": [
+      "Thirdreality",
+      "Third Reality, Inc"
+    ],
+    "productId": [
+      "3RRE0194Z"
+    ],
+    "endpoints": {
+      "1": {
+        "clusters": [
+          0,
+          1,
+          4,
+          5,
+          6,
+          25
+        ],
+        "bindings": [
+          1,
+          6
+        ]
+      }
+    },
+    "learnmode": {
+      "instruction": {
+        "en": "At the same time, hold down both the '1' and '2' buttons until you hear the 'beep' sound, and then release them."
+      }
+    }
+  }
+}

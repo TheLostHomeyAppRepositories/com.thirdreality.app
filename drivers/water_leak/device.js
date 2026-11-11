@@ -18,7 +18,7 @@ class WaterLeak extends ZigBeeDevice {
       zclNode.endpoints[1].clusters.iasZone.zoneEnrollResponse({
         enrollResponseCode: 0, // Success
         zoneId: 0, // Choose a zone id
-      });
+      }).catch(this.error);
 
       // alarm_motion & alarm_tamper
       zclNode.endpoints[1].clusters[CLUSTER.IAS_ZONE.NAME].onZoneStatusChangeNotification = payload => {

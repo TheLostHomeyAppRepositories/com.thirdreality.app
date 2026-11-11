@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.thirdreality.app",
-  "version": "1.0.31",
+  "version": "1.0.32",
   "compatibility": ">=12.5.0",
   "sdk": 3,
   "platforms": [
@@ -2101,6 +2101,64 @@
     },
     {
       "name": {
+        "en": "Smart Outdoor Range Extender HZ20"
+      },
+      "class": "other",
+      "capabilities": [
+        "measure_battery",
+        "onoff"
+      ],
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "zigbee"
+      ],
+      "energy": {
+        "batteries": [
+          "INTERNAL"
+        ]
+      },
+      "images": {
+        "small": "/drivers/outdoor_range_extender_hz20/assets/images/small.png",
+        "large": "/drivers/outdoor_range_extender_hz20/assets/images/large.png",
+        "xlarge": "/drivers/outdoor_range_extender_hz20/assets/images/xlarge.png"
+      },
+      "zigbee": {
+        "manufacturerName": [
+          "Thirdreality",
+          "Third Reality, Inc"
+        ],
+        "productId": [
+          "3RRE0194Z"
+        ],
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              1,
+              4,
+              5,
+              6,
+              25
+            ],
+            "bindings": [
+              1,
+              6
+            ]
+          }
+        },
+        "learnmode": {
+          "instruction": {
+            "en": "At the same time, hold down both the '1' and '2' buttons until you hear the 'beep' sound, and then release them."
+          }
+        }
+      },
+      "id": "outdoor_range_extender_hz20"
+    },
+    {
+      "name": {
         "en": "Smart Plug E2"
       },
       "class": "socket",
@@ -2809,6 +2867,94 @@
         }
       },
       "id": "radar_60G",
+      "settings": [
+        {
+          "id": "start_up_on_off",
+          "type": "dropdown",
+          "value": "previous",
+          "label": {
+            "en": "Start Up ON/OFF"
+          },
+          "values": [
+            {
+              "id": "off",
+              "label": {
+                "en": "OFF"
+              }
+            },
+            {
+              "id": "on",
+              "label": {
+                "en": "ON"
+              }
+            },
+            {
+              "id": "toggle",
+              "label": {
+                "en": "TOGGLE"
+              }
+            },
+            {
+              "id": "previous",
+              "label": {
+                "en": "PREVIOUS"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "Smart Color Bulb LZ12"
+      },
+      "class": "light",
+      "capabilities": [
+        "light_saturation",
+        "light_temperature",
+        "dim",
+        "light_hue",
+        "light_mode",
+        "onoff"
+      ],
+      "platforms": [
+        "local",
+        "cloud"
+      ],
+      "connectivity": [
+        "zigbee"
+      ],
+      "images": {
+        "small": "/drivers/smart_color_bulb_lz12/assets/images/small.png",
+        "large": "/drivers/smart_color_bulb_lz12/assets/images/large.png"
+      },
+      "zigbee": {
+        "manufacturerName": [
+          "Thirdreality",
+          "Third Reality, Inc"
+        ],
+        "productId": [
+          "3RCB1097Z"
+        ],
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              1,
+              6,
+              8,
+              25,
+              768
+            ]
+          }
+        },
+        "learnmode": {
+          "instruction": {
+            "en": "Turn the bulb off and on >= 5 times to put the bulb into reset mode (Light effect: after waiting for about 1 second, it lights up in warm white at maximum brightness; after a few seconds, it cycles through cool white, red, green, and blue in sequence, then stays on in warm white at 100%.)"
+          }
+        }
+      },
+      "id": "smart_color_bulb_lz12",
       "settings": [
         {
           "id": "start_up_on_off",

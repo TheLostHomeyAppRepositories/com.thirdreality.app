@@ -79,9 +79,42 @@ class colorBulbZL1 extends ZigBeeDevice {
       });
     }
     if (this.hasCapability('dim')) {
+      await zclNode.endpoints[1].clusters.levelControl.on("attr.currentLevel", (value) => {
+        this.log("currentLevel: ", value);
+        this.setCapabilityValue("dim", limitValue(value / MAX_DIM, 0, 1)).catch((error) => this.log(error));
+      });
       this.registerCapabilityListener('dim', (value, opts) => {
         return this.changeDimLevel(value, opts);
       });
+    }
+
+    // Configure reporting for currentLevel so the device actively reports brightness changes
+    try {
+      await zclNode.endpoints[1].clusters.levelControl.configureReporting({
+        currentLevel: {
+          minInterval: 0,
+          maxInterval: 300,
+          minChange: 1,
+        },
+      });
+    } catch (err) {
+      this.error('Error: could not configure reporting for currentLevel', err);
+    }
+
+    // Read level control attributes and sync dim/onoff during initialization
+    if (this.hasCapability('dim') || this.hasCapability('onoff')) {
+      await this.readLevelContorlAttributes().catch(err => {
+        this.error('Error: could not read level control attributes during onNodeInit', err);
+      });
+      try {
+        const { currentLevel } = await this.levelControlCluster.readAttributes(['currentLevel']);
+        if (typeof currentLevel === 'number') {
+          this.setCapabilityValue('dim', limitValue(currentLevel / MAX_DIM, 0, 1)).catch(this.error);
+          this.setCapabilityValue('onoff', currentLevel > 0).catch(this.error);
+        }
+      } catch (err) {
+        this.error('Error: could not read currentLevel during onNodeInit', err);
+      }
     }
 
     // Register color related capabilities if device has one of the following
@@ -554,6 +587,18 @@ class colorBulbZL1 extends ZigBeeDevice {
       // Move to the specified hue and saturation
       await this.colorControlCluster.moveToHueAndSaturation(moveToHueAndSaturationCommand);
 
+      // Some bulbs adjust their brightness when the color changes.
+      // Read the current level shortly after the color change and sync it to the dim capability.
+      await wait(500);
+      try {
+        const { currentLevel } = await this.levelControlCluster.readAttributes(['currentLevel']);
+        if (typeof currentLevel === 'number' && currentLevel > 0) {
+          await this.setCapabilityValue('dim', limitValue(currentLevel / MAX_DIM, 0, 1));
+        }
+      } catch (err) {
+        this.error('changeColor() → could not read currentLevel after color change', err);
+      }
+
       return true;
     } catch (error) {
       // Log the error and return false
@@ -568,8 +613,10 @@ class colorBulbZL1 extends ZigBeeDevice {
     try {
       levelControlCluster = this.levelControlCluster;
       const { currentLevel } = await levelControlCluster.readAttributes(['currentLevel']);
-      this.setCapabilityValue('dim', limitValue(currentLevel / 254, 0, 1)).catch(this.error);
-      this.setCapabilityValue('onoff', limitValue(currentLevel > 0, 0, 1)).catch(this.error);
+      if (typeof currentLevel === 'number') {
+        this.setCapabilityValue('dim', limitValue(currentLevel / MAX_DIM, 0, 1)).catch(this.error);
+        this.setCapabilityValue('onoff', currentLevel > 0).catch(this.error);
+      }
     } catch (err) {
       // Device does not support the level control cluster, skip
     }
