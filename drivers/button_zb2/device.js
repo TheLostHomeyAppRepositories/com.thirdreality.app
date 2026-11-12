@@ -54,23 +54,61 @@ module.exports = class ButtonZB2 extends ZigBeeDevice {
    * onInit is called when the device is initialized.
    */
   async onNodeInit({ zclNode }) {
+    this.log('Button has been initialized');
+
+    // Register capability
     try {
-      this.log('Button has been initialized');
       this.registerCapability("measure_battery", CLUSTER.POWER_CONFIGURATION);
-
-      await this.configAttributeReport()
-
-
-      await zclNode.endpoints[1].clusters[CLUSTER.POWER_CONFIGURATION.NAME].on('attr.batteryPercentageRemaining', this.onBatteryPercentageRemainingAttributeReport.bind(this));
-
-
-      await zclNode.endpoints[1].clusters[CLUSTER.MULTI_STATE_INPUT.NAME].on('attr.presentValue', (value) => this.updateMultiStateInputPresentValue(1, value));
-      await zclNode.endpoints[2].clusters[CLUSTER.MULTI_STATE_INPUT.NAME].on('attr.presentValue', (value) => this.updateMultiStateInputPresentValue(2, value));
-      await zclNode.endpoints[3].clusters[CLUSTER.MULTI_STATE_INPUT.NAME].on('attr.presentValue', (value) => this.updateMultiStateInputPresentValue(3, value));
-
-
     } catch (error) {
-      this.log(error)
+      this.log(error);
+    }
+
+    // Register Zigbee attribute listeners first, so button events work even if
+    // configAttributeReport() fails (e.g., after a Homey Pro restart when the
+    // Zigbee network is still initializing).
+    try {
+      await zclNode.endpoints[1].clusters[CLUSTER.POWER_CONFIGURATION.NAME].on(
+        'attr.batteryPercentageRemaining',
+        this.onBatteryPercentageRemainingAttributeReport.bind(this),
+      );
+    } catch (error) {
+      this.log('Failed to register battery listener', error);
+    }
+
+    try {
+      await zclNode.endpoints[1].clusters[CLUSTER.MULTI_STATE_INPUT.NAME].on(
+        'attr.presentValue',
+        (value) => this.updateMultiStateInputPresentValue(1, value),
+      );
+    } catch (error) {
+      this.log('Failed to register button 1 listener', error);
+    }
+
+    try {
+      await zclNode.endpoints[2].clusters[CLUSTER.MULTI_STATE_INPUT.NAME].on(
+        'attr.presentValue',
+        (value) => this.updateMultiStateInputPresentValue(2, value),
+      );
+    } catch (error) {
+      this.log('Failed to register button 2 listener', error);
+    }
+
+    try {
+      await zclNode.endpoints[3].clusters[CLUSTER.MULTI_STATE_INPUT.NAME].on(
+        'attr.presentValue',
+        (value) => this.updateMultiStateInputPresentValue(3, value),
+      );
+    } catch (error) {
+      this.log('Failed to register button 3 listener', error);
+    }
+
+    // Configure attribute reporting after listeners are registered.
+    // This is non-critical: if it fails (e.g., Zigbee network not ready yet),
+    // button events will still be received via the listeners above.
+    try {
+      await this.configAttributeReport();
+    } catch (error) {
+      this.log('Failed to configure attribute reporting', error);
     }
   }
 
