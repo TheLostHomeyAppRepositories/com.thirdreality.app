@@ -23,30 +23,6 @@
           "integrity": "sha256:546eb6ade7e0904a8b6e9bc424aa033410f376cf216c4c7d03eaefe74a710d7f"
         }
       ]
-    },
-    {
-      "changelog": {
-        "en": "Implement install code compatibility with normal network joining, transparent to users\\n Fix stack overflow issue + watchdog reset\\n Register temperature attribute table and initialize\\n Negative temperature two's complement correction: ~raw & 0x0FFF → ((~raw)+1) & 0x0FFF\\n Fix temperature parameter type\\n Adjust temperature upper limit clamping: >=10000→9999 changed to >12500→12500\\n Complete soil moisture cluster attribute registration table\\n Complete auto-binding on network join for soil moisture cluster (0x0408)\\n SDK layer: restore startup partition after OTA abort, clean up OTA context\\n Temperature cluster, humidity cluster, and power cluster do not report at application layer after config report, SDK reports instead\\n Temperature/humidity report prohibition configuration: when maxInterval=0xFFFF, disable reporting at both application layer and SDK, when minInterval=0xFFFF and maxInterval=0x0000, restore SDK reporting (temperature: minInterval=28, maxInterval=3600, change=50; humidity: minInterval=14, maxInterval=3600, change=200;)\\n Power report prohibition configuration same as above, when restoring reporting, default minimum interval is once per hour, maximum 12h, report on 5% drop (pwr_minInterval=3600, Pwr_maxInterval=43200, Pwr_reportChange=10;)"
-      },
-      "device": {
-        "manufacturerName": [
-          "Thirdreality",
-          "Third Reality, Inc"
-        ],
-        "productId": "3RSM0347Z"
-      },
-      "files": [
-        {
-          "fileVersion": 26,
-          "imageType": 54207,
-          "manufacturerCode": 5127,
-          "maxHardwareVersion": 65520,
-          "minHardwareVersion": 0,
-          "size": 272382,
-          "name": "Soil_Sensor_Gen2_OTA_26_1.00.26.ota",
-          "integrity": "sha256:60a73aba5eb4255047eebf66bf847a0ae2b2690133b83a2084afe6b577d69197"
-        }
-      ]
     }
   ],
   "wakeInstruction": {
