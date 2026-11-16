@@ -3,6 +3,13 @@ ThirdReality Devices support without Bridge for Homey
 
 ## Release notes:
 
+### v1.0.32
+
+- Support Smart Color Bulb LZ12
+- Support Smart Outdoor Range Extender HZ20
+- Button ZB2: fix the issue where exceptions cannot be captured due to timing problems
+- OTA support: Water Leak Sensor v1.00.80
+
 ### v1.0.31
 
 - Add a setting for the color bulb to retrieve the on/off state after being added and sync it to the Capability.

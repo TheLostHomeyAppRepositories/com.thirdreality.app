@@ -91,5 +91,8 @@
   },
   "1.0.31": {
     "en": "Add a setting for the color bulb to retrieve the on/off state after being added and "
+  },
+  "1.0.32": {
+    "en": "1. Support Smart Color Bulb LZ12\\n2. Support Smart Outdoor Range Extender HZ20\\n3. Button ZB2: fix the issue where exceptions cannot be captured due to timing problems\\n4. OTA support: Water Leak Sensor v1.00.80\\n"
   }
 }
